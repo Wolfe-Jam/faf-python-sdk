@@ -1,4 +1,4 @@
-# faf-sdk
+# faf-python-sdk
 
 Python SDK for **FAF (Foundational AI-context Format)** - the IANA-registered format for AI project context.
 
@@ -7,7 +7,7 @@ Python SDK for **FAF (Foundational AI-context Format)** - the IANA-registered fo
 ## Installation
 
 ```bash
-pip install faf-sdk
+pip install faf-python-sdk
 ```
 
 ## Quick Start
