@@ -169,17 +169,6 @@ if context:
     print(f"Tech: {context['stack']}")
 ```
 
-## Why FAF?
-
-Every AI conversation starts from zero. No memory of your project. No understanding of your stack. Just vibes.
-
-FAF solves this with a single, IANA-registered file that gives AI instant project context:
-
-- **One file, one read, full understanding**
-- **19ms average execution**
-- **Zero setup friction**
-- **MIT licensed, works everywhere**
-
 ## Links
 
 - **Spec:** [github.com/Wolfe-Jam/faf](https://github.com/Wolfe-Jam/faf)
