@@ -284,7 +284,7 @@ Common errors:
 The SDK includes comprehensive tests:
 
 ```bash
-pip install faf-sdk[dev]
+pip install faf-python-sdk[dev]
 pytest tests/ -v
 ```
 
