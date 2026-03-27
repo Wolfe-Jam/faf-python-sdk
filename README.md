@@ -1,6 +1,10 @@
 # faf-python-sdk
 
-Python SDK for **FAF (Foundational AI-context Format)** - the IANA-registered format for AI project context.
+> **Python SDK for FAF** — parse, validate, and score `.faf` files. The foundation for [gemini-faf-mcp](https://pypi.org/project/gemini-faf-mcp/).
+
+[![PyPI](https://img.shields.io/pypi/v/faf-python-sdk?style=for-the-badge&logo=pypi&logoColor=white)](https://pypi.org/project/faf-python-sdk/)
+[![Downloads](https://img.shields.io/pypi/dm/faf-python-sdk?style=for-the-badge&color=blue)](https://pypi.org/project/faf-python-sdk/)
+[![IANA](https://img.shields.io/badge/IANA-registered-informational?style=for-the-badge)](https://www.iana.org/assignments/media-types/application/vnd.faf+yaml)
 
 **Media Type:** `application/vnd.faf+yaml`
 
@@ -169,12 +173,24 @@ if context:
     print(f"Tech: {context['stack']}")
 ```
 
+## FAF Ecosystem
+
+| Package | Platform | Registry |
+|---------|----------|----------|
+| [gemini-faf-mcp](https://pypi.org/project/gemini-faf-mcp/) | Google Gemini | PyPI |
+| [claude-faf-mcp](https://npmjs.com/package/claude-faf-mcp) | Anthropic | npm + MCP #2759 |
+| [grok-faf-mcp](https://npmjs.com/package/grok-faf-mcp) | xAI | npm |
+| [faf-mcp](https://npmjs.com/package/faf-mcp) | Universal | npm |
+| [faf-cli](https://npmjs.com/package/faf-cli) | CLI | npm |
+
 ## Links
 
-- **Spec:** [github.com/Wolfe-Jam/faf](https://github.com/Wolfe-Jam/faf)
 - **Site:** [faf.one](https://faf.one)
-- **MCP Server:** [claude-faf-mcp](https://github.com/modelcontextprotocol/servers/tree/main/src/faf)
-- **IANA Registration:** `application/vnd.faf+yaml`
+- **Gemini MCP:** [gemini-faf-mcp](https://pypi.org/project/gemini-faf-mcp/)
+- **IANA Registration:** [application/vnd.faf+yaml](https://www.iana.org/assignments/media-types/application/vnd.faf+yaml)
+- **Privacy:** [faf.one/privacy](https://faf.one/privacy)
+
+If `faf-python-sdk` has been useful, consider starring the repo — it helps others find it.
 
 ## License
 
