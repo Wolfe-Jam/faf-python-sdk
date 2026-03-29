@@ -19,6 +19,7 @@ Usage:
 
 from .parser import parse, parse_file, stringify, FafFile
 from .validator import validate, ValidationResult
+from .mk4 import score_faf, Mk4Result, SlotState, LicenseTier
 from .discovery import find_faf_file, find_project_root, load_fafignore
 from .types import (
     FafData,
@@ -30,7 +31,7 @@ from .types import (
     AIScoring
 )
 
-__version__ = "1.0.0"
+__version__ = "1.1.0"
 __all__ = [
     # Parser
     "parse",
@@ -40,6 +41,11 @@ __all__ = [
     # Validator
     "validate",
     "ValidationResult",
+    # Mk4 Scoring Engine
+    "score_faf",
+    "Mk4Result",
+    "SlotState",
+    "LicenseTier",
     # Discovery
     "find_faf_file",
     "find_project_root",

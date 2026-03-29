@@ -1,0 +1,25 @@
+faf_version: '2.5.0'
+project:
+  name: faf-python-sdk
+  goal: Python SDK for parsing, validating, and scoring .faf files with Mk4 Championship Engine
+  main_language: Python
+human_context:
+  who: Python developers building AI tools, MCP servers, and CI pipelines
+  what: Parse, validate, and score FAF project DNA files with 100% Mk4 parity
+  why: Universal scoring across all FAF tools — same slots, same formula, same scores
+  where: PyPI (pip install faf-python-sdk)
+  when: Every AI session that needs project context
+  how: Import faf_sdk, call score_faf() or parse_file()
+stack:
+  frontend: slotignored
+  css_framework: slotignored
+  ui_library: slotignored
+  state_management: slotignored
+  backend: Python
+  api_type: SDK (library)
+  runtime: Python 3.8+
+  database: slotignored
+  connection: slotignored
+  hosting: PyPI
+  build: hatchling
+  cicd: GitHub Actions

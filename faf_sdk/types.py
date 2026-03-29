@@ -129,6 +129,8 @@ class FafData:
         project_data = data.get("project", {})
         if isinstance(project_data, str):
             project_data = {"name": project_data}
+        elif not isinstance(project_data, dict):
+            project_data = {}
 
         project = ProjectInfo(
             name=project_data.get("name", "unknown"),
