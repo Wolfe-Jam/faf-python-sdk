@@ -198,17 +198,19 @@ def _is_valid_populated(s: str) -> bool:
 
 
 def _score_to_tier(score: int) -> str:
-    """Mk4 official tier calculation (mk4.rs lines 239-247)."""
+    """Mk4 official tier calculation — aligned with faf-cli v6 tiers.ts."""
     if score >= 100:
-        return "\U0001f3c6"   # Trophy
+        return "TROPHY"
     if score >= 99:
-        return "\U0001f947"   # Gold
+        return "GOLD"
     if score >= 95:
-        return "\U0001f948"   # Silver
+        return "SILVER"
     if score >= 85:
-        return "\U0001f949"   # Bronze
+        return "BRONZE"
     if score >= 70:
-        return "\U0001f7e2"   # Green
+        return "GREEN"
     if score >= 55:
-        return "\U0001f7e1"   # Yellow
-    return "\U0001f534"       # Red
+        return "YELLOW"
+    if score >= 1:
+        return "RED"
+    return "WHITE"

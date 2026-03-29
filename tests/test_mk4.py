@@ -89,7 +89,7 @@ stack:
         assert result.populated == 21
         assert result.total == 21
         assert result.score == 100
-        assert result.tier == "\U0001f3c6"  # Trophy
+        assert result.tier == "TROPHY"
 
     def test_enterprise_33_slots_total(self):
         result = score_faf("empty: true", LicenseTier.ENTERPRISE)
@@ -134,7 +134,7 @@ human_context:
         assert result.active == 17  # 21 - 4 = 17
         assert result.populated == 17
         assert result.score == 100  # 17/17 = 100%
-        assert result.tier == "\U0001f3c6"  # Trophy
+        assert result.tier == "TROPHY"
 
     def test_all_slotignored_scores_zero(self):
         yaml_content = """
@@ -350,44 +350,44 @@ project:
 
 class TestTiers:
     def test_tier_trophy_100(self):
-        assert _score_to_tier(100) == "\U0001f3c6"
+        assert _score_to_tier(100) == "TROPHY"
 
     def test_tier_gold_99(self):
-        assert _score_to_tier(99) == "\U0001f947"
+        assert _score_to_tier(99) == "GOLD"
 
     def test_tier_silver_95(self):
-        assert _score_to_tier(95) == "\U0001f948"
+        assert _score_to_tier(95) == "SILVER"
 
     def test_tier_bronze_85(self):
-        assert _score_to_tier(85) == "\U0001f949"
+        assert _score_to_tier(85) == "BRONZE"
 
     def test_tier_green_70(self):
-        assert _score_to_tier(70) == "\U0001f7e2"
+        assert _score_to_tier(70) == "GREEN"
 
     def test_tier_yellow_55(self):
-        assert _score_to_tier(55) == "\U0001f7e1"
+        assert _score_to_tier(55) == "YELLOW"
 
     def test_tier_red_54(self):
-        assert _score_to_tier(54) == "\U0001f534"
+        assert _score_to_tier(54) == "RED"
 
     def test_tier_red_0(self):
-        assert _score_to_tier(0) == "\U0001f534"
+        assert _score_to_tier(0) == "WHITE"
 
     # Off-by-one boundaries
     def test_tier_boundary_98_is_silver(self):
-        assert _score_to_tier(98) == "\U0001f948"
+        assert _score_to_tier(98) == "SILVER"
 
     def test_tier_boundary_94_is_bronze(self):
-        assert _score_to_tier(94) == "\U0001f949"
+        assert _score_to_tier(94) == "BRONZE"
 
     def test_tier_boundary_84_is_green(self):
-        assert _score_to_tier(84) == "\U0001f7e2"
+        assert _score_to_tier(84) == "GREEN"
 
     def test_tier_boundary_69_is_yellow(self):
-        assert _score_to_tier(69) == "\U0001f7e1"
+        assert _score_to_tier(69) == "YELLOW"
 
     def test_tier_boundary_54_is_red(self):
-        assert _score_to_tier(54) == "\U0001f534"
+        assert _score_to_tier(54) == "RED"
 
 
 # =========================================================================
@@ -530,7 +530,7 @@ stack:
         result = score_faf(yaml_content)
         assert result.populated == 11
         assert result.score == 52  # 11/21 = 52.38 -> 52
-        assert result.tier == "\U0001f534"  # Red
+        assert result.tier == "RED"
 
     def test_mixed_enterprise_base_plus_some_enterprise(self):
         yaml_content = """
@@ -567,7 +567,7 @@ monorepo:
         assert result.populated == 24  # 21 base + 3 monorepo
         assert result.total == 33
         assert result.score == 73  # 24/33 = 72.7 -> 73
-        assert result.tier == "\U0001f7e2"  # Green
+        assert result.tier == "GREEN"
 
     def test_enterprise_full_33_slots_populated(self):
         yaml_content = """
@@ -613,4 +613,4 @@ monorepo:
         assert result.populated == 33
         assert result.total == 33
         assert result.score == 100
-        assert result.tier == "\U0001f3c6"  # Trophy
+        assert result.tier == "TROPHY"
