@@ -183,7 +183,7 @@ def get_field(faf: FafFile, *keys: str, default: Any = None) -> Any:
         >>> name = get_field(faf, "project", "name")
         >>> stack = get_field(faf, "stack", "frontend", default="None")
     """
-    value = faf.raw
+    value: Any = faf.raw
     for key in keys:
         if isinstance(value, dict):
             value = value.get(key)
