@@ -1,20 +1,23 @@
 """
-FAF Python SDK - Foundational AI-context Format
+faf-python-sdk — Persistent project context for Python.
 
-IANA-registered: application/vnd.faf+yaml
-https://faf.one
+Parse, validate, and score `.faf` files. The foundation other Python
+FAF tools (gemini-faf-mcp, custom MCP servers, CI validators) build on.
+
+IANA-registered media type: application/vnd.faf+yaml
+Site: https://faf.one
 
 Usage:
-    from faf_sdk import parse, validate, find_faf_file, FafFile
+    from faf_sdk import parse_file, score_faf
 
-    # Parse a .faf file
-    faf = parse(content)
+    faf = parse_file("project.faf")
+    print(faf.data.project.name)
 
-    # Validate structure
-    errors, warnings = validate(faf)
+    with open("project.faf") as f:
+        result = score_faf(f.read())
+    print(f"Score: {result.score}% {result.tier}")
 
-    # Find project.faf in directory tree
-    path = find_faf_file("/path/to/project")
+FAF defines. MD instructs. AI codes.
 """
 
 from .parser import parse, parse_file, stringify, FafFile
@@ -31,7 +34,7 @@ from .types import (
     AIScoring
 )
 
-__version__ = "1.1.1"
+__version__ = "1.1.2"
 __all__ = [
     # Parser
     "parse",

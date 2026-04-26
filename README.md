@@ -1,6 +1,8 @@
 # faf-python-sdk
 
-> **Python SDK for FAF** — parse, validate, and score `.faf` files with the Mk4 Championship Scoring Engine. The foundation for [gemini-faf-mcp](https://pypi.org/project/gemini-faf-mcp/).
+**Persistent project context for Python.** Parse, validate, and score `.faf` files — the foundation other Python FAF tools build on.
+
+If you're building MCP servers, CI validators, or any Python tool that needs to understand project context, start here.
 
 [![PyPI](https://img.shields.io/pypi/v/faf-python-sdk?style=for-the-badge&logo=pypi&logoColor=white)](https://pypi.org/project/faf-python-sdk/)
 [![Downloads](https://img.shields.io/pypi/dm/faf-python-sdk?style=for-the-badge&color=blue)](https://pypi.org/project/faf-python-sdk/)
@@ -19,6 +21,8 @@
 - 175 tests including 88 WJTTC championship-grade tests (concurrency, adversarial input, security)
 
 **Why this matters:** If you're building on FAF in Python — MCP servers, Gemini extensions, CI pipelines — your scores now match every other FAF tool exactly. No more "it scored 85% in the CLI but 60% in Python." One engine, one truth.
+
+> **v1.1.2** is a patch release — package description aligned with the canonical "Persistent project context for Python" framing. CHANGELOG.md added. No code changes.
 
 ## Installation
 
@@ -42,6 +46,8 @@ with open("project.faf") as f:
 print(f"Score: {result.score}% {result.tier}")
 print(f"Slots: {result.populated}/{result.total} populated")
 ```
+
+> **FAF defines. MD instructs. AI codes.**
 
 ## Mk4 Scoring
 
