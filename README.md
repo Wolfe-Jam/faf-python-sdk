@@ -1,8 +1,10 @@
 # faf-python-sdk
 
-**Persistent project context for Python.** Parse, validate, and score `.faf` files — the foundation other Python FAF tools build on.
+**Persistent Project Context for Python. Parse, validate, score.**
 
-If you're building MCP servers, CI validators, or any Python tool that needs to understand project context, start here.
+**FAF defines. MD instructs. AI codes.**
+
+The foundation other Python FAF tools build on. If you're building MCP servers, CI validators, or any Python tool that needs to understand project context, start here.
 
 [![PyPI](https://img.shields.io/pypi/v/faf-python-sdk?style=for-the-badge&logo=pypi&logoColor=white)](https://pypi.org/project/faf-python-sdk/)
 [![Downloads](https://img.shields.io/pypi/dm/faf-python-sdk?style=for-the-badge&color=blue)](https://pypi.org/project/faf-python-sdk/)
