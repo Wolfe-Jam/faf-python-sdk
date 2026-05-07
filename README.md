@@ -6,6 +6,7 @@
 
 The foundation other Python FAF tools build on. If you're building MCP servers, CI validators, or any Python tool that needs to understand project context, start here.
 
+[![FAF](https://mcpaas.live/badge/Wolfe-Jam/faf-python-sdk.svg)](https://builder.faf.one)
 [![PyPI](https://img.shields.io/pypi/v/faf-python-sdk?style=for-the-badge&logo=pypi&logoColor=white)](https://pypi.org/project/faf-python-sdk/)
 [![Downloads](https://img.shields.io/pypi/dm/faf-python-sdk?style=for-the-badge&color=blue)](https://pypi.org/project/faf-python-sdk/)
 [![Tests](https://img.shields.io/badge/tests-175%20passing-brightgreen?style=for-the-badge)](https://github.com/Wolfe-Jam/faf-python-sdk)
