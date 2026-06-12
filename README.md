@@ -146,6 +146,8 @@ root = find_project_root()
 | [grok-faf-mcp](https://npmjs.com/package/grok-faf-mcp) | xAI | npm |
 | [faf-cli](https://npmjs.com/package/faf-cli) | CLI | npm |
 
+If `faf-python-sdk` has been useful, consider starring the repo — it helps others find it.
+
 ## Links
 
 - **Site:** [faf.one](https://faf.one)
