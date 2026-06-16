@@ -55,6 +55,11 @@ Issues = "https://github.com/Wolfe-Jam/faf-python-sdk/issues"
 [tool.hatch.build.targets.wheel]
 packages = ["faf_sdk"]
 
+# Ship the vendored Dart-detection KNOWLEDGE spec (loaded at runtime by detect.py).
+# Synced byte-for-byte from faf-cli src/detect/dart-detection.json (the Truth).
+[tool.hatch.build]
+artifacts = ["faf_sdk/dart_detection.json"]
+
 [tool.mypy]
 python_version = "3.9"
 warn_return_any = true
