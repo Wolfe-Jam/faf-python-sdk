@@ -3,6 +3,19 @@
 All notable changes to faf-python-sdk are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
+## [1.2.0] - 2026-06-16 — The Dart Edition
+
+Adds `detect_dart_project()`: content-aware Dart/Flutter detection from a `pubspec.yaml` (Flutter app vs package · Dart MCP / backend / CLI / library), reproducing faf-cli's engine byte-for-byte — 20 shared fixtures, parity-tested.
+
+### Added
+- `detect_dart_project(dir)` → `DartProject` — the SDK's first detection capability. Reads `pubspec.yaml` and classifies: Flutter app vs reusable package, Dart MCP server, Dart backend (Serverpod / Dart Frog / Shelf / …), Dart CLI, or library. Exported from `faf_sdk`.
+- `faf_sdk/dart_detection.json` — the detection KNOWLEDGE spec, vendored byte-identical from faf-cli (the single source); ships in the wheel, loaded at runtime.
+- `tests/test_dart_parity.py` — 20 shared fixtures run identically by faf-cli and this SDK; parity proven by test, not by eye.
+- `scripts/sync-dart-spec.sh` — vendor + `--check` (byte-identity) the spec & fixtures from faf-cli.
+
+### Notes
+- Mirrors faf-cli `src/detect/dart.ts` exactly (A+B hybrid). To bolster Dart support, edit the spec in faf-cli (the Truth) and re-sync. No new runtime dependencies.
+
 ## [1.1.2] - 2026-04-26
 
 ### Changed

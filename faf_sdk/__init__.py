@@ -35,7 +35,7 @@ from .types import (
     AIScoring
 )
 
-__version__ = "1.1.2"
+__version__ = "1.2.0"
 __all__ = [
     # Parser
     "parse",
