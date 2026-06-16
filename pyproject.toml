@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "faf-python-sdk"
-version = "1.1.2"
+version = "1.2.0"
 description = "Persistent project context for Python — parse, validate, and score `.faf` files. The foundation other Python FAF tools (gemini-faf-mcp, custom MCP servers, CI validators) build on. IANA-registered application/vnd.faf+yaml."
 readme = "README.md"
 license = {text = "MIT"}
@@ -54,6 +54,11 @@ Issues = "https://github.com/Wolfe-Jam/faf-python-sdk/issues"
 
 [tool.hatch.build.targets.wheel]
 packages = ["faf_sdk"]
+
+# Ship the vendored Dart-detection KNOWLEDGE spec (loaded at runtime by detect.py).
+# Synced byte-for-byte from faf-cli src/detect/dart-detection.json (the Truth).
+[tool.hatch.build]
+artifacts = ["faf_sdk/dart_detection.json"]
 
 [tool.mypy]
 python_version = "3.9"
