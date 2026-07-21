@@ -69,3 +69,7 @@ disallow_untyped_defs = true
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 python_files = "test_*.py"
+
+# PEP 561 — mark package as typed for mypy consumers (gemini-faf-mcp, etc.)
+[tool.hatch.build.targets.wheel.force-include]
+"faf_sdk/py.typed" = "faf_sdk/py.typed"
