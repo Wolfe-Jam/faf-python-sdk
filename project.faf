@@ -1,7 +1,7 @@
-faf_version: '2.5.0'
+faf_version: "3.0"
 project:
   name: faf-python-sdk
-  goal: Python SDK for parsing, validating, and scoring .faf files with Mk4 Championship Engine
+  goal: Python SDK for parsing, validating, scoring, and authoring .faf project context — the Mk4 engine + interop generators other Python FAF tools build on
   main_language: Python
 human_context:
   who: Python developers building AI tools, MCP servers, and CI pipelines

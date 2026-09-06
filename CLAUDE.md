@@ -1,21 +1,22 @@
-<!-- faf: faf-python-sdk | Python |  | Python SDK for parsing, validating, and scoring .faf files with Mk4 Championship Engine -->
+<!-- faf:start -->
+<!-- faf: faf-python-sdk | Python |  | Python SDK for parsing, validating, scoring, and authoring .faf project context — the Mk4 engine + interop generators other Python FAF tools build on -->
 <!-- faf: claim=project.faf | family=FAF -->
 
 # CLAUDE.md — faf-python-sdk
 
 ## What This Is
 
-Python SDK for parsing, validating, and scoring .faf files with Mk4 Championship Engine
+Python SDK for parsing, validating, scoring, and authoring .faf project context — the Mk4 engine + interop generators other Python FAF tools build on
 
 ## Stack
 
 - **Language:** Python
 - **Backend:** Python
-- **Api Type:** SDK (library)
+- **API:** SDK (library)
 - **Runtime:** Python 3.8+
 - **Hosting:** PyPI
 - **Build:** hatchling
-- **Cicd:** GitHub Actions
+- **CI/CD:** GitHub Actions
 
 ## Context
 
@@ -28,4 +29,5 @@ Python SDK for parsing, validating, and scoring .faf files with Mk4 Championship
 
 ---
 
-*STATUS: BI-SYNC ACTIVE — 2026-06-16T20:16:30.936Z*
+*STATUS: BI-SYNC ACTIVE — 2026-09-06T18:19:41.228Z*
+<!-- faf:end -->

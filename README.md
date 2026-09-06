@@ -9,16 +9,29 @@ The foundation other Python FAF tools build on. If you're building MCP servers, 
 [![FAF](https://mcpaas.live/badge/Wolfe-Jam/faf-python-sdk.svg)](https://builder.faf.one)
 [![PyPI](https://img.shields.io/pypi/v/faf-python-sdk?style=for-the-badge&logo=pypi&logoColor=white)](https://pypi.org/project/faf-python-sdk/)
 [![Downloads](https://img.shields.io/pypi/dm/faf-python-sdk?style=for-the-badge&color=blue)](https://pypi.org/project/faf-python-sdk/)
-[![Tests](https://img.shields.io/badge/tests-196%20passing-brightgreen?style=for-the-badge)](https://github.com/Wolfe-Jam/faf-python-sdk)
+[![Tests](https://img.shields.io/badge/tests-213%20passing-brightgreen?style=for-the-badge)](https://github.com/Wolfe-Jam/faf-python-sdk)
 [![IANA](https://img.shields.io/badge/IANA-registered-informational?style=for-the-badge)](https://www.iana.org/assignments/media-types/application/vnd.faf+yaml)
 
 **Media Type:** `application/vnd.faf+yaml` (IANA registered)
 
+## What's New in v1.3.0 — The Interop Edition
+
+The SDK can now author AI-context files, not just parse and score them.
+
+`faf_sdk.interop` — `generate_agents_md(faf)` and `generate_gemini_md(faf)`, Python ports of faf-cli's `src/interop/agents.ts` + `gemini.ts`, in parity with the canonical TypeScript. Deterministic BETTER-shaped projection: setup (install→build→dev ordered) · tests · layout · conventions · three-tier guardrails · definition of done · security · commit · stack. Human Context (who/why marketing) is intentionally omitted from AGENTS.md — it belongs in the README / .faf DNA, not agent ops.
+
+```python
+from faf_sdk import parse_file, generate_agents_md
+
+faf = parse_file("project.faf")
+print(generate_agents_md(faf.data.raw))   # takes the raw dict — carries top-level commands / key_files / security
+```
+
+Any Python FAF tool that authors an AI-context file wraps this now — never hand-roll a Markdown generator. `gemini-faf-mcp` 2.7.0's `faf_agents` / `faf_gemini` are the reference wrappers.
+
 ## What's New in v1.2.0 — The Dart Edition
 
 Adds `detect_dart_project()`: content-aware Dart/Flutter detection from a `pubspec.yaml` (Flutter app vs package · Dart MCP / backend / CLI / library), reproducing faf-cli's engine byte-for-byte — 20 shared fixtures, parity-tested.
-
-The SDK's first detection capability — it now reads a `pubspec.yaml` and tells you *what kind* of Dart project it is, not just parse/validate/score. The detection KNOWLEDGE is vendored byte-identical from faf-cli (the single source) and ships in the wheel:
 
 ```python
 from faf_sdk import detect_dart_project
