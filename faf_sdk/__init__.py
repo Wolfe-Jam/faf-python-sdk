@@ -25,6 +25,7 @@ from .validator import validate, ValidationResult
 from .mk4 import score_faf, Mk4Result, SlotState, LicenseTier
 from .discovery import find_faf_file, find_project_root, load_fafignore
 from .detect import detect_dart_project, DartProject
+from .interop import generate_agents_md, generate_gemini_md, faf_meta_tag
 from .types import (
     FafData,
     ProjectInfo,
@@ -35,7 +36,7 @@ from .types import (
     AIScoring
 )
 
-__version__ = "1.2.0"
+__version__ = "1.3.0"
 __all__ = [
     # Parser
     "parse",
@@ -57,6 +58,10 @@ __all__ = [
     # Detection (Dart/Flutter — A+B hybrid, parity with faf-cli)
     "detect_dart_project",
     "DartProject",
+    # Interop — AGENTS.md / GEMINI.md generators (parity with faf-cli src/interop)
+    "generate_agents_md",
+    "generate_gemini_md",
+    "faf_meta_tag",
     # Types
     "FafData",
     "ProjectInfo",

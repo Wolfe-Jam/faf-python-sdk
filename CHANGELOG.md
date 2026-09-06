@@ -3,6 +3,30 @@
 All notable changes to faf-python-sdk are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
+## [1.3.0] - 2026-09-06 — The Interop Edition
+
+The SDK can now author AI-context files, not just parse and score them.
+
+### Added
+- `faf_sdk.interop` — `generate_agents_md(faf)` and `generate_gemini_md(faf)`,
+  Python ports of faf-cli's `src/interop/agents.ts` + `gemini.ts`, kept in
+  parity with the canonical TypeScript. Deterministic BETTER-shaped projection:
+  `## Setup & build` (install→build→dev ordered) · `## Run the tests` ·
+  `## Where things live` · `## Conventions` · three-tier `## Guardrails` ·
+  `## Definition of Done` · `## When stuck` · `## Security & secrets` ·
+  `## Commit & PR` · `## Stack`. Human Context (who/why marketing) is
+  intentionally omitted from AGENTS.md — it belongs in the README / .faf DNA.
+- `faf_meta_tag(faf)`, `title_label(key)`, `slot_label(path)` — the shared
+  label + metastamp helpers, also from `src/interop`.
+- Both generators take the **raw parsed dict** (`FafFile.data.raw`) — the .faf
+  format carries top-level `commands` / `key_files` / `security` that the typed
+  model doesn't surface.
+- 17 tests, including deterministic-output and human-context-omission guards.
+
+### Fixed
+- `[tool.mypy] python_version` was `"3.9"` — rejected by modern mypy
+  (`must be 3.10 or higher`). Set to `"3.10"`.
+
 ## [1.2.0] - 2026-06-16 — The Dart Edition
 
 Adds `detect_dart_project()`: content-aware Dart/Flutter detection from a `pubspec.yaml` (Flutter app vs package · Dart MCP / backend / CLI / library), reproducing faf-cli's engine byte-for-byte — 20 shared fixtures, parity-tested.
