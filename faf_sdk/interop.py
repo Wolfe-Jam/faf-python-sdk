@@ -187,9 +187,9 @@ def generate_agents_md(faf: dict) -> str:
         push(orientation)
         push()
     push(
-        "> Authored by faf — do not edit the managed block; refresh with "
-        "`faf export --agents` (or the `faf_agents` MCP tool). Hand content "
-        "outside `<!-- faf:start -->` … `<!-- faf:end -->` is preserved."
+        "> Authored by faf — refresh with `faf export --agents` or the "
+        "`faf_agents` MCP tool. The managed block is regenerated each time; "
+        "hand-written content outside it is preserved."
     )
     push()
 
