@@ -14,9 +14,11 @@ The foundation other Python FAF tools build on. If you're building MCP servers, 
 
 **Media Type:** `application/vnd.faf+yaml` (IANA registered)
 
-## What's New in v1.3.0 — The Interop Edition
+## What's New in v1.3.1 — The Interop Edition
 
 The SDK can now author AI-context files, not just parse and score them.
+
+> **v1.3.1** is a copy patch — "generate" removed from external text (module docstring, the blockquote written into every AGENTS.md, README, CHANGELOG). No API change; the `faf_sdk.interop` functions below are unchanged.
 
 `faf_sdk.interop` — `generate_agents_md(faf)` and `generate_gemini_md(faf)`, Python ports of faf-cli's `src/interop/agents.ts` + `gemini.ts`, in parity with the canonical TypeScript. Deterministic BETTER-shaped projection: setup (install→build→dev ordered) · tests · layout · conventions · three-tier guardrails · definition of done · security · commit · stack. Human Context (who/why marketing) is intentionally omitted from AGENTS.md — it belongs in the README / .faf DNA, not agent ops.
 

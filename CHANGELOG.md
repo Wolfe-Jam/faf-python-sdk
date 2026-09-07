@@ -3,6 +3,17 @@
 All notable changes to faf-python-sdk are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
+## [1.3.1] - 2026-09-07 — The Interop Edition
+
+Docs / copy patch — no API change.
+
+### Fixed
+- "generate" removed from external copy: the `interop.py` module docstring, the
+  `## Setup & build` blockquote written into every AGENTS.md ("regenerated each
+  time" → "do not edit the managed block"), README, and CHANGELOG. FAF authors
+  and delivers facts. The `generate_agents_md` / `generate_gemini_md` function
+  names are unchanged (internal identifiers, TS↔Python parity).
+
 ## [1.3.0] - 2026-09-06 — The Interop Edition
 
 The SDK can now author AI-context files, not just parse and score them.
