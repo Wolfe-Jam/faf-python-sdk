@@ -1,5 +1,5 @@
 """
-AI-context file generators — AGENTS.md and GEMINI.md from .faf data.
+AI-context file authoring — AGENTS.md and GEMINI.md from .faf data.
 
 Python port of faf-cli's `src/interop/agents.ts` + `gemini.ts`, kept in
 parity with the canonical TypeScript. Deterministic projection from curated
@@ -90,7 +90,7 @@ def slot_label(path: str) -> str:
 
 
 def faf_meta_tag(faf: dict) -> str:
-    """The two-line `<!-- faf: ... -->` metastamp every faf-generated file opens with."""
+    """The two-line `<!-- faf: ... -->` metastamp every faf-authored file opens with."""
     proj = faf.get("project") or {}
     name = str(proj.get("name") or "").strip()
     lang = str(proj.get("main_language") or "").strip()
@@ -102,7 +102,7 @@ def faf_meta_tag(faf: dict) -> str:
     return f"{line1}\n{line2}"
 
 
-# --- command classification (shared by both generators) ---------------------
+# --- command classification (shared by both) --------------------------------
 
 def _classify_commands(faf: dict) -> dict:
     commands = faf.get("commands") or {}

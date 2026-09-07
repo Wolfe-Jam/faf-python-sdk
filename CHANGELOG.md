@@ -18,7 +18,7 @@ The SDK can now author AI-context files, not just parse and score them.
   intentionally omitted from AGENTS.md — it belongs in the README / .faf DNA.
 - `faf_meta_tag(faf)`, `title_label(key)`, `slot_label(path)` — the shared
   label + metastamp helpers, also from `src/interop`.
-- Both generators take the **raw parsed dict** (`FafFile.data.raw`) — the .faf
+- Both take the **raw parsed dict** (`FafFile.data.raw`) — the .faf
   format carries top-level `commands` / `key_files` / `security` that the typed
   model doesn't surface.
 - 17 tests, including deterministic-output and human-context-omission guards.

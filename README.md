@@ -27,7 +27,7 @@ faf = parse_file("project.faf")
 print(generate_agents_md(faf.data.raw))   # takes the raw dict — carries top-level commands / key_files / security
 ```
 
-Any Python FAF tool that authors an AI-context file wraps this now — never hand-roll a Markdown generator. `gemini-faf-mcp` 2.7.0's `faf_agents` / `faf_gemini` are the reference wrappers.
+Any Python FAF tool that authors an AI-context file wraps this now — never hand-roll one. `gemini-faf-mcp` 2.7.0's `faf_agents` / `faf_gemini` are the reference wrappers.
 
 ## What's New in v1.2.0 — The Dart Edition
 
