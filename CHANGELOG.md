@@ -3,6 +3,30 @@
 All notable changes to faf-python-sdk are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
+## [1.4.0] - 2026-09-08 — The Interop Edition
+
+Interop function rename. 1.3.1 kept `generate_agents_md` / `generate_gemini_md`
+as internal identifiers; a name Claude reached for reflexively when reasoning
+about the tool is a name that lands in `tools/list` descriptions, host UIs, and
+docs. "Internal-only" holds until someone documents it — so the public name has
+to be right now.
+
+### Added
+- `author_agents_md(faf)` / `author_gemini_md(faf)` — the public API names, in
+  the "faf authors" voice used on every documented surface. This is what
+  `faf_sdk.interop.__all__` advertises.
+- `render_agents_md(faf)` / `render_gemini_md(faf)` — the impl names: pure
+  `dict -> str` projection, pairs with the `write_*` helpers, greps clean. Same
+  split the canonical faf-cli TS uses.
+
+### Deprecated
+- `generate_agents_md` / `generate_gemini_md` — still work, now emit
+  `DeprecationWarning`, removed in 2.0. Point at `author_*`.
+
+### Notes
+- Additive + back-compatible: existing `from faf_sdk import generate_agents_md`
+  keeps working. No output change — the authored Markdown is byte-identical.
+
 ## [1.3.1] - 2026-09-07 — The Interop Edition
 
 Docs / copy patch — no API change.

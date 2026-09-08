@@ -1,6 +1,8 @@
-"""Tests for faf_sdk.interop — AGENTS.md / GEMINI.md generators."""
+"""Tests for faf_sdk.interop — AGENTS.md / GEMINI.md authoring."""
 
-from faf_sdk import faf_meta_tag, generate_agents_md, generate_gemini_md
+import pytest
+
+from faf_sdk import faf_meta_tag, render_agents_md, render_gemini_md
 from faf_sdk.interop import slot_label, title_label
 
 # A representative .faf as the raw parsed dict.
@@ -64,7 +66,7 @@ def test_faf_meta_tag_two_lines():
 # --- AGENTS.md -----------------------------------------------------------
 
 def test_agents_md_sections_present():
-    md = generate_agents_md(SAMPLE)
+    md = render_agents_md(SAMPLE)
     for section in (
         "# AGENTS.md — widget-api",
         "## Setup & build",
@@ -82,14 +84,14 @@ def test_agents_md_sections_present():
 
 
 def test_agents_md_omits_human_context():
-    md = generate_agents_md({**SAMPLE, "human_context": {"who": "devs", "why": "money"}})
+    md = render_agents_md({**SAMPLE, "human_context": {"who": "devs", "why": "money"}})
     assert "## Human Context" not in md
     assert "## Context" not in md
     assert "money" not in md
 
 
 def test_agents_md_setup_ordered_install_build_dev():
-    md = generate_agents_md(SAMPLE)
+    md = render_agents_md(SAMPLE)
     block = md.split("## Setup & build")[1].split("```")[1]
     # first line is the ```bash language tag
     lines = [ln for ln in block.strip().splitlines()][1:]
@@ -99,7 +101,7 @@ def test_agents_md_setup_ordered_install_build_dev():
 
 
 def test_agents_md_guardrails_always_render_even_with_no_data():
-    md = generate_agents_md({"faf_version": "3.0", "project": {"name": "bare"}})
+    md = render_agents_md({"faf_version": "3.0", "project": {"name": "bare"}})
     assert "## Guardrails" in md
     assert "## Definition of Done" in md
     assert "## Commit & PR" in md
@@ -107,28 +109,28 @@ def test_agents_md_guardrails_always_render_even_with_no_data():
 
 
 def test_agents_md_key_files_table_when_roles_present():
-    md = generate_agents_md(SAMPLE)
+    md = render_agents_md(SAMPLE)
     assert "| Path | Role |" in md
     assert "| `src/server.ts` | the entry point |" in md
 
 
 def test_agents_md_security_never_leaks_values():
-    md = generate_agents_md(SAMPLE)
+    md = render_agents_md(SAMPLE)
     assert "Secrets live in `.env`" in md
     assert "see `.env.example`" in md
 
 
 def test_agents_md_stack_drops_non_stack_marketing_keys():
-    md = generate_agents_md(SAMPLE)
+    md = render_agents_md(SAMPLE)
     assert "developers" not in md.split("## Stack")[1]  # target_user filtered
 
 
 def test_agents_md_deterministic():
-    assert generate_agents_md(SAMPLE) == generate_agents_md(dict(SAMPLE))
+    assert render_agents_md(SAMPLE) == render_agents_md(dict(SAMPLE))
 
 
 def test_agents_md_human_prefs_excluded_from_conventions():
-    md = generate_agents_md(SAMPLE)
+    md = render_agents_md(SAMPLE)
     conv = md.split("## Conventions")[1].split("##")[0]
     assert "communication" not in conv.lower()
     assert "Testing" in conv
@@ -137,7 +139,7 @@ def test_agents_md_human_prefs_excluded_from_conventions():
 # --- GEMINI.md ----------------------------------------------------------
 
 def test_gemini_md_structure():
-    md = generate_gemini_md(SAMPLE)
+    md = render_gemini_md(SAMPLE)
     assert md.startswith("<!-- faf:")
     assert "# GEMINI.md — widget-api" in md
     assert "Project: widget-api" in md
@@ -148,7 +150,7 @@ def test_gemini_md_structure():
 
 def test_gemini_md_no_guardrail_ladder():
     # GEMINI.md is lighter — no Definition of Done / When stuck
-    md = generate_gemini_md(SAMPLE)
+    md = render_gemini_md(SAMPLE)
     assert "## Definition of Done" not in md
     assert "## Guardrails" not in md
 
@@ -157,8 +159,8 @@ def test_gemini_md_no_guardrail_ladder():
 
 def test_minimal_faf_does_not_crash():
     minimal = {"faf_version": "3.0", "project": {"name": "x"}}
-    assert "# AGENTS.md — x" in generate_agents_md(minimal)
-    assert "# GEMINI.md — x" in generate_gemini_md(minimal)
+    assert "# AGENTS.md — x" in render_agents_md(minimal)
+    assert "# GEMINI.md — x" in render_gemini_md(minimal)
 
 
 def test_key_files_from_instant_context_fallback():
@@ -167,12 +169,41 @@ def test_key_files_from_instant_context_fallback():
         "project": {"name": "y"},
         "instant_context": {"key_files": ["a.py", "b.py"]},
     }
-    md = generate_agents_md(faf)
+    md = render_agents_md(faf)
     assert "- `a.py`" in md
 
 
 def test_commands_from_instant_context_are_not_used_at_toplevel():
     # top-level `commands` is the source; instant_context.commands is separate
     faf = {"faf_version": "3.0", "project": {"name": "z"}, "commands": {"test": "go test ./..."}}
-    md = generate_agents_md(faf)
+    md = render_agents_md(faf)
     assert "go test ./..." in md
+
+
+# --- naming: public alias + deprecated shim ------------------------------
+
+def test_author_names_are_the_public_alias():
+    from faf_sdk import author_agents_md, author_gemini_md
+
+    assert author_agents_md is render_agents_md
+    assert author_gemini_md is render_gemini_md
+
+
+def test_generate_names_still_work_but_warn():
+    from faf_sdk import generate_agents_md, generate_gemini_md
+
+    with pytest.warns(DeprecationWarning, match="author_agents_md"):
+        md = generate_agents_md(SAMPLE)
+    assert md == render_agents_md(SAMPLE)
+
+    with pytest.warns(DeprecationWarning, match="author_gemini_md"):
+        assert generate_gemini_md(SAMPLE) == render_gemini_md(SAMPLE)
+
+
+def test_interop_all_advertises_author_not_generate():
+    from faf_sdk import interop
+
+    assert "author_agents_md" in interop.__all__
+    assert "author_gemini_md" in interop.__all__
+    assert "generate_agents_md" not in interop.__all__
+    assert "render_agents_md" not in interop.__all__  # importable, not advertised

@@ -14,19 +14,19 @@ The foundation other Python FAF tools build on. If you're building MCP servers, 
 
 **Media Type:** `application/vnd.faf+yaml` (IANA registered)
 
-## What's New in v1.3.1 — The Interop Edition
+## What's New in v1.4.0 — The Interop Edition
 
 The SDK can now author AI-context files, not just parse and score them.
 
-> **v1.3.1** is a copy patch — "generate" removed from external text (module docstring, the blockquote written into every AGENTS.md, README, CHANGELOG). No API change; the `faf_sdk.interop` functions below are unchanged.
+> **v1.4.0** renames the public functions to `author_agents_md` / `author_gemini_md` — the "faf authors" voice, on every surface. `generate_*` still works as a deprecated alias (removed in 2.0). The impl functions are `render_agents_md` / `render_gemini_md` (pure `dict -> str`).
 
-`faf_sdk.interop` — `generate_agents_md(faf)` and `generate_gemini_md(faf)`, Python ports of faf-cli's `src/interop/agents.ts` + `gemini.ts`, in parity with the canonical TypeScript. Deterministic BETTER-shaped projection: setup (install→build→dev ordered) · tests · layout · conventions · three-tier guardrails · definition of done · security · commit · stack. Human Context (who/why marketing) is intentionally omitted from AGENTS.md — it belongs in the README / .faf DNA, not agent ops.
+`faf_sdk.interop` — `author_agents_md(faf)` and `author_gemini_md(faf)`, Python ports of faf-cli's `src/interop/agents.ts` + `gemini.ts`, in parity with the canonical TypeScript. Deterministic BETTER-shaped projection: setup (install→build→dev ordered) · tests · layout · conventions · three-tier guardrails · definition of done · security · commit · stack. Human Context (who/why marketing) is intentionally omitted from AGENTS.md — it belongs in the README / .faf DNA, not agent ops.
 
 ```python
-from faf_sdk import parse_file, generate_agents_md
+from faf_sdk import parse_file, author_agents_md
 
 faf = parse_file("project.faf")
-print(generate_agents_md(faf.data.raw))   # takes the raw dict — carries top-level commands / key_files / security
+print(author_agents_md(faf.data.raw))   # takes the raw dict — carries top-level commands / key_files / security
 ```
 
 Any Python FAF tool that authors an AI-context file wraps this now — never hand-roll one. `gemini-faf-mcp` 2.7.0's `faf_agents` / `faf_gemini` are the reference wrappers.

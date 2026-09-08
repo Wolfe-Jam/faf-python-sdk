@@ -10,13 +10,23 @@ not agent ops.
 Both take the raw parsed .faf dict (`FafFile.data.raw`) — the .faf format
 carries top-level `commands` / `key_files` / `security` that the typed model
 doesn't surface.
+
+Naming: the impl functions are ``render_agents_md`` / ``render_gemini_md``
+(pure ``dict -> str`` projection, pairs with the writers). The public API
+name is ``author_agents_md`` / ``author_gemini_md`` — the surface consumers
+import, in the "faf authors" voice used on every documented surface.
+``generate_*`` is a deprecated alias, removed in 2.0.
 """
 
 from __future__ import annotations
 
+import warnings
 from typing import Any
 
-__all__ = ["generate_agents_md", "generate_gemini_md", "faf_meta_tag", "title_label", "slot_label"]
+__all__ = [
+    "author_agents_md", "author_gemini_md",
+    "faf_meta_tag", "title_label", "slot_label",
+]
 
 # --- shared helpers ----------------------------------------------------------
 
@@ -146,8 +156,11 @@ def _key_files(faf: dict) -> list:
 
 # --- AGENTS.md -------------------------------------------------------------
 
-def generate_agents_md(faf: dict) -> str:
-    """Author a BETTER-shaped AGENTS.md from raw .faf data. Deterministic."""
+def render_agents_md(faf: dict) -> str:
+    """Author a BETTER-shaped AGENTS.md from raw .faf data. Deterministic.
+
+    Public alias: :func:`author_agents_md`.
+    """
     lines: list[str] = []
 
     def push(s: str = "") -> None:
@@ -344,8 +357,11 @@ def generate_agents_md(faf: dict) -> str:
 
 # --- GEMINI.md ------------------------------------------------------------
 
-def generate_gemini_md(faf: dict) -> str:
-    """GEMINI.md — Gemini CLI's own convention (hierarchical, @file-importable)."""
+def render_gemini_md(faf: dict) -> str:
+    """GEMINI.md — Gemini CLI's own convention (hierarchical, @file-importable).
+
+    Public alias: :func:`author_gemini_md`.
+    """
     lines: list[str] = []
     proj = faf.get("project") or {}
     cmds = _classify_commands(faf)
@@ -401,3 +417,31 @@ def generate_gemini_md(faf: dict) -> str:
         "",
     ]
     return "\n".join(lines)
+
+
+# --- public + deprecated names --------------------------------------------
+
+#: Public API name for :func:`render_agents_md` — "faf authors" voice.
+author_agents_md = render_agents_md
+#: Public API name for :func:`render_gemini_md`.
+author_gemini_md = render_gemini_md
+
+
+def generate_agents_md(faf: dict) -> str:
+    """Deprecated alias for :func:`author_agents_md`. Removed in 2.0."""
+    warnings.warn(
+        "generate_agents_md is deprecated; use author_agents_md",
+        DeprecationWarning,
+        stacklevel=2,
+    )
+    return render_agents_md(faf)
+
+
+def generate_gemini_md(faf: dict) -> str:
+    """Deprecated alias for :func:`author_gemini_md`. Removed in 2.0."""
+    warnings.warn(
+        "generate_gemini_md is deprecated; use author_gemini_md",
+        DeprecationWarning,
+        stacklevel=2,
+    )
+    return render_gemini_md(faf)
