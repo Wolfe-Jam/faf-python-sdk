@@ -5,11 +5,12 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 ## [1.4.0] - 2026-09-08 — The Interop Edition
 
-Interop function rename. 1.3.1 kept `generate_agents_md` / `generate_gemini_md`
-as internal identifiers; a name Claude reached for reflexively when reasoning
-about the tool is a name that lands in `tools/list` descriptions, host UIs, and
-docs. "Internal-only" holds until someone documents it — so the public name has
-to be right now.
+The interop functions get their real names: `author_agents_md` / `author_gemini_md` are public, `render_*` is the impl, `generate_*` is deprecated (removed in 2.0).
+
+1.3.1 kept `generate_*` as "internal identifiers" — but a name that surfaces
+reflexively when reasoning about the tool lands in `tools/list` descriptions,
+host UIs, and docs. "Internal-only" holds only until someone documents it, so
+the public name has to be right now.
 
 ### Added
 - `author_agents_md(faf)` / `author_gemini_md(faf)` — the public API names, in

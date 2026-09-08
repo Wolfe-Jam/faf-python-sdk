@@ -9,16 +9,16 @@ The foundation other Python FAF tools build on. If you're building MCP servers, 
 [![FAF](https://mcpaas.live/badge/Wolfe-Jam/faf-python-sdk.svg)](https://builder.faf.one)
 [![PyPI](https://img.shields.io/pypi/v/faf-python-sdk?style=for-the-badge&logo=pypi&logoColor=white)](https://pypi.org/project/faf-python-sdk/)
 [![Downloads](https://img.shields.io/pypi/dm/faf-python-sdk?style=for-the-badge&color=blue)](https://pypi.org/project/faf-python-sdk/)
-[![Tests](https://img.shields.io/badge/tests-213%20passing-brightgreen?style=for-the-badge)](https://github.com/Wolfe-Jam/faf-python-sdk)
+[![Tests](https://img.shields.io/badge/tests-216%20passing-brightgreen?style=for-the-badge)](https://github.com/Wolfe-Jam/faf-python-sdk)
 [![IANA](https://img.shields.io/badge/IANA-registered-informational?style=for-the-badge)](https://www.iana.org/assignments/media-types/application/vnd.faf+yaml)
 
 **Media Type:** `application/vnd.faf+yaml` (IANA registered)
 
 ## What's New in v1.4.0 — The Interop Edition
 
-The SDK can now author AI-context files, not just parse and score them.
+The interop functions get their real names: `author_agents_md` / `author_gemini_md` are public, `render_*` is the impl, `generate_*` is deprecated (removed in 2.0).
 
-> **v1.4.0** renames the public functions to `author_agents_md` / `author_gemini_md` — the "faf authors" voice, on every surface. `generate_*` still works as a deprecated alias (removed in 2.0). The impl functions are `render_agents_md` / `render_gemini_md` (pure `dict -> str`).
+Output is byte-identical — a naming change, not a behaviour change. Existing `from faf_sdk import generate_agents_md` keeps working, now with a `DeprecationWarning`.
 
 `faf_sdk.interop` — `author_agents_md(faf)` and `author_gemini_md(faf)`, Python ports of faf-cli's `src/interop/agents.ts` + `gemini.ts`, in parity with the canonical TypeScript. Deterministic BETTER-shaped projection: setup (install→build→dev ordered) · tests · layout · conventions · three-tier guardrails · definition of done · security · commit · stack. Human Context (who/why marketing) is intentionally omitted from AGENTS.md — it belongs in the README / .faf DNA, not agent ops.
 
