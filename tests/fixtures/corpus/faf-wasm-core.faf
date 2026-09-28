@@ -1,0 +1,46 @@
+faf_version: 2.5.0
+project:
+  name: faf-wasm-core
+  goal: The kernel router for FAF WASM engines. Rust + Zig (Cascade) both live. One interface, any kernel, same score.
+  main_language: TypeScript
+  type: wasm  # found: package.json keywords contains "wasm"
+stack:
+  frontend: slotignored
+  css_framework: slotignored
+  ui_library: slotignored
+  state_management: slotignored
+  backend: slotignored
+  api_type: slotignored
+  runtime: slotignored
+  database: slotignored
+  connection: slotignored
+  hosting: slotignored
+  build: slotignored
+  cicd: slotignored
+  monorepo_tool: slotignored
+  package_manager: slotignored
+  workspaces: slotignored
+  admin: slotignored
+  cache: slotignored
+  search: slotignored
+  storage: slotignored
+human_context:
+  who: Consumers of FAF via WASM — Node, Bun, browser. Direct callers — faf-wasm-sdk integrators today, Cascade/ZEPH integrators (xAI/Grok) at Stage 2. wolfejam (IP owner, public repo).
+  what: Thin TypeScript router exposing one `FafKernel` interface and dispatching to embedded WASM engines. Two kernels live as of v1.1.0 (M7, 2026-05-11) — Rust (faf-wasm-sdk, full FafKernel surface) and Zig (Cascade, score + tier surface, sub-microsecond delivery). One npm package, one interface, multiple kernels. "One interface, any kernel, same score."
+  why: The FAF format is content; kernels are speed. faf-wasm-core lets consumers swap kernels without changing call sites — pick `rust` for the full FafKernel surface (Mk4 + FAFb roundtrip), `zig` for sub-microsecond Cascade delivery (score + tier). One interface lowers the integration cost of adding new engines.
+  where: github.com/Wolfe-Jam/faf-wasm-core (public). npm — faf-wasm-core. Runs in Node ≥18, Bun ≥1.0, modern browsers. WASM artifacts in `wasm/`, TypeScript kernel wrappers in `kernels/`.
+  when: v1.0.0 shipped single-kernel (Rust) 2026-03-21. v1.1.0 landed 2026-05-11 (M7 — Zig Cascade kernel live, +9 tests, 44 total, parity vs Rust kernel verified on 3 fixtures). cascade.wasm artifact (2,742 B) synced from /FAF/cascade/ per kernel-doesnt-change-between-stages doctrine.
+  how: Install via npm install faf-wasm-core, then await init('rust') or init('zig'), then call .score(yaml) / .validate(yaml) / etc. Both kernels return the same FafKernel shape. Tests run via bun test. No build step — ships TypeScript natively via bun/Node ESM.
+monorepo:
+  packages_count: slotignored
+  build_orchestrator: slotignored
+  versioning_strategy: slotignored
+  shared_configs: slotignored
+  remote_cache: slotignored
+tech_stack:
+  - JavaScript
+key_files:
+  - package.json
+  - README.md
+commands:
+  test: npm run test

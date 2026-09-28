@@ -1,0 +1,41 @@
+project:
+  name: faf-clawdbot
+  goal: Portable souls for ClawdBot - IANA-registered context format integration
+  type: npm-package
+  version: 1.0.0
+  main_language: typescript
+stack:
+  language: typescript
+  runtime: node
+  package_manager: npm
+  targetUser: developers
+  coreProblem: understanding project
+  missionPurpose: project documentation
+  packageManager: npm/yarn/pnpm
+  mainLanguage: JavaScript/TypeScript
+human_context:
+  who: ClawdBot users wanting portable context
+  what: Bridge between project.faf and SOUL.md
+  why: SOUL.md is local-only, FAF is universal
+  where: npm, ClawdBot workspaces, any MCP-compatible tool
+  when: v1.0.0 - production ready
+  how: npm install -g faf-clawdbot && faf-clawdbot init
+architecture:
+  pattern: CLI tool
+  modules:
+    - reader: Parse project.faf files
+    - generator: Create SOUL.md from FAF
+    - sync: Bi-directional sync engine
+    - cli: Command-line interface
+generated: 2026-01-27T09:37:14.601Z
+stack_signature: typescript-nodejs-javascript
+detected_frameworks:
+  - Claude Code
+  - Node.js
+  - JavaScript
+  - TypeScript
+turbo_cat_intelligence: 235
+stats:
+  last_auto_time: 0.4
+  times_run: 4
+  best_auto_time: 0.4

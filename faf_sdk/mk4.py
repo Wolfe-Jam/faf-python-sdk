@@ -1,15 +1,20 @@
 """
-Mk4 Championship Engine — 33-Slot Scoring
+Mk4 Championship Engine — always-33 scoring
 
-Ported from faf-wasm-sdk/src/mk4.rs (100% parity).
+Ported from faf-kernel (Wolfe-Jam/faf-rust, crates/faf-kernel/src/score.rs).
+npm ``faf-scoring-kernel@3.0.0`` is the WASM build of the same kernel, and the
+parity harness (tests/test_always33_parity.py) checks this module against it.
+
 Philosophy: Populated, Empty, or Slotignored.
+Score = populated ÷ active, where active = 33 − slotignored.
 """
 
-from dataclasses import dataclass, field
+import math
+from dataclasses import dataclass
 from enum import Enum
-from typing import List, Tuple, Dict, Any
+from typing import Any, Dict, List, Tuple, Union
 
-import yaml
+from . import _kernel_yaml as ky
 
 
 class SlotState(Enum):
@@ -19,6 +24,8 @@ class SlotState(Enum):
 
 
 class LicenseTier(Enum):
+    """Kept for API compatibility. Scoring is always 33 slots for every tier."""
+
     BASE = "base"
     ENTERPRISE = "enterprise"
 
@@ -46,7 +53,66 @@ class Mk4Result:
         }
 
 
-# 8 placeholder strings — case-insensitive rejection (mk4.rs lines 224-233)
+#: The total number of FAF slots. Always 33; a "21-base" file carries the 12
+#: enterprise slots as ``slotignored``.
+TOTAL_SLOTS = 33
+
+#: The Universal DNA Map — the 33 canonical Mk4 slot paths, in kernel order.
+SLOTS: Tuple[str, ...] = (
+    # Project Meta (3)
+    "project.name",
+    "project.goal",
+    "project.main_language",
+    # Human Context (6)
+    "human_context.who",
+    "human_context.what",
+    "human_context.why",
+    "human_context.where",
+    "human_context.when",
+    "human_context.how",
+    # Frontend Stack (4)
+    "stack.framework",
+    "stack.css",
+    "stack.ui_library",
+    "stack.state",
+    # Backend Stack (5)
+    "stack.backend",
+    "stack.api",
+    "stack.runtime",
+    "stack.db",
+    "stack.connection",
+    # Universal Stack (3)
+    "stack.hosting",
+    "stack.build",
+    "stack.cicd",
+    # Enterprise Infra (5)
+    "stack.monorepo_tool",
+    "stack.pkg_manager",
+    "stack.workspaces",
+    "monorepo.packages_count",
+    "monorepo.build_orchestrator",
+    # Enterprise App (4)
+    "stack.admin",
+    "stack.cache",
+    "stack.search",
+    "stack.storage",
+    # Enterprise Ops (3)
+    "monorepo.versioning_strategy",
+    "monorepo.shared_configs",
+    "monorepo.remote_cache",
+)
+
+#: Legacy key read when the canonical short key is empty (kernel legacy_alias_for).
+LEGACY_ALIASES: Dict[str, str] = {
+    "stack.framework": "stack.frontend",
+    "stack.css": "stack.css_framework",
+    "stack.state": "stack.state_management",
+    "stack.api": "stack.api_type",
+    "stack.db": "stack.database",
+    "stack.pkg_manager": "stack.package_manager",
+}
+
+# Placeholder strings — case-insensitive rejection (kernel is_valid_populated_string).
 _PLACEHOLDERS = frozenset([
     "describe your project goal",
     "development teams",
@@ -54,40 +120,61 @@ _PLACEHOLDERS = frozenset([
     "null",
     "none",
     "unknown",
+    "tbd",
+    "todo",
     "n/a",
     "not applicable",
 ])
 
+# Rust char::is_whitespace (Unicode White_Space) — what str::trim strips.
+# Python's str.strip() also strips U+001C..U+001F, which Rust keeps.
+_RUST_WHITESPACE = (
+    "\u0009\u000a\u000b\u000c\u000d \u0085  "
+    "           "
+    "    　"
+)
 
-def score_faf(yaml_content: str, tier: LicenseTier = LicenseTier.BASE) -> Mk4Result:
-    """Calculate the official FAF Mk4 score from YAML content."""
+
+def score_faf(
+    yaml_content: Union[str, bytes],
+    tier: LicenseTier = LicenseTier.BASE,
+) -> Mk4Result:
+    """Calculate the official FAF Mk4 score — always 33 slots, same as faf-kernel.
+
+    Every file is scored against all 33 slots. The 12 enterprise slots count
+    unless the file marks them ``slotignored``; ``slotignored`` slots drop out
+    of the denominator (``active = 33 - ignored``). A file with the 21 base
+    slots filled and no markers scores 64% (21/33); the same file with the 12
+    enterprise slots marked ``slotignored`` scores 100% (21/21).
+
+    ``tier`` is still accepted so existing callers keep working, but it no
+    longer changes the slot count: ``LicenseTier.BASE`` and
+    ``LicenseTier.ENTERPRISE`` give the same result.
+
+    YAML the kernel cannot read (syntax errors, duplicate keys, more than one
+    document, ...) scores 0 with every slot empty. It does not raise.
+    """
+    del tier  # accepted for compatibility; always-33 ignores it
     try:
-        doc = yaml.safe_load(yaml_content)
-    except yaml.YAMLError:
-        doc = {}
-    if not isinstance(doc, dict):
-        doc = {}
+        if isinstance(yaml_content, bytes):
+            yaml_content = yaml_content.decode("utf-8")
+        doc = ky.load(yaml_content)
+    except (ky.KernelYamlError, UnicodeDecodeError, RecursionError):
+        doc = None
 
-    slot_paths = _get_slot_paths(tier)
     populated = 0
     ignored = 0
     slots: List[Tuple[str, SlotState]] = []
-
-    for path in slot_paths:
-        state = _get_slot_state(doc, path)
+    for path in SLOTS:
+        state = _slot_state(doc, path)
         if state == SlotState.POPULATED:
             populated += 1
         elif state == SlotState.SLOTIGNORED:
             ignored += 1
         slots.append((path, state))
 
-    total = 33 if tier == LicenseTier.ENTERPRISE else 21
-    active = total - ignored
-
-    if active == 0:
-        score_val = 0
-    else:
-        score_val = round((populated / active) * 100)
+    active = TOTAL_SLOTS - ignored
+    score_val = 0 if active == 0 else _round_half_away((populated / active) * 100.0)
 
     return Mk4Result(
         score=score_val,
@@ -95,110 +182,62 @@ def score_faf(yaml_content: str, tier: LicenseTier = LicenseTier.BASE) -> Mk4Res
         populated=populated,
         ignored=ignored,
         active=active,
-        total=total,
+        total=TOTAL_SLOTS,
         slots=slots,
     )
 
 
-def _get_slot_paths(tier: LicenseTier) -> List[str]:
-    """The Universal DNA Map — exact order from mk4.rs lines 126-176."""
-    slots = [
-        # Project Meta (3)
-        "project.name",
-        "project.goal",
-        "project.main_language",
-        # Human Context (6)
-        "human_context.who",
-        "human_context.what",
-        "human_context.why",
-        "human_context.where",
-        "human_context.when",
-        "human_context.how",
-        # Frontend Stack (4)
-        "stack.frontend",
-        "stack.css_framework",
-        "stack.ui_library",
-        "stack.state_management",
-        # Backend Stack (5)
-        "stack.backend",
-        "stack.api_type",
-        "stack.runtime",
-        "stack.database",
-        "stack.connection",
-        # Universal Stack (3)
-        "stack.hosting",
-        "stack.build",
-        "stack.cicd",
-    ]
-
-    if tier == LicenseTier.ENTERPRISE:
-        slots.extend([
-            # Enterprise Infra (5)
-            "stack.monorepo_tool",
-            "stack.package_manager",
-            "stack.workspaces",
-            "monorepo.packages_count",
-            "monorepo.build_orchestrator",
-            # Enterprise App (4)
-            "stack.admin",
-            "stack.cache",
-            "stack.search",
-            "stack.storage",
-            # Enterprise Ops (3)
-            "monorepo.versioning_strategy",
-            "monorepo.shared_configs",
-            "monorepo.remote_cache",
-        ])
-
-    return slots
+def _round_half_away(x: float) -> int:
+    """Rust ``f64::round`` (half away from zero) for x >= 0. Python's round()
+    is half-to-even, which differs at e.g. 1/8 = 12.5%."""
+    fl = math.floor(x)
+    return int(fl) + 1 if x - fl >= 0.5 else int(fl)
 
 
-def _get_slot_state(doc: dict, path: str) -> SlotState:
-    """Determine the state of a specific slot (mk4.rs lines 179-219)."""
-    parts = path.split(".")
+def _slot_state(doc: Any, path: str) -> SlotState:
+    """Canonical path first, legacy alias fallback (kernel slot_state)."""
+    state = _walk_path_state(doc, path)
+    if state == SlotState.EMPTY:
+        legacy = LEGACY_ALIASES.get(path)
+        if legacy is not None:
+            return _walk_path_state(doc, legacy)
+    return state
+
+
+def _walk_path_state(doc: Any, path: str) -> SlotState:
+    """Walk a dotted path and classify the value (kernel walk_path_state)."""
     current = doc
-
-    for part in parts:
-        if isinstance(current, dict) and part in current:
-            current = current[part]
-        else:
+    for part in path.split("."):
+        mapping = ky.untag(current)
+        if not isinstance(mapping, ky.Mapping):
             return SlotState.EMPTY
+        key = ky.str_key(part)
+        if key not in mapping:
+            return SlotState.EMPTY
+        current = mapping[key]
 
-    # None = YAML null/~ (mk4.rs line 217: _ => Empty)
-    if current is None:
-        return SlotState.EMPTY
-
-    # String values (mk4.rs lines 192-200)
     if isinstance(current, str):
-        s = current.strip()
+        s = current.strip(_RUST_WHITESPACE)
         if s == "slotignored":
             return SlotState.SLOTIGNORED
         if _is_valid_populated(s):
             return SlotState.POPULATED
         return SlotState.EMPTY
-
-    # Numbers and bools — always Populated (mk4.rs line 202)
-    if isinstance(current, (int, float, bool)):
+    if isinstance(current, (bool, int, float)):
         return SlotState.POPULATED
-
-    # Sequences — Populated if non-empty (mk4.rs lines 203-209)
-    if isinstance(current, list):
+    if isinstance(current, (list, dict)):
         return SlotState.POPULATED if current else SlotState.EMPTY
-
-    # Mappings — Populated if non-empty (mk4.rs lines 210-216)
-    if isinstance(current, dict):
-        return SlotState.POPULATED if current else SlotState.EMPTY
-
+    # Null and tagged values (e.g. `!custom x`) are Empty.
     return SlotState.EMPTY
 
 
 def _is_valid_populated(s: str) -> bool:
-    """Placeholder rejection — 8 magic strings (mk4.rs lines 223-236)."""
+    """Placeholder rejection (kernel is_valid_populated_string)."""
     return len(s) > 0 and s.lower() not in _PLACEHOLDERS
 
 
 def _score_to_tier(score: int) -> str:
-    """Mk4 official tier calculation — aligned with faf-cli v6 tiers.ts."""
+    """Canonical tier name (kernel tier_name, source of truth: faf-cli tiers.ts)."""
     if score >= 100:
         return "TROPHY"
     if score >= 99:

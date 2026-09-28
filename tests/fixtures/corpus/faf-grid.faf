@@ -1,0 +1,39 @@
+faf_version: 2.5.0
+project:
+  name: faf-grid
+  goal: Inspect any package.json or GitHub repo through the FAF GRID — a debugging UI at mcpaas.live/grid. CLI wrapper that fetches the canonical text view.
+  main_language: TypeScript
+  type: cli
+stack:
+  frontend: slotignored
+  css_framework: slotignored
+  ui_library: slotignored
+  state_management: slotignored
+  backend: slotignored
+  api_type: slotignored
+  runtime: slotignored
+  database: slotignored
+  connection: slotignored
+  hosting: slotignored
+  build: slotignored
+  cicd: slotignored
+  monorepo_tool: slotignored
+  package_manager: slotignored
+  workspaces: slotignored
+  admin: slotignored
+  cache: slotignored
+  search: slotignored
+  storage: slotignored
+human_context:
+  who: JS/TS developers auditing package.json structure and dependency hygiene; teams sharing structural debug views in PRs and chats; maintainers of OSS packages wanting README badges that link back to live grid data.
+  what: Inspect any package.json or GitHub repo through the FAF GRID — a debugging UI at mcpaas.live/grid. CLI wrapper that fetches the canonical text view.
+  why: package.json is the most-opened config file in the JS ecosystem, but no tool renders it as a debugging surface — npmjs.com renders marketing, bundlephobia renders one slice, depcheck renders deps. faf-grid pipes mcpaas.live/grid's truth-printing UI into the terminal so devs can pipe a grid into a PR description, an email, or any URL-unfriendly surface.
+  where: npm (faf-grid), github.com/Wolfe-Jam/faf-grid, calls https://mcpaas.live/grid.txt at runtime
+  when: v0.1.0 — first ship 2026-05-05; tracks v1.5 series of mcpaas-cf
+  how: npx faf-grid <pkg> for npm packages, npx faf-grid <owner>/<repo> for GitHub, --tsa for behavioral view, --open for browser. Zero install, zero auth, single HTTPS request per invocation.
+monorepo:
+  packages_count: slotignored
+  build_orchestrator: slotignored
+  versioning_strategy: slotignored
+  shared_configs: slotignored
+  remote_cache: slotignored

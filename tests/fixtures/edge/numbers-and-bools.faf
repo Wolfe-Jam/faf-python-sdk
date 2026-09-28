@@ -1,0 +1,12 @@
+# numbers and bools are populated
+project:
+  name: 0
+  goal: false
+  main_language: 3.14
+human_context:
+  who: -1
+  what: 0x1F
+  why: .inf
+  where: .nan
+  when: 2026-09-28
+  how: yes

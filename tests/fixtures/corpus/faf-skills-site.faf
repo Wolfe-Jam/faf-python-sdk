@@ -1,0 +1,39 @@
+faf_version: "3.0"
+project:
+  name: faf-skills-site
+  goal: Static website for skills.faf.one - browse and discover Claude Code skills
+  main_language: html
+  type: static-site
+stack:
+  frontend: Vanilla HTML
+  css_framework: Vanilla CSS
+  ui_library: Vanilla JS
+  state_management: Vanilla JS
+  backend: slotignored
+  api_type: slotignored
+  runtime: slotignored
+  database: slotignored
+  connection: slotignored
+  hosting: slotignored
+  build: slotignored
+  cicd: slotignored
+  monorepo_tool: slotignored
+  package_manager: slotignored
+  workspaces: slotignored
+  admin: slotignored
+  cache: slotignored
+  search: slotignored
+  storage: slotignored
+human_context:
+  who: FAF ecosystem developers and Claude Code users looking for skills
+  what: Static website for skills.faf.one - browse and discover Claude Code skills
+  why: Make FAF skills easily discoverable with search, categories, and one-click copy commands
+  where: skills.faf.one subdomain on Vercel, part of FAF ecosystem alongside faf.one and foundation.faf.one
+  when: Created 2026-04-08, immediate deployment, ongoing skill additions as faf-skills repo grows
+  how: Single-page vanilla HTML/CSS/JS site, no build process, pulls skill data from faf-skills repo
+monorepo:
+  packages_count: slotignored
+  build_orchestrator: slotignored
+  versioning_strategy: slotignored
+  shared_configs: slotignored
+  remote_cache: slotignored

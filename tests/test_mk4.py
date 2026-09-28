@@ -1,7 +1,9 @@
 """
-Mk4 Parity Tests — ported verbatim from faf-wasm-sdk/src/mk4.rs
+Mk4 Tests — always-33 (faf-kernel parity)
 
-Every test uses identical YAML inputs and expected outputs to the Rust source.
+Expected values follow faf-kernel (Wolfe-Jam/faf-rust crates/faf-kernel);
+the byte-exact parity check against the kernel itself is
+tests/test_always33_parity.py.
 """
 
 import pytest
@@ -24,14 +26,13 @@ class TestSlotState:
         result = score_faf("empty: true")
         assert result.score == 0
         assert result.populated == 0
-        assert result.total == 21
+        assert result.total == 33  # always-33
 
     def test_invalid_yaml_returns_zero(self):
-        # Python yaml.safe_load returns None for invalid-ish YAML;
-        # Rust returns error. We treat non-dict as empty → score 0.
+        # A scalar document is not a mapping: every slot is empty → 0/33.
         result = score_faf("just a string")
         assert result.score == 0
-        assert result.total == 21
+        assert result.total == 33
 
     def test_project_meta_3_slots(self):
         yaml_content = """
@@ -42,7 +43,7 @@ project:
 """
         result = score_faf(yaml_content)
         assert result.populated == 3
-        assert result.score == 14  # 3/21 = 14.28 -> 14
+        assert result.score == 9  # 3/33 = 9.09 -> 9
 
     def test_human_context_6_slots(self):
         yaml_content = """
@@ -56,7 +57,7 @@ human_context:
 """
         result = score_faf(yaml_content)
         assert result.populated == 6
-        assert result.score == 29  # 6/21 = 28.57 -> 29
+        assert result.score == 18  # 6/33 = 18.18 -> 18
 
     def test_full_base_21_slots(self):
         yaml_content = """
@@ -87,8 +88,56 @@ stack:
 """
         result = score_faf(yaml_content)
         assert result.populated == 21
-        assert result.total == 21
-        assert result.score == 100
+        assert result.total == 33
+        assert result.active == 33  # no markers: the 12 enterprise slots count
+        assert result.score == 64  # 21/33 = 63.6 -> 64
+        assert result.tier == "YELLOW"
+
+    def test_full_base_21_slots_with_12_markers(self):
+        yaml_content = """
+project:
+  name: faf-cli
+  goal: Universal AI context
+  main_language: TypeScript
+human_context:
+  who: wolfejam
+  what: AI context format
+  why: Eliminate drift tax
+  where: Global
+  when: "2025"
+  how: FAF specification
+stack:
+  frontend: SvelteKit
+  css_framework: Tailwind
+  ui_library: Skeleton
+  state_management: Svelte stores
+  backend: Node.js
+  api_type: REST
+  runtime: Bun
+  database: Supabase
+  connection: pg
+  hosting: Vercel
+  build: Vite
+  cicd: GitHub Actions
+  monorepo_tool: slotignored
+  package_manager: slotignored
+  workspaces: slotignored
+  admin: slotignored
+  cache: slotignored
+  search: slotignored
+  storage: slotignored
+monorepo:
+  packages_count: slotignored
+  build_orchestrator: slotignored
+  versioning_strategy: slotignored
+  shared_configs: slotignored
+  remote_cache: slotignored
+"""
+        result = score_faf(yaml_content)
+        assert result.populated == 21
+        assert result.ignored == 12
+        assert result.active == 21
+        assert result.score == 100  # 21/21
         assert result.tier == "TROPHY"
 
     def test_enterprise_33_slots_total(self):
@@ -131,10 +180,10 @@ human_context:
 """
         result = score_faf(yaml_content)
         assert result.ignored == 4
-        assert result.active == 17  # 21 - 4 = 17
+        assert result.active == 29  # 33 - 4 = 29 (the 12 enterprise slots have no markers)
         assert result.populated == 17
-        assert result.score == 100  # 17/17 = 100%
-        assert result.tier == "TROPHY"
+        assert result.score == 59  # 17/29 = 58.6 -> 59
+        assert result.tier == "YELLOW"
 
     def test_all_slotignored_scores_zero(self):
         yaml_content = """
@@ -165,6 +214,21 @@ stack:
 """
         result = score_faf(yaml_content)
         assert result.ignored == 21
+        assert result.active == 12  # 33 - 21: the 12 enterprise slots are still active
+        assert result.populated == 0
+        assert result.score == 0
+
+    def test_all_33_slotignored_scores_zero(self):
+        from faf_sdk.mk4 import SLOTS
+        lines = {}
+        for path in SLOTS:
+            section, key = path.split(".")
+            lines.setdefault(section, []).append(f"  {key}: slotignored")
+        yaml_content = "\n".join(
+            f"{section}:\n" + "\n".join(keys) for section, keys in lines.items()
+        )
+        result = score_faf(yaml_content)
+        assert result.ignored == 33
         assert result.active == 0
         assert result.populated == 0
         assert result.score == 0  # 0/0 -> 0, not panic/NaN
@@ -236,7 +300,7 @@ project:
         result = score_faf(yaml_content)
         assert result.populated == 1  # only name
 
-    def test_all_8_placeholders_rejected(self):
+    def test_all_10_placeholders_rejected(self):
         placeholders = [
             "describe your project goal",
             "development teams",
@@ -244,6 +308,8 @@ project:
             "null",
             "none",
             "unknown",
+            "tbd",
+            "todo",
             "n/a",
             "not applicable",
         ]
@@ -396,9 +462,12 @@ class TestTiers:
 
 
 class TestSlotCounts:
-    def test_base_has_21_slots(self):
-        result = score_faf("empty: true")
-        assert len(result.slots) == 21
+    def test_always_33_slots(self):
+        # tier= is still accepted but no longer changes the slot count.
+        for tier in (LicenseTier.BASE, LicenseTier.ENTERPRISE):
+            result = score_faf("empty: true", tier)
+            assert len(result.slots) == 33
+            assert result.total == 33
 
     def test_enterprise_has_33_slots(self):
         result = score_faf("empty: true", LicenseTier.ENTERPRISE)
@@ -468,9 +537,9 @@ project:
 """
         result = score_faf(yaml_content)
         d = result.to_dict()
-        assert d["score"] == 14
+        assert d["score"] == 9  # 3/33
         assert d["populated"] == 3
-        assert d["total"] == 21
+        assert d["total"] == 33
         assert d["slots"]["project.name"] == "populated"
         assert d["slots"]["project.goal"] == "populated"
         assert d["slots"]["human_context.who"] == "empty"
@@ -497,8 +566,8 @@ class TestParity:
     def test_parity_minimal_faf(self):
         result = score_faf("project:\n  name: test")
         assert result.populated == 1
-        assert result.total == 21
-        assert result.score == 5  # 1/21 = 4.76 -> 5
+        assert result.total == 33
+        assert result.score == 3  # 1/33 = 3.03 -> 3
 
     def test_parity_score_rounding(self):
         yaml_content = """
@@ -508,7 +577,7 @@ project:
   main_language: Rust
 """
         result = score_faf(yaml_content)
-        assert result.score == 14  # 3/21 = 14.285... -> 14
+        assert result.score == 9  # 3/33 = 9.09 -> 9
 
     def test_parity_half_filled(self):
         yaml_content = """
@@ -529,7 +598,7 @@ stack:
 """
         result = score_faf(yaml_content)
         assert result.populated == 11
-        assert result.score == 52  # 11/21 = 52.38 -> 52
+        assert result.score == 33  # 11/33 = 33.3 -> 33
         assert result.tier == "RED"
 
     def test_mixed_enterprise_base_plus_some_enterprise(self):

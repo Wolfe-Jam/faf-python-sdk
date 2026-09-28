@@ -1,0 +1,98 @@
+faf_version: 2.5.0
+project_name: xai-faf-rust
+mission: |
+  High-performance Rust CLI for xAI/Grok FAF context generation.
+  220x faster than Node.js. Zero-copy parsing. Sub-millisecond response.
+  For Grok. For the rockets. For Mars.
+tech_stack:
+  - Rust 2021 Edition
+  - faf-rust-sdk
+  - clap (CLI)
+  - serde + serde_yaml
+  - crc32fast
+  - byteorder
+key_files:
+  - src/main.rs
+  - src/lib.rs
+  - src/binary/mod.rs
+  - src/binary/header.rs
+  - src/binary/section.rs
+  - src/scoring/score.rs
+  - src/commands/compile.rs
+  - BINARY-FORMAT.md
+architecture: |
+  Three-layer architecture:
+  1. Commands Layer (src/commands/) - CLI entry points
+  2. Core Layer (src/lib.rs) - FAF parsing and scoring
+  3. Binary Layer (src/binary/) - FAFB compilation
+commands:
+  build: cargo build --release
+  test: cargo test
+  lint: cargo clippy
+  run: cargo run -- <command>
+author: wolfejam
+license: Private
+repository: https://github.com/Wolfe-Jam/xai-faf-rust
+project:
+  name: faf-cli
+  goal: The Persistent AI Context Standard • Foundation Layer for AI • IANA-Registered • Anthropic-Approved • project.faf = AI's foundation
+  main_language: Rust
+  type: library
+generated: 2026-03-12T20:36:32.953Z
+stack:
+  packageManager: cargo
+  mainLanguage: Rust
+  buildTool: cargo
+  targetUser: developers
+  coreProblem: understanding project
+  missionPurpose: project documentation
+  frontend: slotignored
+  css_framework: slotignored
+  ui_library: slotignored
+  state_management: slotignored
+  backend: slotignored
+  api_type: slotignored
+  runtime: slotignored
+  database: slotignored
+  connection: slotignored
+  hosting: slotignored
+  build: slotignored
+  cicd: slotignored
+  monorepo_tool: slotignored
+  package_manager: slotignored
+  workspaces: slotignored
+  admin: slotignored
+  cache: slotignored
+  search: slotignored
+  storage: slotignored
+stack_signature: rust-claudecode
+detected_frameworks:
+  - Claude Code
+  - Rust
+turbo_cat_intelligence: 91
+stats:
+  best_auto_time: 0.5
+  last_auto_time: 0.5
+  times_run: 1
+scores:
+  faf_score: 100
+  ai_confidence: high
+human_context:
+  who: ""
+  what: ""
+  why: ""
+  where: ""
+  when: ""
+  how: ""
+monorepo:
+  packages_count: slotignored
+  build_orchestrator: slotignored
+  versioning_strategy: slotignored
+  shared_configs: slotignored
+  remote_cache: slotignored
+
+# About Repo declaration — non-app, displays source's score
+app_type: about
+about:
+  represents: Wolfe-Jam/xai-faf-rust
+  source_score: 100

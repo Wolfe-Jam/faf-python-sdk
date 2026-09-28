@@ -1,0 +1,41 @@
+faf_version: 2.5.0
+project:
+  name: faf-foundation-site
+  goal: Official website for the FAF Foundation at [foundation.faf.one](https://foundation.faf.one)
+  main_language: HTML
+  type: html  # found: index.html (vanilla, no frontend framework)
+stack:
+  frontend: slotignored
+  css_framework: slotignored
+  ui_library: slotignored
+  state_management: slotignored
+  backend: slotignored
+  api_type: slotignored
+  runtime: slotignored
+  database: slotignored
+  connection: slotignored
+  hosting: "Cloudflare Pages"
+  build: "slotignored"
+  cicd: "slotignored"
+  monorepo_tool: slotignored
+  package_manager: slotignored
+  workspaces: slotignored
+  admin: slotignored
+  cache: slotignored
+  search: slotignored
+  storage: slotignored
+human_context:
+  who: "Developers, contributors, and the public learning about the FAF Foundation and the .faf standard"
+  what: The FAF Foundation serves as stewards of the Foundational AI-context Format (FAF) - an open, vendor-neutral standard for AI project context.
+  why: "A public home for the FAF Foundation, institutional steward of the IANA-registered .faf context formats"
+  where: "foundation.faf.one"
+  when: "Production - live"
+  how: "Static HTML site deployed to Cloudflare Pages"
+monorepo:
+  packages_count: slotignored
+  build_orchestrator: slotignored
+  versioning_strategy: slotignored
+  shared_configs: slotignored
+  remote_cache: slotignored
+key_files:
+  - README.md

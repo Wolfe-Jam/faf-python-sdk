@@ -1,0 +1,59 @@
+faf_version: "3.0"
+project:
+  name: faf-mcp
+  title: .FAF Context
+  version: 4.0.0
+  goal: The Interop MCP for Context — the Cursor / IDE Edition. Persistent context for Cursor, VS Code, and every MCP-compatible IDE. IANA-registered application/vnd.faf+yaml. Start with "Use FAF".
+  main_language: TypeScript
+  type: mcp
+  framework: MCP SDK (TS)
+  homepage: https://faf.one
+stack:
+  frontend: slotignored
+  css_framework: slotignored
+  ui_library: slotignored
+  state_management: slotignored
+  backend: MCP SDK (TS)
+  api_type: MCP (stdio)
+  runtime: Node.js >=22
+  database: slotignored
+  connection: slotignored
+  hosting: npm
+  build: TypeScript (tsc)
+  cicd: GitHub Actions
+  monorepo_tool: slotignored
+  package_manager: npm
+  workspaces: slotignored
+  admin: slotignored
+  cache: slotignored
+  search: slotignored
+  storage: slotignored
+human_context:
+  who: Developers using Claude, Cursor, Windsurf, VS Code, Cline, and any MCP-compatible IDE
+  what: The Cursor / IDE Edition — persistent context for Cursor, VS Code, and every MCP-compatible IDE — 29 MCP tools (15 essential shown by default), interop with AGENTS.md, .cursorrules, GEMINI.md
+  why: Eliminate the 20-minute AI context tax — give AI instant project understanding in 30 seconds
+  where: npm · MCP Registry · any MCP-compatible IDE — people get it how they wish
+  when: Production/Stable — v4.0.0 The Always33 Edition, WJTTC certified
+  how: npx faf-mcp or npm install -g faf-mcp, then add to your MCP config
+monorepo:
+  packages_count: slotignored
+  build_orchestrator: slotignored
+  versioning_strategy: slotignored
+  shared_configs: slotignored
+  remote_cache: slotignored
+surfaces:
+  # Distribution map — the machine-checkable form of human_context.where. Score-neutral.
+  auto:                      # derived from manifests; refresh via /surface (future: `faf surface --sync`)
+    - { type: npm,          id: faf-mcp,           source: "package.json#name" }
+    - { type: github,       id: Wolfe-Jam/faf-mcp, source: "package.json#repository" }
+    - { type: mcp-registry, id: one.faf/faf-mcp,   state: active, source: "server.json#name" }
+  declared:                  # hand-authored: surfaces the manifests don't carry + targets
+    # v3.0: removed a false hosted-endpoint `mcpaas` entry here. The URL it
+    # pointed at serves MCPaaS (mcpaas-cf) — a different product with a
+    # different tool surface — not this package's tools. faf-mcp runs
+    # locally over stdio; no hosted deployment of it exists today.
+    - { type: homebrew,     id: faf-mcp, status: live }
+    - { type: mcp-registry, id: io.github.Wolfe-Jam/faf-mcp, state: deprecated, superseded_by: one.faf/faf-mcp }
+    - { type: pulsemcp,            id: faf-mcp, status: live }
+    - { type: glama,               id: faf-mcp, status: live }
+    - { type: awesome-mcp-servers, id: faf-mcp, status: pending }

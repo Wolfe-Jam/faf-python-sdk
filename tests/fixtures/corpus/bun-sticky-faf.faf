@@ -1,0 +1,160 @@
+faf_version: 2.5.0
+generated: 2026-03-21T00:29:33.474Z
+ai_scoring_system: 2025-09-20
+ai_score: 65%
+ai_confidence: MODERATE
+ai_value: 30_seconds_replaces_20_minutes_of_questions
+ai_tldr:
+  project: bun-sticky - Fastest bun under the sum. FAF scoring for Bun — powered by Mk4 WASM.
+  stack: CLI/JavaScript/npm registry/Node.js
+  quality_bar: production_ready
+  current_focus: Production deployment preparation
+  your_role: Build features with perfect context
+instant_context:
+  what_building: Fastest bun under the sum. FAF scoring for Bun — powered by Mk4 WASM.
+  tech_stack: CLI/JavaScript/npm registry/Node.js
+  main_language: TypeScript
+  deployment: npm registry
+  key_files:
+    - package.json
+    - tsconfig.json
+context_quality:
+  slots_filled: 15/21 (71%)
+  ai_confidence: GOOD
+  handoff_ready: true
+  missing_context:
+    - None - fully specified!
+project:
+  name: bun-sticky
+  goal: Fastest bun under the sum. FAF scoring for Bun — powered by Mk4 WASM.
+  main_language: TypeScript
+  type: cli  # found: package.json keywords contains "wasm"
+ai_instructions:
+  priority_order:
+    - 1. Read THIS .faf file first
+    - 2. Check CLAUDE.md for session context
+    - 3. Review package.json for dependencies
+  working_style:
+    code_first: true
+    explanations: minimal
+    quality_bar: zero_errors
+    testing: required
+  warnings:
+    - All TypeScript must pass strict mode
+    - Test coverage required for new features
+stack:
+  framework: slotignored
+  backend: slotignored
+  runtime: Bun
+  db: slotignored
+  pkg_manager: npm
+  api: CLI
+  hosting: npm registry
+  build: slotignored
+  cicd: GitHub Actions
+  frontend: slotignored
+  css_framework: slotignored
+  ui_library: slotignored
+  state_management: slotignored
+  api_type: slotignored
+  database: slotignored
+  connection: slotignored
+  monorepo_tool: slotignored
+  package_manager: slotignored
+  workspaces: slotignored
+  admin: slotignored
+  cache: slotignored
+  search: slotignored
+  storage: slotignored
+preferences:
+  quality_bar: zero_errors
+  commit_style: conventional_emoji
+  response_style: concise_code_first
+  explanation_level: minimal
+  communication: direct
+  testing: required
+  documentation: as_needed
+state:
+  phase: development
+  version: 2.1.1
+  focus: production_deployment
+  status: green_flag
+  next_milestone: maven_publication
+  blockers: null
+scores:
+  faf_score: 89
+  slot_based_percentage: 71
+  total_slots: 21
+  ai_confidence: high
+tags:
+  auto_generated:
+    - bun-sticky
+    - cli
+    - javascript
+    - npm-registry
+    - node.js
+  smart_defaults:
+    - .faf
+    - ai-ready
+    - "2026"
+    - software
+    - open-source
+  user_defined: null
+human_context:
+  who: wolfejam team
+  what: Fastest bun under the sum. FAF scoring for Bun — powered by Mk4 WASM.
+  why: To enable faf, bun, bun-native, bunx, cli, scoring, wolfejam, ai-context, ai-readiness, project-dna, context-engineering, iana, claude, persistent-context, wasm, mk4
+  where: npm registry + GitHub
+  when: Production/Stable
+  how: bunx bun-sticky score
+  context_score: 0
+  total_prd_score: 65
+  success_rate: 50%
+ai_scoring_details:
+  system_date: 2025-09-20
+  slot_based_percentage: 71
+  ai_score: 65
+  total_slots: 21
+  filled_slots: 15
+  scoring_method: Honest percentage - no fake minimums
+  trust_embedded: COUNT ONCE architecture - trust MY embedded scores
+claude_code:
+  detected: true
+  has_claude_md: true
+  commands:
+    - score
+    - test
+gemini:
+  cli_detected: true
+  context_bridge: true
+  agents_manifest: true
+  notes: Native Gemini CLI integration via FAF
+faf_dna:
+  birth_dna: 71
+  birth_certificate: FAF-2026-BUNSTICK-7ZA9
+  birth_date: 2026-03-21T00:29:33.658Z
+  current_score: 71
+stack_signature: typescript-nodejs-javascript
+detected_frameworks:
+  - Claude Code
+  - Node.js
+  - JavaScript
+  - TypeScript
+turbo_cat_intelligence: 225
+stats:
+  last_auto_time: 0.5
+  times_run: 1
+monorepo:
+  packages_count: slotignored
+  build_orchestrator: slotignored
+  versioning_strategy: slotignored
+  shared_configs: slotignored
+  remote_cache: slotignored
+tech_stack:
+  - JavaScript
+key_files:
+  - package.json
+  - README.md
+commands:
+  test: npm run test
+  start: npm run start

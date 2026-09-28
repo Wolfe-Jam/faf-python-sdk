@@ -1,0 +1,122 @@
+faf_version: 2.5.0
+generated: 2026-03-04T01:30:00.000Z
+ai_scoring_system: 2025-09-20
+ai_score: 85%
+ai_confidence: HIGH
+ai_value: 30_seconds_replaces_20_minutes_of_questions
+ai_tldr:
+  project: 'mcpaas - "Persistent AI context SDK — your AI remembers across tools, sessions, and teams"'
+  stack: TypeScript, Bun, WebSocket
+  quality_bar: production_ready
+  current_focus: npm publish as mcpaas@0.1.0
+  your_role: Build features with perfect context
+instant_context:
+  what_building: MCPaaS SDK — persistent AI context via Radio Protocol
+  tech_stack: TypeScript, Bun, WebSocket
+  main_language: TypeScript
+  key_files:
+    - src/radio.ts
+    - src/types.ts
+    - src/index.ts
+    - package.json
+context_quality:
+  slots_filled: 18/21 (86%)
+  ai_confidence: HIGH
+  handoff_ready: true
+  missing_context:
+    - CI/CD pipeline
+    - Database
+    - Authentication
+project:
+  name: mcpaas
+  goal: Persistent AI context SDK that connects to mcpaas.live via Radio Protocol
+  main_language: TypeScript
+  type: sdk
+ai_instructions:
+  priority_order:
+    - 1. Read THIS .faf file first
+    - 2. Check CLAUDE.md for session context
+    - 3. Review package.json for dependencies
+  working_style:
+    code_first: true
+    explanations: minimal
+    quality_bar: zero_errors
+    testing: required
+  warnings:
+    - All TypeScript must pass strict mode
+    - Test coverage required for new features
+    - Package name is mcpaas (not faf-radio-bun)
+stack:
+  package_manager: bun
+  targetUser: developers building AI applications
+  coreProblem: AI forgets context between sessions, tools, and teams
+  missionPurpose: WebSocket SDK for Radio Protocol — broadcast once, every AI receives
+  mainLanguage: TypeScript
+  runtime: Bun
+  frontend: None
+  backend: None
+  database: None
+  build: Bun
+  hosting: npm registry
+  cicd: None
+  testing: Bun Test + WJTTC (19/19 passing)
+  ui_library: None
+preferences:
+  quality_bar: zero_errors
+  commit_style: conventional_emoji
+  response_style: concise_code_first
+  explanation_level: minimal
+  communication: direct
+  testing: required
+  documentation: as_needed
+state:
+  phase: publish
+  version: 0.1.0
+  focus: npm_publish
+  status: green_flag
+  next_milestone: mcpaas@0.1.0 live on npm
+  blockers: null
+scores:
+  faf_score: 85
+  slot_based_percentage: 86
+  total_slots: 21
+tags:
+  auto_generated:
+    - mcpaas
+    - typescript
+    - bun
+    - websocket
+  smart_defaults:
+    - .faf
+    - ai-ready
+    - "2026"
+    - sdk
+    - open-source
+  user_defined: null
+human_context:
+  who: Developers using Claude, Grok, Gemini, Cursor — anyone tired of re-explaining context
+  what: MCPaaS SDK — persistent AI context via Radio Protocol (WebSocket broadcast)
+  why: Your AI forgets you every session. MCPaaS remembers. Broadcast once, every AI receives.
+  where: npm (mcpaas) + GitHub (Wolfe-Jam/faf-radio-bun) + mcpaas.live (hosted service)
+  when: v0.1.0 ready to publish — 19/19 tests passing, 6.6KB tarball
+  how: npm install mcpaas → connect to mcpaas.live → tune to frequency → context persists
+  additional_context: Part of MCPaaS ecosystem. SDK connects to mcpaas.live (Cloudflare Workers, 300+ edge locations). IANA-registered format (application/vnd.faf+yaml).
+  context_score: 100
+  total_prd_score: 100
+  success_rate: 100%
+faf_dna:
+  birth_dna: 43
+  birth_certificate: FAF-2026-FAFRADIO-7PMX
+  birth_date: 2026-02-13T03:38:41.451Z
+  current_score: 85
+stack_signature: typescript-bun-websocket
+detected_frameworks:
+  - Bun
+  - TypeScript
+  - WebSocket
+
+# About Repo declaration — non-app, displays source's score
+app_type: about
+about:
+  represents: Wolfe-Jam/faf-radio-bun
+  source_score: 100

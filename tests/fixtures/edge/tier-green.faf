@@ -1,0 +1,32 @@
+# 15/21 = 71 -> GREEN
+project:
+  name: filled
+  goal: filled
+  main_language: filled
+human_context:
+  who: filled
+  what: filled
+  why: filled
+  where: filled
+  when: filled
+  how: filled
+stack:
+  framework: filled
+  css: filled
+  ui_library: filled
+  state: filled
+  backend: filled
+  api: filled
+  runtime: slotignored
+  db: slotignored
+  connection: slotignored
+  hosting: slotignored
+  build: slotignored
+  cicd: slotignored
+  monorepo_tool: slotignored
+  pkg_manager: slotignored
+  workspaces: slotignored
+  admin: slotignored
+monorepo:
+  packages_count: slotignored
+  build_orchestrator: slotignored

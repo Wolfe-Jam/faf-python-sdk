@@ -1,0 +1,37 @@
+# 20/21 active = 95 -> SILVER
+project:
+  name: filled
+  goal: filled
+  main_language: filled
+human_context:
+  who: filled
+  what: filled
+  why: filled
+  where: filled
+  when: filled
+  how: filled
+stack:
+  framework: filled
+  css: filled
+  ui_library: filled
+  state: filled
+  backend: filled
+  api: filled
+  runtime: filled
+  db: filled
+  connection: filled
+  hosting: filled
+  build: filled
+  cicd: slotignored
+  monorepo_tool: slotignored
+  pkg_manager: slotignored
+  workspaces: slotignored
+  admin: slotignored
+  cache: slotignored
+  search: slotignored
+  storage: slotignored
+monorepo:
+  packages_count: slotignored
+  build_orchestrator: slotignored
+  versioning_strategy: slotignored
+  shared_configs: slotignored

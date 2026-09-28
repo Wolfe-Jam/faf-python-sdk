@@ -1,0 +1,14 @@
+# FAF - Foundational AI-context Format
+# IANA Registered: application/vnd.faf+yaml
+
+format: faf
+version: 2.0.0
+
+project:
+  name: faf-taf-demo
+  goal: Demonstrate the Git-Native Receipt Printer (.taf) in action
+  main_language: JavaScript
+
+stack:
+  testing: Jest
+  ci: GitHub Actions

@@ -1,0 +1,12 @@
+# tbd / todo are placeholders (case-insensitive)
+project:
+  name: tbd
+  goal: TBD
+  main_language: Tbd
+human_context:
+  who: todo
+  what: TODO
+  why: ToDo
+  where: " tbd "
+  when: "\tTODO\n"
+  how: real value

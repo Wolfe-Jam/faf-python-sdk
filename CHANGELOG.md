@@ -3,6 +3,60 @@
 All notable changes to faf-python-sdk are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
+## [2.0.0] — The Always33 Edition
+
+One engine, one number: faf-python-sdk scores all 33 slots exactly like faf-kernel — the same score faf-cli 8, claude-faf-mcp 7, faf-mcp 4 and grok-faf-mcp 2 give.
+
+`score_faf(yaml)` returns what faf-kernel (Wolfe-Jam/faf-rust `crates/faf-kernel`,
+npm `faf-scoring-kernel@3.0.0`) returns, on every file. A parity harness
+(`tests/test_always33_parity.py`) checks score, tier, populated, empty, ignored,
+active, total and every slot state against the kernel's recorded answers: 815/815
+fixtures (58 real `project.faf` files from public Wolfe-Jam repos, 55 rule
+fixtures, 242 YAML-layer cases, 460 seeded fuzz documents).
+
+### Changed (breaking — scores move)
+- **Always 33 slots.** The 12 enterprise slots count unless the file marks them
+  `slotignored`; `slotignored` slots drop out of the denominator
+  (`active = 33 − ignored`). A file with the 21 base slots filled and no markers
+  scores 64% (21/33); the same file plus the 12 markers scores 100% (21/21).
+- `score_faf(yaml, tier=...)` still accepts `tier`, but it no longer changes the
+  slot count: `LicenseTier.BASE` and `LicenseTier.ENTERPRISE` give the same result.
+- `Mk4Result.slots` (and `to_dict()["slots"]`) always lists 33 slots, in kernel
+  order, under the kernel's canonical names: `stack.framework`, `stack.css`,
+  `stack.state`, `stack.api`, `stack.db`, `stack.pkg_manager` (were
+  `stack.frontend`, `stack.css_framework`, `stack.state_management`,
+  `stack.api_type`, `stack.database`, `stack.package_manager`). `Mk4Result` keeps
+  its fields.
+- `tbd` and `todo` (case-insensitive) are placeholders and score as empty, with
+  the existing list (`none`, `null`, `n/a`, `unknown`, `not applicable`, …).
+- Short keys are read: `stack.framework`, `css`, `state`, `api`, `db`,
+  `pkg_manager`. The legacy key is read only when the short key is empty.
+- Rounding is half away from zero, as the kernel does (1/8 = 12.5% → 13, where
+  Python's `round()` gave 12).
+- YAML is read the way the kernel reads it (serde_yaml_ng on libyaml), not with
+  `yaml.safe_load`: flow-style YAML, a leading BOM and tabs inside values parse
+  as they do in the kernel; `<<` is an ordinary key (no YAML 1.1 merge);
+  duplicate keys, a second document, alias expansion past the kernel's
+  repetition limit and nesting deeper than 128 are unreadable; a local tag
+  (`!x value`) scores the slot empty.
+- Unreadable YAML scores 0 with every slot empty. `score_faf` does not raise.
+
+### Added
+- `faf_sdk.mk4.SLOTS` (the 33 slot paths, kernel order), `TOTAL_SLOTS`,
+  `LEGACY_ALIASES`.
+- Parity harness and fixtures under `tests/fixtures/`; the kernel oracle
+  (`scripts/kernel_oracle.js`, pinned in `scripts/package.json`) and
+  `scripts/record_kernel_expected.py`, which records the kernel's answers.
+
+### Upgrading
+- Files without the 12 enterprise markers score lower. `faf auto` (faf-cli)
+  writes the 12 markers; with them, a complete 21-slot file scores 100%.
+- Code that reads `result.slots` by name: use the canonical short names above.
+
+### Notes
+- `generate_agents_md` / `generate_gemini_md` remain deprecated aliases in 2.0.0.
+- `validate()`'s completeness score is unchanged; it is not the Mk4 score.
+
 ## [1.4.0] - 2026-09-08 — The Interop Edition
 
 The interop functions get their real names: `author_agents_md` / `author_gemini_md` are public, `render_*` is the impl, `generate_*` is deprecated (removed in 2.0).

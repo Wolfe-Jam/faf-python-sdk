@@ -1,0 +1,16 @@
+# canonical short key first; legacy key only when the short key is empty
+project:
+  name: precedence
+stack:
+  framework: SvelteKit
+  frontend: React
+  css: TBD
+  css_framework: Tailwind
+  state: slotignored
+  state_management: Zustand
+  api: ~
+  api_type: slotignored
+  db: []
+  database: none
+  pkg_manager: ""
+  package_manager: pnpm

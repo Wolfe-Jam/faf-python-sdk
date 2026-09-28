@@ -1,0 +1,8 @@
+# only the exact lowercase word (after trim) is slotignored
+project:
+  name: slotignored
+  goal: ' slotignored '
+  main_language: Slotignored
+human_context:
+  who: SLOTIGNORED
+  what: slotignored.

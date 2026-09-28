@@ -1,0 +1,82 @@
+# hello-faf — the reference project.faf.
+# Every one of the 33 Mk4 slots is filled, on purpose. Score: 100%.
+# This is NOT a running product — the connection string is a shape, not a live
+# server, and no service here needs an account. It is a real monorepo whose
+# context is complete, so you can see what "done" looks like before you author
+# your own.
+faf_version: "3.0"
+
+project:
+  name: hello-faf
+  goal: A complete, honest FAF context for a small SvelteKit + FastAPI monorepo — the reference every driver connects to.
+  main_language: TypeScript
+  type: enterprise
+
+# The 6 W's — the human context an AI cannot infer from the tree.
+human_context:
+  who: Developers evaluating FAFb, and anyone learning what a filled 33-slot .faf looks like.
+  what: A two-app monorepo (Svelte web + Python API) plus a shared UI package, wired with Turborepo, pnpm workspaces and Changesets.
+  why: A blank .faf forces your AI to re-guess the stack every session — a slot is a decision, and an empty one gets re-decided from scratch, in-context, every time. This repo settles them. FastAPI over Django here — fewer moving parts for a small typed API, async-first matches the SvelteKit client. Ask your AI "why FastAPI, not Django?" — with this file it answers from fact; without it, it guesses.
+  where: Public repo, low-profile. Cloned for the FAFb 0.9 test-drive; not deployed anywhere.
+  when: Kept current with the FAFb 0.9 drive. Not versioned as a product.
+  how: Turborepo over Nx — this repo is small enough that Nx's plugin machinery isn't worth it yet; revisit past ~15 packages. One .faf, hand-authored to match the tree exactly — change a manifest, change the slot.
+
+stack:
+  # Frontend
+  frontend: SvelteKit
+  css_framework: Tailwind CSS
+  ui_library: bits-ui (shadcn-svelte)
+  state_management: Svelte stores + URL state
+  # Backend
+  backend: FastAPI
+  api_type: REST API
+  runtime: Python
+  database: PostgreSQL
+  connection: postgres://hello@db.local:5432/hello    # shape only — not a live server
+  # Universal — this repo builds, ships and runs CI somewhere
+  hosting: Fly.io
+  build: Vite (Turborepo pipeline)
+  cicd: GitHub Actions
+  # Enterprise · infra — the workspace mechanism
+  monorepo_tool: Turborepo
+  package_manager: pnpm
+  workspaces: apps/* · packages/*
+  # Enterprise · app — the services the platform this models would use
+  admin: Retool
+  cache: Redis
+  search: Meilisearch
+  storage: Cloudflare R2
+
+monorepo:
+  # Enterprise · infra
+  packages_count: 3
+  build_orchestrator: Turborepo
+  # Enterprise · ops — how the monorepo releases and shares config
+  versioning_strategy: Changesets
+  shared_configs: tsconfig.base.json · turbo.json · .changeset/config.json
+  remote_cache: Turborepo Remote Cache
+
+# Phase-3 export contract — carried into AGENTS.md / CLAUDE.md by `faf export`.
+ai_instructions:
+  priority_order:
+    - Read this .faf first — editable source of truth
+    - Prefer the .fafb ROM when fresh (compile from .faf)
+    - Review the key files listed
+  working_style:
+    code_first: true
+    testing: required
+  warnings:
+    - Structured .faf is master; never re-parse prose markdown as the source
+preferences:
+  land: pr-only
+  commit_style: conventional
+
+state:
+  phase: reference
+  focus: test-drive
+
+tags:
+  - hello-faf
+  - faf
+  - fafb
+  - reference

@@ -1,0 +1,57 @@
+faf_version: "3.0"
+project:
+  name: grok-faf-mcp
+  title: Grok FAF
+  version: 2.0.0
+  goal: Persistent project context for xAI Grok. First MCP for Grok • First FAF MCP online • MCPaaS pattern origin. IANA-registered .faf + .fafm. Grok asked for MCP on a URL — this is it.
+  main_language: TypeScript
+  type: mcp
+  framework: mcp-sdk-ts
+  homepage: https://faf.one
+stack:
+  frontend: slotignored
+  css_framework: slotignored
+  ui_library: slotignored
+  state_management: slotignored
+  backend: MCP SDK (TS)
+  api_type: MCP (stdio + Streamable HTTP)
+  runtime: Node.js
+  database: slotignored
+  connection: slotignored
+  hosting: Cloudflare Workers
+  build: TypeScript (tsc)
+  cicd: GitHub Actions
+  monorepo_tool: slotignored
+  package_manager: slotignored
+  workspaces: slotignored
+  admin: slotignored
+  cache: slotignored
+  search: slotignored
+  storage: slotignored
+human_context:
+  who: Developers using xAI Grok with MCP
+  what: First MCP for Grok — also first FAF MCP online. Persistent AI context via IANA-registered .faf + .fafm.
+  why: Every AI session starts from zero. grok-faf-mcp gives Grok persistent project DNA.
+  where: npm registry, Cloudflare Workers (mcpaas.live/grok/mcp/v1), MCP Registry (one.faf/grok-faf-mcp)
+  when: "Shipped 2026-09-27 — current v2.0.0 The Always33 Edition (one engine, one number: every score is faf-cli 8's always-33 kernel, on npm and on mcpaas.live; ZEPH opt-in until the Zig engine is always-33). v1.10.0 The No-Fluff Edition (2026-08-20)."
+  how: bunx grok-faf-mcp (local stdio) or hosted on Cloudflare Workers (mcpaas.live/grok/mcp/v1) — 12 core tools by default (extended set behind FAF_TOOLS=all), Streamable HTTP transport, Mk4 WASM scoring kernel
+monorepo:
+  packages_count: slotignored
+  build_orchestrator: slotignored
+  versioning_strategy: slotignored
+  shared_configs: slotignored
+  remote_cache: slotignored
+surfaces:
+  # Distribution map — the machine-checkable form of human_context.where.
+  # Score-neutral (not a scored slot). Read by /surface for the declared-vs-live diff.
+  auto:                      # derived from manifests; regenerate with `faf surface --sync`
+    - { type: npm,          id: grok-faf-mcp,           source: "package.json#name" }
+    - { type: github,       id: Wolfe-Jam/grok-faf-mcp, source: "package.json#repository" }
+    - { type: mcp-registry, id: one.faf/grok-faf-mcp,   state: active, source: "server.json#name" }
+  declared:                  # hand-authored: surfaces the manifests don't carry + targets
+    - { type: mcpaas,       id: grok, url: "https://mcpaas.live/grok/mcp/v1", transport: streamable-http, status: live }
+    - { type: homebrew,     id: grok-faf-mcp, status: live }
+    - { type: mcp-registry, id: io.github.Wolfe-Jam/grok-faf-mcp, state: deprecated, superseded_by: one.faf/grok-faf-mcp }
+    - { type: pulsemcp,            id: grok-faf-mcp, status: live, contact: "Tadas (PulseMCP)", note: "live but stale — refresh via Tadas; wolfejam's relationship, Claude intel only" }
+    - { type: glama,               id: grok-faf-mcp, status: live, contact: "Frank (punkpeye/glama)", note: "Glama AAC — C = maintenance flag; via Frank, wolfejam runs it" }
+    - { type: awesome-mcp-servers, id: grok-faf-mcp, status: pending, contact: "Frank (punkpeye/glama)", note: "waiting on Frank via his Discord — do NOT submit a competing PR; claude+faf-mcp already in punkpeye" }

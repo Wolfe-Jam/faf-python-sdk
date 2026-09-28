@@ -1,0 +1,39 @@
+faf_version: "3.0"
+project:
+  name: mcpaas
+  goal: MCPaaS SDK — Context, on-demand. Read souls, score repos, discover tags, query the globe.
+  main_language: TypeScript
+  type: library
+stack:
+  frontend: slotignored
+  css_framework: slotignored
+  ui_library: slotignored
+  state_management: slotignored
+  backend: slotignored
+  api_type: slotignored
+  runtime: slotignored
+  database: slotignored
+  connection: slotignored
+  hosting: slotignored
+  build: slotignored
+  cicd: slotignored
+  monorepo_tool: slotignored
+  package_manager: slotignored
+  workspaces: slotignored
+  admin: slotignored
+  cache: slotignored
+  search: slotignored
+  storage: slotignored
+human_context:
+  who: Developers integrating MCPaaS context into apps, agents, and workflows
+  what: MCPaaS SDK — Context, on-demand. Read souls, score repos, discover tags, query the globe.
+  why: Eliminates hand-rolled HTTP calls — typed SDK wraps 15 public MCPaaS endpoints
+  where: npm (mcpaas), GitHub (Wolfe-Jam/mcpaas-sdk), consumed via mcpaas.live
+  when: v1.0.2, 2026-04-02
+  how: npm install mcpaas && import { MCPaaS } from 'mcpaas'
+monorepo:
+  packages_count: slotignored
+  build_orchestrator: slotignored
+  versioning_strategy: slotignored
+  shared_configs: slotignored
+  remote_cache: slotignored

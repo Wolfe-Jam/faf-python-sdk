@@ -1,0 +1,5 @@
+defaults: &lang Python
+project:
+  name: &n aliased
+  goal: *n
+  main_language: *lang

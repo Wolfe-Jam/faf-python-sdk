@@ -1,5 +1,5 @@
 <!-- faf:start -->
-<!-- faf: faf-python-sdk | Python |  | Python SDK for parsing, validating, scoring, and authoring .faf project context — the Mk4 engine + interop generators other Python FAF tools build on -->
+<!-- faf: faf-python-sdk | Python | library | Python SDK for parsing, validating, scoring, and authoring .faf project context — the Mk4 engine + interop generators other Python FAF tools build on -->
 <!-- faf: claim=project.faf | family=FAF -->
 
 # CLAUDE.md — faf-python-sdk
@@ -29,5 +29,5 @@ Python SDK for parsing, validating, scoring, and authoring .faf project context 
 
 ---
 
-*STATUS: BI-SYNC ACTIVE — 2026-09-07T02:08:39.970Z*
+*STATUS: SYNC ACTIVE — 2026-09-28T17:45:58.244Z*
 <!-- faf:end -->

@@ -1,0 +1,1 @@
+{project: {name: p, goal: g, main_language: Rust}, human_context: {who: devs, what: [a, b], why: {x: 1}}, stack: {framework: '', css: ~, state: []}}

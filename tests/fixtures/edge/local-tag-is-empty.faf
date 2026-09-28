@@ -1,0 +1,7 @@
+# a local tag (`!x`) makes the value Tagged → empty; `!!str` is a string
+project:
+  name: !custom value
+  goal: !!str 42
+  main_language: ! Python
+human_context: !section
+  who: tagged mapping is still traversed

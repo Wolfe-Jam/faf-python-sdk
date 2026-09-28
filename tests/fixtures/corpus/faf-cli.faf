@@ -1,0 +1,101 @@
+faf_version: "3.0"
+project:
+  name: faf-cli
+  version: "8.0.0"
+  goal: "CLI for IANA-registered `.faf` + `.fafm` — context DNA and portable agent memory. TypeScript, Bun-native since v6. package faf-cli v8.0.0 The Always33 Edition — scored by the always-33 engine."
+  main_language: TypeScript
+  type: cli  # found: package.json bin
+# Commands + key_files feed `faf export --agents` (hand values win over detection).
+commands:
+  install: bun install
+  build: bun run build — clean, bundle src/cli.ts to dist, then tsc
+  dev: bun run dev — run the CLI from source, no build
+  test: bun run test — must pass before a change is done
+  lint: bun run lint — eslint over src
+  check:no-hardcode: bun run check:no-hardcode — fail if a build-machine path leaked into dist
+key_files:
+  - src/cli.ts — CLI entry (Commander); builds to the `faf` / `faf-cli` bin
+  - src/index.ts — library entry; builds to `main`, plus the `./pack` export
+  - src/commands/ — one file per faf subcommand (39)
+  - src/commands/memory.ts — `faf memory`, the `.fafm` surface
+  - src/core/ — domain engines (drift, faf-dna, faf-source, cwd-guard)
+  - src/detect/ — stack and project detection, per language
+  - src/fafm/ — the `.fafm` library (soul, from-claude-dir, types)
+  - src/interop/ — the context authors (agents, claude, gemini, cards, copilot)
+  - src/interrogate/ — extractors that read a repo's own files for facts (readme, cargo, compose, env)
+  - src/ui/ — terminal output (colors, display, progress, star-nudge)
+  - src/wasm/ — bridge to faf-scoring-kernel; scoring lives there, not in TS
+  - package.json — scripts, and the bin that maps `faf` to dist/cli.js
+  - project.faf — this file; the DNA every author reads from
+instant_context:
+  what_building: CLI for IANA-registered .faf context + .fafm memory
+  tech_stack: TypeScript · Bun-native since v6
+  key_files:
+    - src/cli.ts
+    - src/commands/
+    - src/fafm/
+    - src/core/
+    - src/interop/agents.ts
+stack:
+  frontend: slotignored
+  css_framework: slotignored
+  ui_library: slotignored
+  state_management: slotignored
+  backend: slotignored
+  api_type: slotignored
+  runtime: slotignored
+  database: slotignored
+  connection: slotignored
+  hosting: npm + Homebrew
+  build: Bun (bun build) + tsc
+  cicd: GitHub Actions
+  monorepo_tool: slotignored
+  package_manager: slotignored
+  workspaces: slotignored
+  admin: slotignored
+  cache: slotignored
+  search: slotignored
+  storage: slotignored
+human_context:
+  who: Developers and teams using AI coding assistants
+  what: Persistent AI Context Standard — project DNA for AI. IANA-registered. Anthropic-merged.
+  why: Eliminates 91% context re-discovery tax — define once, AI remembers forever
+  where: npm registry, Homebrew, GitHub
+  when: Production since September 2025; Bun-native since v6; current package 8.0.0 (always-33 engine)
+  how: bunx faf-cli auto, then project.faf versions with your code — faf show renders it human-visible
+monorepo:
+  packages_count: slotignored
+  build_orchestrator: slotignored
+  versioning_strategy: slotignored
+  shared_configs: slotignored
+  remote_cache: slotignored
+surfaces:
+  # Distribution map — the machine-checkable form of human_context.where. Score-neutral.
+  auto:                      # derived from manifests; re-derive with the /surface skill
+    - { type: npm,    id: faf-cli,           source: "package.json#name" }
+    - { type: github, id: Wolfe-Jam/faf-cli, source: "package.json#repository" }
+  declared:                  # hand-authored: surfaces the manifests don't carry + targets
+    - { type: npm,      id: faf,     status: live }      # dual-publish alias (faf-cli ⇄ faf)
+    - { type: homebrew, id: faf-cli, status: live }
+ai_instructions:
+  # faf-cli's own custom rules — dogfooding ai_instructions.warnings.
+  # These land at the top of AGENTS.md Guardrails on `faf export --agents`.
+  warnings:
+    - "Use bun, not npm — this repo is Bun-native since v6."
+    - "TypeScript strict; zero type errors, zero test failures — always."
+    - "Scoring is a Rust→WASM kernel — compose it, never reimplement scoring in TS."
+    - "FAF authors — never 'generates'. And 'never guessed', not 'not guessed'."
+    - "Never write 'Guaranteed' (any form) — it's banned; it's free software."
+    - "Publish only via /pubpro — never hand-run npm publish."
+  working_style:
+    architecture: Domain-model first; single-source engines composed, never reimplemented.
+    testing: WJTTC — zero errors always; bun test green before any ship.
+    runtime: Bun-native since v6, TypeScript strict, Rust→WASM scoring kernel.
+    releases: Atomic via /pubpro — bump, verify, tag, publish in one motion.
+tech_stack:
+  - TypeScript
+  - Bun
+  - commander
+  - faf-scoring-kernel
+  - open
+  - yaml

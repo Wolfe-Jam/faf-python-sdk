@@ -1,0 +1,74 @@
+# xai-faf-zig - The Rocket Launcher
+# For Grok. For the rockets. For Mars.
+
+faf_version: 2.5.0
+
+project:
+  name: xai-faf-zig
+  goal: Zig-native CLI that generates GROK.md - 100% or nothing
+  main_language: Zig
+  type: cli
+  version: 0.2.0
+  author: wolfejam
+  license: Proprietary
+
+stack:
+  frontend: CLI
+  build: zig build
+  language: Zig
+
+human_context:
+  who: xAI engineers building AI infrastructure
+  what: 5-command CLI (init, sync, status, gold, embed) for GROK.md generation
+  why: Real rockets need 100% context - no partial success
+  where: Private xAI tooling repository
+  when: Dec 2025 - Mission ready
+  how: zig build && ./xai-faf init
+
+testing:
+  framework: Zig comptime + WJTTC
+  total_tests: 56
+  pass_rate: 100%
+  health_score: Championship
+
+architecture:
+  pattern: command-dispatch
+  commands:
+    - init: Create project.faf + GROK.md
+    - sync: Bi-sync .faf to GROK.md
+    - status: Show current score + tier
+    - gold: Achieve 100% or keep trying
+    - embed: Embed context into source
+
+tier_system:
+  big_orange: 105% MARS-Ready
+  rocket: 100% Mission-Ready
+  gold: 99% Almost there
+  silver: 95% Target 2
+  bronze: 85% Target 1
+  green: 70% GO!
+  yellow: 55% Caution
+  red: 0% Stop
+
+features:
+  - relentless-gold: 100% or keep trying - no partial success
+  - embedded-ghost: Zig-WASM scorer baked into binary
+  - grok-md: GROK.md output (not CLAUDE.md)
+  - mars-ready: 2MB memory lock, freestanding
+  - championship-tests: 56 WJTTC tests
+
+philosophy: |
+  Elon actually launches rockets.
+  This is not an emoji - this is mission control.
+  100% or we don't launch.
+  Gold command = relentless until success.
+
+sync_target: GROK.md  # Also known as grok-md
+
+dedication: For xAI. For Grok. For Mars.
+
+# About Repo declaration — non-app, displays source's score
+app_type: about
+about:
+  represents: Wolfe-Jam/xai-faf-zig
+  source_score: 100

@@ -1,0 +1,10 @@
+# short keys: framework, css, state, api, db, pkg_manager
+project:
+  name: short
+stack:
+  framework: SvelteKit
+  css: Tailwind
+  state: runes
+  api: REST
+  db: SQLite
+  pkg_manager: bun

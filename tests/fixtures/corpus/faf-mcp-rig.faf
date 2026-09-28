@@ -1,0 +1,51 @@
+faf_version: 2.5.0
+project:
+  name: faf-mcp-rig
+  goal: FAF-ready MCP server rig — minimal reference server + safe test target for FAF publish tooling.
+  main_language: TypeScript
+  type: documentation
+  homepage: https://faf.one
+stack:
+  frontend: slotignored
+  css_framework: slotignored
+  ui_library: slotignored
+  state_management: slotignored
+  backend: slotignored
+  api_type: slotignored
+  runtime: slotignored
+  database: slotignored
+  connection: slotignored
+  hosting: slotignored
+  build: slotignored
+  cicd: slotignored
+  monorepo_tool: slotignored
+  package_manager: slotignored
+  workspaces: slotignored
+  admin: slotignored
+  cache: slotignored
+  search: slotignored
+  storage: slotignored
+human_context:
+  who: New MCP builders
+  what: FAF-ready MCP server rig — minimal reference server + safe test target for FAF publish tooling.
+  why: skip FAF setup tax
+  where: https://github.com/Wolfe-Jam/faf-mcp-rig
+  when: v0.1.0 · 2026-06
+  how: npm run start, npm run build
+monorepo:
+  packages_count: slotignored
+  build_orchestrator: slotignored
+  versioning_strategy: slotignored
+  shared_configs: slotignored
+  remote_cache: slotignored
+tech_stack:
+  - TypeScript
+  - "@modelcontextprotocol/sdk"
+key_files:
+  - package.json
+  - src/index.ts
+  - README.md
+  - tsconfig.json
+commands:
+  build: npm run build
+  start: npm run start

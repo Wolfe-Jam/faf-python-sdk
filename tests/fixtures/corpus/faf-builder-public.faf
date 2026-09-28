@@ -1,0 +1,20 @@
+# project.faf — public About surface for FAF Builder
+# Source code lives at Wolfe-Jam/FAF-Builder (private)
+faf_version: 3.0
+project:
+  name: faf-builder-public
+  goal: Public About Repo for FAF Builder
+  main_language: markdown
+human_context:
+  who: Public viewers / integrators of FAF Builder
+  what: Public-facing description and integration surface for FAF Builder
+  why: Private source needs a public face for badges, integration, discovery
+  where: github.com/Wolfe-Jam/faf-builder-public
+  when: Initialized 2026-05-11
+  how: README + project.faf + LICENSE; no source code
+
+# About Repo declaration — non-app, displays source's score
+app_type: about
+about:
+  represents: Wolfe-Jam/FAF-Builder
+  source_score: 100

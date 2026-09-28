@@ -1,0 +1,4 @@
+project:
+  name: tab	inside
+  goal:	tab after colon
+  main_language: trailing tab	

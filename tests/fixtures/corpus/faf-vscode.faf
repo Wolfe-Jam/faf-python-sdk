@@ -1,0 +1,57 @@
+faf_version: "3.0"
+project:
+  name: faf-context
+  goal: Show where your project.faf stands — score, tier, drift — and render its context card, without leaving the editor.
+  main_language: TypeScript
+  type: library  # found: package.json main (no bin)
+stack:
+  frontend: slotignored
+  css_framework: slotignored
+  ui_library: slotignored
+  state_management: slotignored
+  backend: slotignored
+  api_type: slotignored
+  runtime: slotignored
+  database: slotignored
+  connection: slotignored
+  hosting: VS Code Marketplace + Open VSX
+  build: esbuild
+  cicd: GitHub Actions
+  monorepo_tool: slotignored
+  package_manager: slotignored
+  workspaces: slotignored
+  admin: slotignored
+  cache: slotignored
+  search: slotignored
+  storage: slotignored
+human_context:
+  who: Developers using AI coding assistants who keep a project.faf and want its score, tier, and drift visible in the editor.
+  what: Score your repo's AI context in the sidebar — tier, empty slots, and drift against AGENTS.md, CLAUDE.md and .cursorrules.
+  why: So the state of project.faf is a one-glance editor concern instead of a terminal round-trip — the human half of FAF context, paired with faf-mcp's AI half.
+  where: https://github.com/Wolfe-Jam/faf-vscode
+  when: Shipped 2026-09-08. Live on the VS Code Marketplace and Open VSX as faf.faf-context. Status bar + sidebar HUD + context card, the version-locked FAF CLI runner, FAF Init/Sync/DNA commands, the getting-started walkthrough, CodeLens on project.faf, path-aware slot navigation, and Workspace Trust gating.
+  how: esbuild bundles faf-cli's library for in-process scoring; the shipped faf-cli/dist/cli.js runs on VS Code's own Node for Init/Sync/DNA. bun test for Tier 1, real extension host for Tier 2 (CI).
+monorepo:
+  packages_count: slotignored
+  build_orchestrator: slotignored
+  versioning_strategy: slotignored
+  shared_configs: slotignored
+  remote_cache: slotignored
+tech_stack:
+  - TypeScript
+  - esbuild
+  - faf-cli
+key_files:
+  - package.json
+  - README.md
+  - tsconfig.json
+  - esbuild.js
+  - src/extension.ts
+  - src/model.ts
+  - src/engine.ts
+  - src/faf/run.ts
+  - src/view/codelens.ts
+commands:
+  build: npm run build
+  test: npm test
+  lint: npm run lint

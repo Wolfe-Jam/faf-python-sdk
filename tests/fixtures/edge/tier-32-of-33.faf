@@ -1,0 +1,37 @@
+# 32/33 = 96.97 -> 97 SILVER (99 GOLD needs >= 99/100; no n/33 or n/k<=33 lands there)
+project:
+  name: filled
+  goal: filled
+  main_language: filled
+human_context:
+  who: filled
+  what: filled
+  why: filled
+  where: filled
+  when: filled
+  how: filled
+stack:
+  framework: filled
+  css: filled
+  ui_library: filled
+  state: filled
+  backend: filled
+  api: filled
+  runtime: filled
+  db: filled
+  connection: filled
+  hosting: filled
+  build: filled
+  cicd: filled
+  monorepo_tool: filled
+  pkg_manager: filled
+  workspaces: filled
+  admin: filled
+  cache: filled
+  search: filled
+  storage: filled
+monorepo:
+  packages_count: filled
+  build_orchestrator: filled
+  versioning_strategy: filled
+  shared_configs: filled

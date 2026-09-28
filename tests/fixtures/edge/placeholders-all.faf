@@ -1,0 +1,19 @@
+# every kernel placeholder, mixed case, plus near-misses that are real values
+project:
+  name: Describe your project goal
+  goal: development teams
+  main_language: CLOUD PLATFORM
+human_context:
+  who: "null"
+  what: None
+  why: UNKNOWN
+  where: n/a
+  when: Not Applicable
+  how: N/A
+stack:
+  framework: tbd.
+  css: to do
+  ui_library: none yet
+  state: unknown-ish
+  backend: "n / a"
+  api: nil

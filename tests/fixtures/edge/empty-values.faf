@@ -1,0 +1,12 @@
+# empty values are empty: ~, null, {}, [], '', bare key
+project:
+  name: ~
+  goal: null
+  main_language: {}
+human_context:
+  who: []
+  what: ''
+  why:
+  where: Null
+  when: NULL
+  how: "~"

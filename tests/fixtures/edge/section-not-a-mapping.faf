@@ -1,0 +1,4 @@
+project: [name, goal]
+human_context: who
+stack:
+  - framework: React

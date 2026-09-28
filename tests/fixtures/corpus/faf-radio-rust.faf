@@ -1,0 +1,54 @@
+faf_version: "3.3"
+project:
+  name: faf-radio-rust
+  goal: "Radio Protocol client — tune, listen, and broadcast AI context"
+  main_language: Rust
+  version: 0.2.0
+  license: MIT
+  type: rust_crate
+  subtype: websocket_client
+  ecosystem: fafb-broadcasting
+instant_context:
+  what_building: "Rust SDK for FAF Radio Protocol — broadcast AI context once, all tools receive"
+  tech_stack: "Rust 2024, Tokio, tokio-tungstenite v0.28, serde_json"
+  deployment: crates.io
+  main_language: Rust
+  key_files:
+    - Cargo.toml
+    - src/lib.rs
+    - src/types.rs
+    - src/error.rs
+  key_apis:
+    - "RadioConfig::grok() — preset config for Grok inference frequency"
+    - "RadioClient::broadcast(freq, event) — send events on frequencies"
+    - "RadioClient::tune(frequencies) — subscribe to frequencies"
+    - "RadioClient::connect() — WebSocket connection with auto-reconnect"
+ai_instructions:
+  priority_order:
+    - 1. Read THIS .faf file first
+    - 2. Check CLAUDE.md for session context
+    - 3. Review Cargo.toml for dependencies
+  working_style:
+    code_first: true
+    explanations: minimal
+    quality_bar: zero_errors
+    testing: required
+commands:
+  build: cargo build
+  test: cargo test
+  lint: cargo clippy
+  format: cargo fmt
+state:
+  phase: production
+  version: 0.2.0
+  status: green_flag
+  tests: "50/50 passing (T1:14, T2:19, T3:12, Unit:5)"
+  focus: "Grok presets + client broadcast (v0.2.0)"
+preferences:
+  quality_bar: zero_errors
+  commit_style: conventional_emoji
+  response_style: concise_code_first
+  testing: required
+metadata:
+  last_claude_sync: 2026-03-06T07:51:05.252Z
+  bi_sync: active
