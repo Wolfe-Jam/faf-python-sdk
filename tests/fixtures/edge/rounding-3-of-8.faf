@@ -1,0 +1,33 @@
+# 3 / 8 = 37.5 -> 38
+project:
+  name: filled
+  goal: filled
+  main_language: filled
+human_context:
+  who: slotignored
+  what: slotignored
+  why: slotignored
+  where: slotignored
+  when: slotignored
+  how: slotignored
+stack:
+  framework: slotignored
+  css: slotignored
+  ui_library: slotignored
+  state: slotignored
+  backend: slotignored
+  api: slotignored
+  runtime: slotignored
+  db: slotignored
+  connection: slotignored
+  hosting: slotignored
+  build: slotignored
+  cicd: slotignored
+  monorepo_tool: slotignored
+  pkg_manager: slotignored
+  workspaces: slotignored
+  admin: slotignored
+  cache: slotignored
+monorepo:
+  packages_count: slotignored
+  build_orchestrator: slotignored

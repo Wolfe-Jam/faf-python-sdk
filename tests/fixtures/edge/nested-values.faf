@@ -1,0 +1,11 @@
+# non-empty lists and mappings are populated; empty ones are not
+project:
+  name: nested
+  goal:
+    - ship
+  main_language:
+    primary: Python
+human_context:
+  who:
+    - {}
+  what: [[]]

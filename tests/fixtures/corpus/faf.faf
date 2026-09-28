@@ -1,0 +1,46 @@
+faf_version: 2.5.0
+project:
+  name: "@faf/specification"
+  goal: .faf (Foundational AI-context Format) - Official format specification
+  main_language: JavaScript
+  type: documentation  # found: package name "@faf/specification" → documentation
+stack:
+  frontend: slotignored
+  css_framework: slotignored
+  ui_library: slotignored
+  state_management: slotignored
+  backend: slotignored
+  api_type: slotignored
+  runtime: slotignored
+  database: slotignored
+  connection: slotignored
+  hosting: slotignored
+  build: slotignored
+  cicd: slotignored
+  monorepo_tool: slotignored
+  package_manager: slotignored
+  workspaces: slotignored
+  admin: slotignored
+  cache: slotignored
+  search: slotignored
+  storage: slotignored
+human_context:
+  who: AI agents, developers, and tool implementers who read or write project.faf — anyone building an implementation that conforms to the format
+  what: .faf (Foundational AI-context Format) - Official format specification
+  why: A portable AI-context standard needs one canonical, IANA-registered specification — the authoritative source for application/vnd.faf+yaml that every implementation conforms to
+  where: https://github.com/Wolfe-Jam/faf
+  when: IANA-registered (application/vnd.faf+yaml, October 30 2025) — Specification 3.3.0
+  how: Read SPECIFICATION.md and the JSON schemas; reference example.faf and examples/; implementations write and read project.faf files conforming to this spec
+monorepo:
+  packages_count: slotignored
+  build_orchestrator: slotignored
+  versioning_strategy: slotignored
+  shared_configs: slotignored
+  remote_cache: slotignored
+tech_stack:
+  - JavaScript
+key_files:
+  - package.json
+  - README.md
+  - SPECIFICATION.md
+  - BINARY-FORMAT.md

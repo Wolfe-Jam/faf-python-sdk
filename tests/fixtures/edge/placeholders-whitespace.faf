@@ -1,0 +1,10 @@
+# placeholders surrounded by whitespace are still placeholders
+project:
+  name: "  none  "
+  goal: "\u00a0unknown\u3000"
+  main_language: "\u0085null\u2028"
+human_context:
+  who: "\x1cnone"
+  what: "\u200bnone"
+  why: "   "
+  where: ""

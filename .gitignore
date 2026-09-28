@@ -42,3 +42,6 @@ htmlcov/
 # OS
 .DS_Store
 Thumbs.db
+
+# Node (kernel oracle for the parity harness)
+node_modules/

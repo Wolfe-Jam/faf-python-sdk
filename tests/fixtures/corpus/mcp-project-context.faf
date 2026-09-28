@@ -1,0 +1,34 @@
+faf_version: "3.0"
+project:
+  name: mcp-project-context
+  goal: Host-side injection of project identity into existing MCP tool parameters.
+  main_language: TypeScript
+  type: mcp
+repository: github.com/octocat/Hello-World
+stack:
+  runtime: Node.js
+  build: TypeScript (tsc)
+  backend: Node.js (stdio MCP server stub)
+  api_type: MCP (JSON-RPC 2.0 over stdio)
+  cicd: GitHub Actions (typecheck + demo run, verified green)
+  frontend: slotignored  # no UI layer — stdio reference implementation
+  css_framework: slotignored  # no UI
+  ui_library: slotignored  # no UI
+  state_management: slotignored  # stateless demo, no state to manage
+  database: slotignored  # no persistence layer
+  connection: slotignored  # no database
+  hosting: slotignored  # reference implementation, not a deployed service
+tech_stack:
+  - TypeScript
+  - "@modelcontextprotocol/sdk"
+human_context:
+  who: MCP host implementers, specifically the github-mcp-server maintainers evaluating repo-scoping approaches
+  what: A reference implementation of host-side tool-parameter injection for MCP, discussed on github/github-mcp-server#1683.
+  why: SEP-2577 deprecated MCP Roots; this proves the tool-parameter alternative the SEP itself named
+  where: github.com/Wolfe-Jam/mcp-project-context
+  when: 2026-08-10
+  how: Host reads project.faf's repository field, fills matching tool-schema params before dispatch — see src/param-fill.ts
+key_files:
+  - package.json
+  - README.md
+  - tsconfig.json

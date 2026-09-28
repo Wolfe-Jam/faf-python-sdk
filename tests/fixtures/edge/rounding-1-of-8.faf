@@ -1,0 +1,31 @@
+# 1 populated / 8 active = 12.5 -> 13 (half away from zero)
+project:
+  name: filled
+  goal: slotignored
+  main_language: slotignored
+human_context:
+  who: slotignored
+  what: slotignored
+  why: slotignored
+  where: slotignored
+  when: slotignored
+  how: slotignored
+stack:
+  framework: slotignored
+  css: slotignored
+  ui_library: slotignored
+  state: slotignored
+  backend: slotignored
+  api: slotignored
+  runtime: slotignored
+  db: slotignored
+  connection: slotignored
+  hosting: slotignored
+  build: slotignored
+  cicd: slotignored
+  monorepo_tool: slotignored
+  pkg_manager: slotignored
+  workspaces: slotignored
+monorepo:
+  packages_count: slotignored
+  build_orchestrator: slotignored

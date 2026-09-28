@@ -1,0 +1,48 @@
+faf_version: 2.5.0
+project:
+  name: faf-rust
+  goal: The FAF Rust workspace — one kernel, many shells.
+  main_language: Rust
+  type: library
+stack:
+  frontend: slotignored
+  css_framework: slotignored
+  ui_library: slotignored
+  state_management: slotignored
+  backend: slotignored
+  api_type: slotignored
+  runtime: slotignored
+  database: slotignored
+  connection: slotignored
+  hosting: GitHub Actions CI
+  build: cargo
+  cicd: GitHub Actions
+  monorepo_tool: slotignored
+  package_manager: slotignored
+  workspaces: slotignored
+  admin: slotignored
+  cache: slotignored
+  search: slotignored
+  storage: slotignored
+human_context:
+  who: Rust devs, AI builders
+  what: FAF Rust workspace kernel
+  why: One kernel, many shells
+  where: crates.io, WASM, edge
+  when: Foundation build, active
+  how: Cargo workspace, parity fixtures
+monorepo:
+  packages_count: slotignored
+  build_orchestrator: slotignored
+  versioning_strategy: slotignored
+  shared_configs: slotignored
+  remote_cache: slotignored
+tech_stack:
+  - Rust
+key_files:
+  - Cargo.toml
+  - README.md
+commands:
+  build: cargo build --release
+  test: cargo test
+  lint: cargo clippy

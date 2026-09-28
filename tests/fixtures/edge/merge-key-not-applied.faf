@@ -1,0 +1,7 @@
+# `<<` is an ordinary key for the kernel (no YAML 1.1 merge)
+base: &base
+  name: merged
+  goal: merged goal
+project:
+  <<: *base
+  main_language: Python

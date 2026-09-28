@@ -339,7 +339,7 @@ project:
         assert "active" in d
         assert "total" in d
         assert "slots" in d
-        assert len(d["slots"]) == 21
+        assert len(d["slots"]) == 33  # always-33, whatever the tier
 
     def test_enterprise_to_dict_has_33_slots(self):
         result = score_faf("project:\n  name: test", LicenseTier.ENTERPRISE)
@@ -474,7 +474,7 @@ human_context:
         faf = parse_file(str(faf_file))
         mk4 = score_faf(content)
         assert mk4.populated == 9  # 3 project + 6 human_context
-        assert mk4.score == 43  # 9/21 = 42.86 -> 43
+        assert mk4.score == 27  # 9/33 = 27.27 -> 27
 
     def test_validate_and_mk4_both_work(self):
         content = "faf_version: '2.5.0'\nproject:\n  name: test\n  goal: real"
@@ -630,8 +630,8 @@ class TestTier4StressConcurrency:
                 errors.append(str(e))
 
         yamls = [
-            ("project:\n  name: test", 5),
-            ("project:\n  name: a\n  goal: b\n  main_language: c", 14),
+            ("project:\n  name: test", 3),  # 1/33
+            ("project:\n  name: a\n  goal: b\n  main_language: c", 9),  # 3/33
             ("empty: true", 0),
         ]
 

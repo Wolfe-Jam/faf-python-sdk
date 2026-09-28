@@ -1,0 +1,119 @@
+name: grok-faf-elite
+version: 1.0.0
+description: Instant AI context for your repos. One-click FAF builder with Rust WASM generation + Zig WASM scoring. F1-Inspired Elite Edition.
+ai_readiness: 98%
+tech_stack:
+  framework: SvelteKit 5
+  language: TypeScript (strict)
+  styling: Tailwind CSS 4
+  deployment: Cloudflare Workers
+  wasm: Rust (211KB generator) + Zig (2.7KB scorer)
+architecture:
+  pattern: Component-based SPA
+  state: Svelte 5 runes ($state, $props, $effect)
+  routing: SvelteKit file-based routing
+features:
+  - One-click .faf generation for any GitHub repo
+  - Rust WASM generator (211KB, ~3ms generation)
+  - Zig WASM scorer (2.7KB, ~14μs scoring, 71K scores/sec)
+  - OAuth GitHub integration for commits
+  - Real-time scoring (0-100% AI-readiness)
+  - Download or commit directly to repo
+  - Native dialog modals for accessibility
+components:
+  BigOrange: Animated logo with hover effects
+  ActionButton: Reusable button with icon snippets
+  Modal: Native dialog-based accessible modal
+performance_targets:
+  bundle_size: <20 kB gzipped
+  build_time: <5s
+  first_paint: <100ms
+integrations:
+  - grok-faf-mcp (npm package)
+  - MCP server at https://mcpaas.live/grok/mcp/v1
+commands:
+  dev: npm run dev
+  build: npm run build
+  check: npm run check
+  preview: npm run preview
+  test: npm run test
+project:
+  name: grok-faf-elite
+  goal: Universal FAF builder - Generate perfect AI context for any repo in one click using championship-grade WASM toolchain
+  type: web-app  # found: Svelte/SvelteKit
+  main_language: typescript
+human_context:
+  who: Developers wanting perfect AI context without CLI friction
+  what: One-click .faf builder - Paste GitHub URL, get perfect AI context
+  why: Eliminate AI context setup tax - from hours to seconds
+  where: Browser (builder.faf.one), Cloudflare Workers edge
+  when: Production v1.0.0 - AI-Readiness dial + 6-Ws interview + dotFAF, on WASM generation + scoring
+  how: Rust WASM (generation) + Zig WASM (scoring) + SvelteKit 5
+persona:
+  voice: Fast, direct, zero-faff
+  tone: Elite developer energy
+  traits:
+    - F1-inspired speed
+    - Championship grade quality
+    - One-click simplicity
+links:
+  github: https://github.com/Wolfe-Jam/grok-faf-elite
+  npm: https://www.npmjs.com/package/grok-faf-mcp
+  live: https://builder.faf.one
+  faf: https://faf.one
+stack:
+  frontend: Svelte
+  css_framework: Tailwind CSS
+  build: Vite
+  hosting: Cloudflare Workers
+  database: slotignored
+  backend: SvelteKit
+  packageManager: npm/yarn/pnpm
+  targetUser: developers
+  coreProblem: understanding project
+  missionPurpose: project documentation
+  mainLanguage: JavaScript/TypeScript
+  cicd: Playwright
+  framework: SvelteKit
+  buildTool: Vite
+  server: Node.js
+  ui_library: slotignored
+  state_management: Runes
+  api_type: Server Routes
+  runtime: Node.js
+  connection: slotignored
+  monorepo_tool: slotignored
+  package_manager: slotignored
+  workspaces: slotignored
+  admin: slotignored
+  cache: slotignored
+  search: slotignored
+  storage: slotignored
+generated: 2026-01-28T00:38:13.491Z
+stack_signature: typescript-sveltekit-nodejs
+detected_frameworks:
+  - npm
+  - Node.js
+  - Claude Code
+  - JavaScript
+  - TypeScript
+  - Playwright
+  - SvelteKit
+  - Vite
+  - Svelte
+turbo_cat_intelligence: 330
+stats:
+  last_auto_time: 0.3
+  times_run: 1
+faf_version: 2.5.0
+monorepo:
+  packages_count: slotignored
+  build_orchestrator: slotignored
+  versioning_strategy: slotignored
+  shared_configs: slotignored
+  remote_cache: slotignored
+key_files:
+  - package.json
+  - README.md
+  - tsconfig.json
+  - wrangler.jsonc

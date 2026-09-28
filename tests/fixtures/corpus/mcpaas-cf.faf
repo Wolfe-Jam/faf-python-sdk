@@ -1,0 +1,45 @@
+faf_version: "3.0"
+project:
+  name: MCPaaS MCP Test
+  goal: Model Context Protocol as a Service — sub-millisecond AI context delivery at 300+ edges
+  main_language: TypeScript
+  type: backend
+stack:
+  frontend: slotignored
+  css_framework: slotignored
+  ui_library: slotignored
+  state_management: slotignored
+  backend: Hono
+  api_type: REST + MCP (JSON-RPC)
+  runtime: Cloudflare Workers
+  database: Cloudflare KV
+  connection: KV bindings (zero-latency)
+  hosting: Cloudflare
+  build: wrangler@4.78.0
+  cicd: GitHub Actions
+  monorepo_tool: slotignored
+  package_manager: slotignored
+  workspaces: slotignored
+  admin: slotignored
+  cache: Edge 1h + CDN 24h (Cache-Control headers)
+  search: Full-text search via KV scan
+  storage: Cloudflare KV (souls, namepoints, analytics)
+human_context:
+  who: wolfejam — FAF creator, IANA registrant, MCPaaS operator
+  what: MCP server delivering persistent AI context (souls) via Hono sub-apps on Cloudflare Workers with 2.7KB Zig-WASM scoring engine
+  why: AI statelessness wastes 91% of context setup time — MCPaaS eliminates drift tax with sub-ms context delivery
+  where: mcpaas.live — 300+ Cloudflare edge locations worldwide
+  when: Live since Jan 2026, Hono Phase 3 complete Apr 2026
+  how: 6 Hono sub-apps mounted via app.route(), Zig-WASM scoring at edge, Auth0 OAuth 2.0, 520/520 WJTTC tests
+monorepo:
+  packages_count: slotignored
+  build_orchestrator: slotignored
+  versioning_strategy: slotignored
+  shared_configs: slotignored
+  remote_cache: slotignored
+
+# About Repo declaration — non-app, displays source's score
+app_type: about
+about:
+  represents: Wolfe-Jam/faf-mcpaas
+  source_score: 100

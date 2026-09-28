@@ -1,0 +1,10 @@
+# legacy keys only: frontend, css_framework, state_management, api_type, database, package_manager
+project:
+  name: legacy
+stack:
+  frontend: Vue
+  css_framework: UnoCSS
+  state_management: Pinia
+  api_type: GraphQL
+  database: MySQL
+  package_manager: npm

@@ -1,0 +1,29 @@
+# 21 base + 3 monorepo slots, no markers: 24/33
+project:
+  name: edge-app
+  goal: Score every file the same way
+  main_language: Python
+human_context:
+  who: Python developers
+  what: A scoring SDK
+  why: One engine, one number
+  where: PyPI
+  when: Every AI session
+  how: pip install
+stack:
+  frontend: React
+  css_framework: Tailwind
+  ui_library: Radix
+  state_management: Zustand
+  backend: FastAPI
+  api_type: REST
+  runtime: CPython
+  database: PostgreSQL
+  connection: psycopg
+  hosting: Fly.io
+  build: hatchling
+  cicd: GitHub Actions
+monorepo:
+  packages_count: 5
+  build_orchestrator: Lerna
+  versioning_strategy: fixed

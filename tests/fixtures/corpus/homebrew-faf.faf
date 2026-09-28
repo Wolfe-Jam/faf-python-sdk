@@ -1,0 +1,41 @@
+faf_version: 2.5.0
+project:
+  name: homebrew-faf
+  goal: Homebrew tap for the FAF ecosystem.
+  main_language: Ruby
+  type: library  # found: no classifying signals — fallback
+stack:
+  frontend: slotignored
+  css_framework: slotignored
+  ui_library: slotignored
+  state_management: slotignored
+  backend: slotignored
+  api_type: slotignored
+  runtime: slotignored
+  database: slotignored
+  connection: slotignored
+  hosting: "GitHub"
+  build: "slotignored"
+  cicd: GitHub Actions
+  monorepo_tool: slotignored
+  package_manager: slotignored
+  workspaces: slotignored
+  admin: slotignored
+  cache: slotignored
+  search: slotignored
+  storage: slotignored
+human_context:
+  who: "macOS and Linux developers installing FAF tools via Homebrew"
+  what: Homebrew tap for the FAF ecosystem.
+  why: "brew install path for the FAF CLI - a tap so users get faf via Homebrew"
+  where: npx faf-cli
+  when: "Production - live tap"
+  how: bash brew tap wolfe-jam/faf brew install wolfe-jam/faf/faf-cli
+monorepo:
+  packages_count: slotignored
+  build_orchestrator: slotignored
+  versioning_strategy: slotignored
+  shared_configs: slotignored
+  remote_cache: slotignored
+key_files:
+  - README.md

@@ -1,0 +1,4 @@
+# app_type does not change the slot count
+app_type: enterprise
+project:
+  name: typed

@@ -1,0 +1,9 @@
+{
+  "name": "faf-python-sdk-kernel-oracle",
+  "private": true,
+  "description": "Pins the faf-kernel WASM build used as the always-33 parity oracle (scripts/kernel_oracle.js).",
+  "license": "MIT",
+  "dependencies": {
+    "faf-scoring-kernel": "3.0.0"
+  }
+}

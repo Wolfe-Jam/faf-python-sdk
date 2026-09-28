@@ -9,10 +9,22 @@ The foundation other Python FAF tools build on. If you're building MCP servers, 
 [![FAF](https://mcpaas.live/badge/Wolfe-Jam/faf-python-sdk.svg)](https://builder.faf.one)
 [![PyPI](https://img.shields.io/pypi/v/faf-python-sdk?style=for-the-badge&logo=pypi&logoColor=white)](https://pypi.org/project/faf-python-sdk/)
 [![Downloads](https://img.shields.io/pypi/dm/faf-python-sdk?style=for-the-badge&color=blue)](https://pypi.org/project/faf-python-sdk/)
-[![Tests](https://img.shields.io/badge/tests-216%20passing-brightgreen?style=for-the-badge)](https://github.com/Wolfe-Jam/faf-python-sdk)
+[![Tests](https://img.shields.io/badge/tests-1037%20passing-brightgreen?style=for-the-badge)](https://github.com/Wolfe-Jam/faf-python-sdk)
 [![IANA](https://img.shields.io/badge/IANA-registered-informational?style=for-the-badge)](https://www.iana.org/assignments/media-types/application/vnd.faf+yaml)
 
 **Media Type:** `application/vnd.faf+yaml` (IANA registered)
+
+## What's New in v2.0.0 — The Always33 Edition
+
+One engine, one number: faf-python-sdk scores all 33 slots exactly like faf-kernel — the same score faf-cli 8, claude-faf-mcp 7, faf-mcp 4 and grok-faf-mcp 2 give.
+
+- **Always 33 slots.** The 12 enterprise slots count unless marked `slotignored`. 21 base slots filled with no markers: 64% (21/33). The same file plus the 12 markers: 100% (21/21). `faf auto` (faf-cli) writes the markers.
+- `tbd` / `todo` are placeholders; short keys (`framework`, `css`, `state`, `api`, `db`, `pkg_manager`) are read.
+- YAML is read the way the kernel reads it; unreadable YAML scores 0 without raising.
+- `score_faf(yaml, tier=...)` still accepts `tier`; it no longer changes the slot count.
+- Parity harness: 815/815 fixtures match faf-kernel (`faf-scoring-kernel@3.0.0`), including the `project.faf` of 58 public repos.
+
+See [CHANGELOG.md](CHANGELOG.md) for the full list of changes.
 
 ## What's New in v1.4.0 — The Interop Edition
 
@@ -82,26 +94,24 @@ print(f"Slots: {result.populated}/{result.total} populated")
 
 ## Mk4 Scoring
 
-The Mk4 engine scores `.faf` files by checking 21 universal slots (project metadata, human context, tech stack). Each slot is **Populated**, **Empty**, or **Slotignored**. The score is the percentage of active slots that are populated.
+The Mk4 engine scores `.faf` files against 33 slots (project metadata, human context, tech stack, and 12 enterprise slots), exactly as faf-kernel does. Each slot is **Populated**, **Empty**, or **Slotignored**. The score is populated ÷ active, where active = 33 − slotignored.
 
 ```python
-from faf_sdk import score_faf, LicenseTier
+from faf_sdk import score_faf
 
-# Base scoring (21 slots)
 result = score_faf(yaml_content)
 print(result.score)      # 0-100
-print(result.tier)       # Trophy/Gold/Silver/Bronze/Green/Yellow/Red
+print(result.tier)       # TROPHY / GOLD / SILVER / BRONZE / GREEN / YELLOW / RED / WHITE
 print(result.populated)  # slots with real data
-print(result.active)     # total minus slotignored
-print(result.slots)      # per-slot breakdown
-
-# Enterprise scoring (33 slots — adds monorepo/infra)
-result = score_faf(yaml_content, LicenseTier.ENTERPRISE)
+print(result.active)     # 33 minus slotignored
+print(result.slots)      # per-slot breakdown, 33 entries in kernel order
 ```
 
-**Placeholder rejection:** Values like `"null"`, `"unknown"`, `"n/a"`, `"Describe your project goal"` are detected and scored as Empty — not Populated.
+**Placeholder rejection:** Values like `"null"`, `"none"`, `"unknown"`, `"n/a"`, `"tbd"`, `"todo"`, `"Describe your project goal"` (case-insensitive) are scored as Empty — not Populated.
 
-**Slotignored:** Set any slot to `slotignored` to exclude it from scoring. A backend-only project can mark `frontend: slotignored` and still reach 100%.
+**Slotignored:** Set any slot to `slotignored` to exclude it from scoring. A project that does not use the 12 enterprise slots marks them `slotignored` (`faf auto` writes them) and can still reach 100%.
+
+**Short keys:** `stack.framework`, `css`, `state`, `api`, `db`, `pkg_manager` are the canonical names; the legacy `frontend`, `css_framework`, `state_management`, `api_type`, `database`, `package_manager` are read when the short key is empty.
 
 ## Parsing
 
@@ -156,7 +166,7 @@ root = find_project_root()
 
 | Function | Returns | Description |
 |----------|---------|-------------|
-| `score_faf(yaml, tier?)` | `Mk4Result` | Mk4 score (21 or 33 slots) |
+| `score_faf(yaml)` | `Mk4Result` | Mk4 score, always 33 slots (faf-kernel parity) |
 | `parse(content)` | `FafFile` | Parse YAML string |
 | `parse_file(path)` | `FafFile` | Parse from file path |
 | `validate(faf)` | `ValidationResult` | Structure validation + warnings |

@@ -1,0 +1,28 @@
+# 12/21 = 57 -> YELLOW
+project:
+  name: filled
+  goal: filled
+  main_language: filled
+human_context:
+  who: filled
+  what: filled
+  why: filled
+  where: filled
+  when: filled
+  how: filled
+stack:
+  framework: filled
+  css: filled
+  ui_library: filled
+  state: slotignored
+  backend: slotignored
+  api: slotignored
+  runtime: slotignored
+  db: slotignored
+  connection: slotignored
+  hosting: slotignored
+  build: slotignored
+  cicd: slotignored
+  monorepo_tool: slotignored
+  pkg_manager: slotignored
+  workspaces: slotignored

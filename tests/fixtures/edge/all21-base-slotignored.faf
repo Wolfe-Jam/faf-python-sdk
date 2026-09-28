@@ -1,0 +1,25 @@
+# the 21 base slots slotignored, 12 enterprise slots missing: 0/12
+project:
+  name: slotignored
+  goal: slotignored
+  main_language: slotignored
+human_context:
+  who: slotignored
+  what: slotignored
+  why: slotignored
+  where: slotignored
+  when: slotignored
+  how: slotignored
+stack:
+  framework: slotignored
+  css: slotignored
+  ui_library: slotignored
+  state: slotignored
+  backend: slotignored
+  api: slotignored
+  runtime: slotignored
+  db: slotignored
+  connection: slotignored
+  hosting: slotignored
+  build: slotignored
+  cicd: slotignored

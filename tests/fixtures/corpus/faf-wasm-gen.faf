@@ -1,0 +1,49 @@
+faf_version: 2.5.0
+project:
+  name: faf-wasm-gen
+  goal: Generate `project.faf` files in the browser or at the edge.
+  main_language: Rust
+  type: wasm
+stack:
+  frontend: slotignored
+  css_framework: slotignored
+  ui_library: slotignored
+  state_management: slotignored
+  backend: slotignored
+  api_type: slotignored
+  runtime: slotignored
+  database: slotignored
+  connection: slotignored
+  hosting: npm
+  build: cargo
+  cicd: GitHub Actions
+  monorepo_tool: slotignored
+  package_manager: slotignored
+  workspaces: slotignored
+  admin: slotignored
+  cache: slotignored
+  search: slotignored
+  storage: slotignored
+human_context:
+  who: wolfejam
+  what: Rust WASM Generator for FAF (Foundational AI-context Format)
+  why: Build a Rust WASM generator that matches faf-cli v6.8 output exactly (faf_version "3.3", 33-slot Mk4 model).
+  where: crates.io, npm, edge (builder.faf.one)
+  when: 2026-06 — ported to faf-cli v6.8 parity
+  how: Rust to WASM; the generate sibling of faf-wasm-sdk
+monorepo:
+  packages_count: slotignored
+  build_orchestrator: slotignored
+  versioning_strategy: slotignored
+  shared_configs: slotignored
+  remote_cache: slotignored
+tech_stack:
+  - Rust
+key_files:
+  - Cargo.toml
+  - src/lib.rs
+  - README.md
+commands:
+  build: cargo build --release
+  test: cargo test
+  lint: cargo clippy

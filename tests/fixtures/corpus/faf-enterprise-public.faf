@@ -1,0 +1,340 @@
+# =============================================================================
+# FAF v3.0 — @faf/enterprise
+# The first-ever v3 .faf file. Dog-fooded.
+# IFF Container: DNA (scored) + Context (unlimited) + Pointers (references)
+# =============================================================================
+
+faf: "3.0"
+
+# =============================================================================
+# DNA CHUNK (scored by Mk4 engine)
+# =============================================================================
+
+project:
+  name: "@faf/enterprise"
+  goal: "FAF Enterprise Edition — IFF container format, monorepo scoring (33 slots), team collaboration, championship-grade AI context"
+  main_language: TypeScript
+  type: cli-ts
+  version: "1.0.0"
+
+stack:
+  framework: CLI
+  ui_library: "inquirer"
+  backend: Node.js
+  api: CLI
+  runtime: "Node.js >=14.0.0"
+  db: None
+  connection: None
+  hosting: "npm registry"
+  build: "TypeScript (tsc)"
+  cicd: "GitHub Actions"
+  pkg_manager: npm
+
+enterprise:
+  owner: "wolfejam"
+  division: "faf-core"
+  classification: "source-available"
+
+goals:
+  - "IFF container format — one file, unlimited structured chunks"
+  - "33-slot monorepo scoring (21 base + 12 monorepo)"
+  - "Enterprise license validation (JWT + RSA-SHA256)"
+  - "v3 parser, resolver, chunk registry for any AI"
+  - "Backward compatible — every v1/v2 .faf is valid v3"
+
+rules:
+  - "TypeScript strict mode non-negotiable"
+  - "Zero build errors always"
+  - "Test coverage required for new features"
+  - "Never break license validation"
+  - "DNA scoring unchanged — Mk4 engine, same math"
+  - "Context chunks are additive — never affect score"
+
+key_files:
+  - path: "package.json"
+    purpose: "Package manifest — @faf/enterprise v1.0.0"
+  - path: "tsconfig.json"
+    purpose: "TypeScript strict mode configuration"
+  - path: "src/v3/parser.ts"
+    purpose: "v3 IFF container parser"
+  - path: "src/v3/resolver.ts"
+    purpose: "Resolution engine — chain walking, merge rules"
+  - path: "src/v3/chunk-registry.ts"
+    purpose: "DNA/Context/Pointer classification"
+  - path: "src/compiler/faf-compiler.ts"
+    purpose: "Mk3.3 compiler with license check"
+  - path: "src/enterprise/license-validator.ts"
+    purpose: "JWT validation with RSA-SHA256"
+
+preferences:
+  quality_bar: zero_errors
+  commit_style: conventional_emoji
+  response_style: concise_code_first
+  explanation_level: minimal
+  testing: required
+
+state:
+  phase: development
+  version: "1.0.0"
+  focus: "v3 format — dog food and flow"
+  status: green_flag
+
+scores:
+  faf_score: 83
+  slot_based_percentage: 86
+  total_slots: 21
+
+tags:
+  auto_generated:
+    - faf-enterprise
+    - cli
+    - typescript
+    - iff-container
+    - v3
+  smart_defaults:
+    - .faf
+    - ai-ready
+    - "2026"
+    - enterprise
+    - source-available
+
+human_context:
+  who: "wolfejam — FAF creator, championship-grade engineering"
+  what: "FAF Enterprise Edition — IFF container format for Fortune 500 AI context"
+  why: "One context file that scales to any depth. A startup has 5 chunks. An insurance company has 200."
+  where: "npm registry + GitHub"
+  when: "Active development"
+  how: "Test-driven development, WJTTC certification"
+
+faf_dna:
+  birth_dna: 86
+  birth_certificate: "FAF-2026-FAFENTER-G1HJ"
+  birth_date: "2026-02-19T01:22:55.192Z"
+  current_score: 86
+
+claude_code:
+  detected: true
+  has_claude_md: true
+
+gemini:
+  cli_detected: true
+  context_bridge: true
+  agents_manifest: true
+  notes: "Native Gemini CLI integration via FAF"
+
+# =============================================================================
+# CONTEXT CHUNKS (unscored — structured definitions for AI)
+# =============================================================================
+
+architecture:
+  pattern: "modular-monolith"
+  data_flow: "CLI input → parser → chunk-registry → DNA/Context/Pointer separation → resolver (chain walking) → output"
+  decisions:
+    - what: "IFF container model"
+      why: "Unlimited structured chunks — no artificial limits on context depth"
+    - what: "YAML source, FAFb binary compilation"
+      why: "YAML is human-readable, FAFb is seekable and CRC32-sealed"
+    - what: "Chunk registry is open-ended"
+      why: "Unknown chunk types are valid and preserved — future-proof"
+    - what: "DNA scoring unchanged"
+      why: "Context chunks are additive — never affect Mk4 score math"
+  components:
+    - name: "v3 Parser"
+      role: "Separates YAML into DNA/Context/Pointer chunks"
+      path: "src/v3/parser.ts"
+    - name: "Chunk Registry"
+      role: "Classifies top-level keys as DNA, context, or pointer"
+      path: "src/v3/chunk-registry.ts"
+    - name: "Resolver"
+      role: "Chain walking with rule-based merging (UNION, STRICTEST, INTERSECT)"
+      path: "src/v3/resolver.ts"
+    - name: "Manifest Integration"
+      role: "Auto-detect package.json/Cargo.toml/pyproject.toml/go.mod, validate against DNA"
+      path: "src/v3/manifest.ts"
+    - name: "Git Integration"
+      role: "Provider-agnostic detection (GitHub, GitLab, Bitbucket, Azure, Gitea)"
+      path: "src/v3/git.ts"
+    - name: "Mk3.3 Compiler"
+      role: "33-slot scoring with enterprise license gating"
+      path: "src/compiler/faf-compiler.ts"
+
+testing:
+  framework: Jest
+  methodology: "WJTTC (WolfeJam Technical Testing Certification)"
+  tiers:
+    - tier: T1
+      name: Brake
+      suite: "compat.test.ts"
+      tests: 15
+      validates: "v1/v2 backward compat, chunk isolation, DNA independence"
+    - tier: T3
+      name: Engine
+      suite: "chunk-registry.test.ts"
+      tests: 50
+      validates: "DNA/Context/Pointer classification, open-ended registry"
+    - tier: T3
+      name: Engine
+      suite: "parser.test.ts"
+      tests: 22
+      validates: "Version detection, chunk separation, accessors, agents"
+    - tier: T4
+      name: Engine
+      suite: "manifest.test.ts"
+      tests: 15
+      validates: "4 manifest types, auto-detect priority, validation against DNA"
+    - tier: T5
+      name: Engine
+      suite: "git.test.ts"
+      tests: 19
+      validates: "6 providers, SSH/HTTPS, edge cases"
+    - tier: T6
+      name: Engine
+      suite: "resolver.test.ts"
+      tests: 20
+      validates: "DNA override, compliance UNION, security STRICTEST, ai_policy INTERSECT"
+    - tier: T7
+      name: Aero
+      suite: "titan-fixtures.test.ts"
+      tests: 30
+      validates: "All 6 Titan fixtures, chunk counts, parent chains, data integrity"
+  counts:
+    v3_tests: 171
+    total_tests: 994
+    failures: 0
+
+skills:
+  capabilities:
+    - "Parse any .faf (v1, v2, v3) into structured FafV3Document"
+    - "Classify YAML keys as DNA (scored), Context (unscored), or Pointer"
+    - "Resolve parent_faf chains with rule-based merging"
+    - "Auto-detect and validate manifest files (4 types)"
+    - "Auto-detect git provider from remote URL (6 providers)"
+    - "Score DNA chunk with Mk3.3 (21-slot) or Mk4 (33-slot) engine"
+    - "Enterprise license validation (JWT + RSA-SHA256)"
+    - "Backward-compatible — v1/v2 files parse identically"
+  rules:
+    - "DNA chunk is the ONLY scored part — context chunks never affect score"
+    - "Unknown chunk types are valid and preserved"
+    - "Resolution: compliance UNION, security STRICTEST, ai_policy INTERSECT, default OVERRIDE"
+    - "Manifest detection priority: Cargo.toml > pyproject.toml > go.mod > package.json"
+
+interop:
+  mcp_servers:
+    - name: claude-faf-mcp
+      registry: npm
+      tools: 33
+      scoring: "Mk3.1 + WASM"
+    - name: grok-faf-mcp
+      registry: npm
+      tools: 55
+      scoring: "Mk4 WASM"
+    - name: gemini-faf-mcp
+      registry: PyPI
+      tools: 12
+      scoring: "Python 21-slot"
+    - name: rust-faf-mcp
+      registry: "crates.io"
+      tools: 9
+      scoring: "faf-rust-sdk"
+  compilers:
+    - name: xai-faf-rust
+      language: Rust
+      output: ".fafb binary"
+      scoring: "Mk4 (33-slot IP)"
+    - name: faf-wasm-sdk
+      language: "Rust→WASM"
+      output: "Browser/Edge"
+      scoring: "Mk4 WASM (281KB)"
+    - name: xai-faf-zig
+      language: "Zig→WASM"
+      output: "Ghost binary"
+      scoring: "2.7KB WASM"
+  formats:
+    yaml: "application/vnd.faf+yaml (IANA registered)"
+    binary: ".fafb (32-byte header, CRC32, seekable sections)"
+
+agents:
+  definitions:
+    - name: "code-agent"
+      role: "Writes code changes aligned with architecture and skills"
+      reads: ["architecture", "skills", "dependencies", "testing"]
+      writes: ["testing"]
+      model: "claude-opus"
+      provider: "anthropic"
+      tools: ["read_file", "edit_file", "run_tests", "search_code"]
+      instructions: "./agents/code-agent.md"
+      triggers:
+        - "PR opened"
+        - "ticket assigned"
+        - "code review requested changes"
+      handoff_to: ["review-agent"]
+    - name: "review-agent"
+      role: "Reviews PRs for policy compliance and code quality"
+      reads: ["compliance", "security", "ai_policy", "rules"]
+      writes: []
+      model: "gemini-pro"
+      provider: "google"
+      tools: ["read_file", "comment_pr", "request_changes"]
+      instructions: "./agents/review-agent.md"
+      triggers:
+        - "PR ready for review"
+        - "compliance check requested"
+      handoff_to: []
+    - name: "ops-agent"
+      role: "Handles deployment, incident response, and runbook updates"
+      reads: ["runbook", "sla", "git", "dependencies"]
+      writes: ["runbook"]
+      model: "internal"
+      provider: "internal"
+      tools: ["deploy", "rollback", "page_oncall", "read_logs"]
+      instructions: "./agents/ops-agent.md"
+      triggers:
+        - "deploy requested"
+        - "incident detected"
+        - "SLA threshold breached"
+      handoff_to: ["code-agent"]
+  orchestration:
+    pattern: conductor
+    entry_point: "code-agent"
+    delegates: ["review-agent", "ops-agent"]
+    routing: "Entry point dispatches based on trigger type. Code changes flow to review. Deploys flow to ops."
+  generation_targets:
+    - type: "agents.md"
+    - type: "claude.md"
+    - type: "cursorrules"
+    - type: "gemini.md"
+    - type: "grok.md"
+    - type: "json"
+
+git:
+  provider: github
+  repo: "Wolfe-Jam/faf-enterprise"
+  default_branch: main
+  remote_url: "https://github.com/Wolfe-Jam/faf-enterprise.git"
+  version_strategy: manifest
+
+manifest:
+  type: "package.json"
+  name: "@faf/enterprise"
+  version: "1.0.0"
+  license: "Elastic-2.0"
+  language: TypeScript
+  private: true
+
+# =============================================================================
+# POINTER CHUNK (references to companion documents)
+# =============================================================================
+
+docs:
+  claude_md: "./CLAUDE.md"
+  format_spec: "../../../PLANET-FAF/docs/FAF-V3-FORMAT-SPEC.md"
+  enterprise_guide: "./docs/ENTERPRISE.md"
+  license_strategy: "./docs/LICENSE-STRATEGY.md"
+  migration: "./docs/MIGRATION.md"
+  titan_fixtures: "./test-fixtures/titan/"
+
+# About Repo declaration — non-app, displays source's score
+app_type: about
+about:
+  represents: Wolfe-Jam/faf-enterprise
+  source_score: 100

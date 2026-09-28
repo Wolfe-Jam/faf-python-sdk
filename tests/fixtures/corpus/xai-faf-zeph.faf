@@ -1,0 +1,49 @@
+faf_version: "3.0"
+project:
+  name: xai-faf-zeph
+  goal: The 💨 is the role. The /F/ is the family. Joins **FAF🐘** (memory) as **ZEPH💨** (delivery).
+  main_language: Zig
+  type: wasm  # found: build.zig wasm target
+stack:
+  frontend: slotignored
+  css_framework: slotignored
+  ui_library: slotignored
+  state_management: slotignored
+  backend: slotignored
+  api_type: slotignored
+  runtime: slotignored
+  database: slotignored
+  connection: slotignored
+  hosting: Vercel
+  build: zig build
+  cicd: GitHub Actions
+  monorepo_tool: slotignored
+  package_manager: slotignored
+  workspaces: slotignored
+  admin: slotignored
+  cache: slotignored
+  search: slotignored
+  storage: slotignored
+human_context:
+  who: xAI / Grok team (live commission via X engagement 2026-05-07). Frontier agent builders. wolfejam (IP owner, public-collab boundary).
+  what: Public SDK for ZEPH💨. Wraps cascade.wasm (private engine artifact) with a live demo, RAG-friendly docs, and the auditable surface that consumers and integrators see. Schema + harness + WASM blob — the website incarnate.
+  why: Context is the highest-leverage knob in the agentic stack. ZEPH makes it **native everywhere** — browser, edge, Node, Bun — while multiplying reasoning, memory, multimodality, and inference efficiency for Grok specifically and frontier agents generally.
+  where: github.com/Wolfe-Jam/xai-faf-zeph (transfer-ready to github.com/xAI/xai-faf-zeph when xAI takes ownership). Live at xai-faf-zeph.vercel.app. Production target — Colossus.
+  when: Repo opened 2026-05-07. v0.1.0 live demo shipped 2026-05-10 (cascade.wasm integration, commit d17187e). M7 complete 2026-05-11 — cascade.wasm v0.2.0 (2,742 B) ships mk4-routed scoring + real .faf demo (5 populated + 16 slotignored). Score parity vs faf-wasm-core Rust kernel verified on 3 fixtures.
+  how: zig build (compile native), zig build test (unit tests), zig build benchmark (reproducible perf). Demo — open docs/index.html or visit xai-faf-zeph.vercel.app. WASM artifact docs/cascade.wasm synced from private engine at /FAF/cascade/.
+monorepo:
+  packages_count: slotignored
+  build_orchestrator: slotignored
+  versioning_strategy: slotignored
+  shared_configs: slotignored
+  remote_cache: slotignored
+tech_stack:
+  - Zig
+key_files:
+  - build.zig
+  - src/root.zig
+  - README.md
+  - vercel.json
+commands:
+  build: zig build
+  test: zig build test

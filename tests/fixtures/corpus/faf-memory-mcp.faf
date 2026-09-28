@@ -1,0 +1,53 @@
+faf_version: 2.5.0
+project:
+  name: faf-memory-mcp
+  goal: MCP door for the .fafm file — etch persists to disk so any MCP host gets offline-first Permanent Memory without a hosted store
+  main_language: Python
+  type: mcp-server
+  framework: fastmcp
+  homepage: https://memory.faf.one
+stack:
+  frontend: slotignored
+  css_framework: slotignored
+  ui_library: slotignored
+  state_management: slotignored
+  backend: FastMCP
+  api_type: MCP (stdio)
+  runtime: Python 3.11+
+  database: slotignored
+  connection: stdio
+  hosting: PyPI
+  build: hatchling
+  cicd: GitHub Actions
+  monorepo_tool: slotignored
+  package_manager: uv
+  workspaces: slotignored
+  admin: slotignored
+  cache: slotignored
+  search: slotignored
+  storage: .fafm file on disk
+human_context:
+  who: MCP hosts (Claude Code via faf-memory plugin, Cursor, Grok, any stdio host) that need local .fafm
+  what: Five-tool MCP adapter over claude-fafm-sdk — etch, recall, list_facts, save_soul, load_soul
+  why: Agents forget across sessions; the store should be a file you can diff, not a hosted lock-in
+  where: PyPI faf-memory-mcp · GitHub Wolfe-Jam/faf-memory-mcp · memory.faf.one
+  when: v0.1.1 — 2026-08-15 — etch persists to $FAF_SOUL_PATH
+  how: uvx faf-memory-mcp
+monorepo:
+  packages_count: slotignored
+  build_orchestrator: slotignored
+  versioning_strategy: slotignored
+  shared_configs: slotignored
+  remote_cache: slotignored
+tech_stack:
+  - Python
+  - FastMCP
+  - claude-fafm-sdk
+key_files:
+  - faf_memory_mcp/server.py
+  - pyproject.toml
+  - README.md
+  - tests/test_round_trip.py
+commands:
+  test: pytest
+  lint: ruff check .

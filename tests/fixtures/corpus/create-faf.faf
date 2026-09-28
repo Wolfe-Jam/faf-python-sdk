@@ -1,0 +1,44 @@
+faf_version: 2.5.0
+project:
+  name: create-faf
+  goal: Create FAF projects - Redirects to @faff/create (Official FAF meta-installer)
+  main_language: JavaScript
+  type: cli  # found: package.json bin
+stack:
+  frontend: slotignored
+  css_framework: slotignored
+  ui_library: slotignored
+  state_management: slotignored
+  backend: slotignored
+  api_type: slotignored
+  runtime: slotignored
+  database: slotignored
+  connection: slotignored
+  hosting: npm registry
+  build: slotignored
+  cicd: slotignored
+  monorepo_tool: slotignored
+  package_manager: slotignored
+  workspaces: slotignored
+  admin: slotignored
+  cache: slotignored
+  search: slotignored
+  storage: slotignored
+human_context:
+  who: developers who naturally type npm create faf (matching the CLI command pattern)
+  what: Create FAF projects - Redirects to @faff/create (Official FAF meta-installer)
+  why: A memorable npm entry point that redirects to the official @faff/create scaffolder
+  where: https://github.com/Wolfe-Jam/create-faf
+  when: Production - published on npm
+  how: bash npm create faf
+monorepo:
+  packages_count: slotignored
+  build_orchestrator: slotignored
+  versioning_strategy: slotignored
+  shared_configs: slotignored
+  remote_cache: slotignored
+tech_stack:
+  - JavaScript
+key_files:
+  - package.json
+  - README.md

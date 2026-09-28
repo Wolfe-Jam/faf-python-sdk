@@ -1,0 +1,21 @@
+faf_version: 2.5.2
+generated: 2026-08-16T06:10:00.000Z
+project:
+  name: xai-faf-rag-public
+  goal: Public about repo for xai-faf-rag. Puts .faf on Grok Collections.
+  main_language: markdown
+  type: about
+instant_context:
+  what_building: Public README, project.faf, LICENSE for a private Grok Collections integration
+  tech_stack: markdown
+  main_language: markdown
+human_context:
+  who: Developers using Grok Collections
+  what: About repo. Engine private at Wolfe-Jam/xai-faf-rag.
+  why: Public face without publishing the engine
+  where: github.com/Wolfe-Jam/xai-faf-rag-public
+about:
+  represents: Wolfe-Jam/xai-faf-rag
+  source: private
+  contact: team@faf.one
+  source_score: 50

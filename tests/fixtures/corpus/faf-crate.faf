@@ -1,0 +1,65 @@
+faf_version: "3.3"
+project:
+  name: faf
+  goal: Meta-crate for the FAF Rust ecosystem — one install, full stack
+  main_language: Rust
+  version: 0.3.0
+  license: MIT
+  type: rust_crate
+  subtype: meta_crate
+  ecosystem: faf-rust
+instant_context:
+  what_building: Rust meta-crate re-exporting faf-rust-sdk + faf-radio-rust
+  tech_stack: Rust 2021
+  deployment: crates.io
+  main_language: Rust
+  key_files:
+    - Cargo.toml
+    - src/lib.rs
+  feature_flags:
+    - sdk (default) — parse, validate, compile .faf files
+    - radio — Radio Protocol client for broadcasting AI context
+    - axum — FafContext extractor + FafLayer middleware
+  commands:
+    build: cargo build
+    check: cargo check --features radio,axum
+    publish: cargo publish --allow-dirty
+ai_instructions:
+  priority_order:
+    - 1. Read THIS .faf file first
+    - 2. Check CLAUDE.md for session context
+    - 3. Review Cargo.toml for dependencies
+  working_style:
+    code_first: true
+    explanations: minimal
+    quality_bar: zero_errors
+human_context:
+  who: wolfejam
+  what: Meta-crate unifying FAF Rust ecosystem under one install
+  why: cargo add faf = full ecosystem. No hunting for individual crates.
+  how: Re-exports via pub use + optional feature-gated deps
+  where: crates.io, GitHub (Wolfe-Jam/faf-crate)
+  when: March 2026
+state:
+  phase: production
+  version: 0.3.0
+  status: green_flag
+  focus: Radio 0.2 integration (grok presets + client broadcast)
+stack:
+  backend: Rust 2021 Edition
+  build_tool: Cargo
+  registry: crates.io
+preferences:
+  quality_bar: zero_errors
+  commit_style: conventional_emoji
+  response_style: concise_code_first
+tags:
+  - rust
+  - meta-crate
+  - ai-context
+  - faf
+  - iana-registered
+  - mcp
+metadata:
+  last_claude_sync: 2026-03-07T01:51:53.228Z
+  bi_sync: active
