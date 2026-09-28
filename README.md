@@ -26,7 +26,7 @@ One engine, one number: faf-python-sdk scores all 33 slots exactly like faf-kern
 
 See [CHANGELOG.md](CHANGELOG.md) for the full list of changes.
 
-## What's New in v1.4.0 — The Interop Edition
+## v1.4.0 — The Interop Edition
 
 The interop functions get their real names: `author_agents_md` / `author_gemini_md` are public, `render_*` is the impl, `generate_*` is deprecated (removed in 2.0).
 
