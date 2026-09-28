@@ -22,6 +22,7 @@ One engine, one number: faf-python-sdk scores all 33 slots exactly like faf-kern
 - `tbd` / `todo` are placeholders; short keys (`framework`, `css`, `state`, `api`, `db`, `pkg_manager`) are read.
 - YAML is read the way the kernel reads it; unreadable YAML scores 0 without raising.
 - `score_faf(yaml, tier=...)` still accepts `tier`; it no longer changes the slot count.
+- **Upgrading:** `result.slots` lists all 33 slots under the kernel's names (`stack.framework`, `css`, `state`, `api`, `db`, `pkg_manager`; were `frontend`, `css_framework`, `state_management`, `api_type`, `database`, `package_manager`). Code that reads slots by name needs the new names.
 - Parity harness: 815/815 fixtures match faf-kernel (`faf-scoring-kernel@3.0.0`), including the `project.faf` of 58 public repos.
 
 See [CHANGELOG.md](CHANGELOG.md) for the full list of changes.
