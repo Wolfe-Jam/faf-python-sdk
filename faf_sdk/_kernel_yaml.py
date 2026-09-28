@@ -16,8 +16,13 @@ rebuilds the value from the event stream exactly as serde_yaml_ng's
 - ``!!bool`` / ``!!int`` / ``!!float`` / ``!!null`` must parse or it is an error;
   any other global tag (``!!str``, ``!!binary``, ``tag:...``) reads as a string
 - a local tag (``!foo``, or the bare ``!``) wraps the value in :class:`Tagged`
-- nesting deeper than 128 collections is an error
+- nesting deeper than 128 collections is an error (the scanner stops at
+  flow level 129, so deep ``[``/``{`` input fails in linear time)
 - alias expansion past ``100 × events`` jumps is an error ("repetition limit")
+- anchor ids follow serde_yaml_ng: a redefined name can hand its id to a later
+  anchor, and an alias resolves to the last node registered under its id
+- an empty ``?`` key inside ``[...]`` also consumes the next token, as libyaml
+  does, so ``[?, a]`` / ``[?]`` are errors
 
 Any error raises :class:`KernelYamlError`.
 """
@@ -275,6 +280,20 @@ class _Parser(LibyamlScanner, yaml.parser.Parser):
         LibyamlScanner.__init__(self, text)
         yaml.parser.Parser.__init__(self)
 
+    def parse_flow_sequence_entry_mapping_key(self) -> Any:
+        # libyaml parse_flow_sequence_entry_mapping_key: the KEY token is
+        # already consumed by parse_flow_sequence_entry; when the key is empty
+        # it also consumes the next token (`:`, `,` or `]`). PyYAML does not,
+        # so `[? , a]` / `[?]` parse in PyYAML and fail in the kernel.
+        self.get_token()  # KEY
+        if not self.check_token(yaml.tokens.ValueToken, yaml.tokens.FlowEntryToken,
+                                yaml.tokens.FlowSequenceEndToken):
+            self.states.append(self.parse_flow_sequence_entry_mapping_value)
+            return self.parse_flow_node()
+        token = self.get_token()
+        self.state = self.parse_flow_sequence_entry_mapping_value
+        return self.process_empty_scalar(token.end_mark)
+
     def process_directives(self) -> Any:
         self.yaml_version = None
         self.tag_handles = {}
@@ -339,7 +358,6 @@ class _Builder:
         self.events = events
         self.limit = max(len(events), 1) * _JUMP_FACTOR
         self.jumps = 0
-        self.anchor_pos: Dict[str, int] = {}
         # alias event index -> anchored node event index (resolved at load)
         self.alias_target: Dict[int, int] = {}
         # anchored node index -> (value, jumps inside, depth inside, end index)
@@ -348,14 +366,25 @@ class _Builder:
         self._resolve_aliases()
 
     def _resolve_aliases(self) -> None:
+        # serde_yaml_ng Loader: an anchor gets id = len(anchors) *after* any
+        # earlier definition of the same name, so a redefined name reuses a
+        # slot and a later new anchor can take an id already in use. An alias
+        # takes the id its name has when the alias is read; the id's target is
+        # the last node registered under it anywhere in the document.
+        anchors: Dict[str, int] = {}
+        id_pos: Dict[int, int] = {}
+        alias_id: Dict[int, int] = {}
         for i, e in enumerate(self.events):
             if isinstance(e, ev.AliasEvent):
-                if e.anchor not in self.anchor_pos:
+                if e.anchor not in anchors:
                     raise KernelYamlError("unknown anchor")
-                self.alias_target[i] = self.anchor_pos[e.anchor]
+                alias_id[i] = anchors[e.anchor]
             elif isinstance(e, (ev.ScalarEvent, ev.SequenceStartEvent,
                                 ev.MappingStartEvent)) and e.anchor is not None:
-                self.anchor_pos[e.anchor] = i
+                new_id = len(anchors)
+                anchors[e.anchor] = new_id
+                id_pos[new_id] = i
+        self.alias_target = {i: id_pos[a] for i, a in alias_id.items()}
 
     def build(self) -> Any:
         if not self.events:
@@ -383,15 +412,18 @@ class _Builder:
         """
         e = self.events[i]
         if isinstance(e, ev.AliasEvent):
-            target = self.alias_target[i]
-            value, inner_jumps, depth, _end = self._anchored(target)
+            value, inner_jumps, depth, _end = self._anchored(self.alias_target[i])
             self._jump(1 + inner_jumps)
             return value, 1 + inner_jumps, depth, i + 1
         if getattr(e, "anchor", None) is not None:
-            return self._anchored(i)
+            value, inner_jumps, depth, end = self._anchored(i)
+            self._jump(inner_jumps)  # the walk at the definition site
+            return value, inner_jumps, depth, end
         return self._build(i)
 
     def _anchored(self, i: int) -> Tuple[Any, int, int, int]:
+        """Value of the anchored node at ``i``, built once. The jump count it
+        returns is charged by the caller, once per walk (definition or alias)."""
         if i in self.memo:
             return self.memo[i]
         if i in self.in_progress:
@@ -401,8 +433,10 @@ class _Builder:
         self.in_progress.add(i)
         before = self.jumps
         value, _j, depth, end = self._build(i)
+        inner = self.jumps - before
+        self.jumps = before
         self.in_progress.discard(i)
-        result = (value, self.jumps - before, depth, end)
+        result = (value, inner, depth, end)
         self.memo[i] = result
         return result
 

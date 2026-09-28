@@ -77,6 +77,23 @@ def test_parity(case_id):
         assert all(state == SlotState.EMPTY for _, state in result.slots)
 
 
+@pytest.mark.parametrize("unit", ["[", "{a: "])
+def test_deep_flow_stops_at_kernel_depth_limit(unit):
+    """Flow nesting past 128 is unreadable to the kernel; the scanner stops at
+    flow level 129 instead of reading on (the simple-key scan is O(depth) per
+    token, so reading on is quadratic). Checked by position, not by time."""
+    from yaml.scanner import ScannerError
+
+    from faf_sdk._libyaml_scanner import LibyamlScanner
+
+    scanner = LibyamlScanner(unit * 20000)
+    with pytest.raises(ScannerError):
+        while scanner.get_token() is not None:
+            pass
+    assert scanner.flow_level == 129
+    assert scanner.pos <= 129 * len(unit)
+
+
 def test_recording_matches_live_kernel():
     if not ps.oracle_available():
         if os.environ.get("FAF_REQUIRE_KERNEL") == "1":
