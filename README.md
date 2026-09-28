@@ -43,7 +43,7 @@ print(author_agents_md(faf.data.raw))   # takes the raw dict — carries top-lev
 
 Any Python FAF tool that authors an AI-context file wraps this now — never hand-roll one. `gemini-faf-mcp` 2.7.0's `faf_agents` / `faf_gemini` are the reference wrappers.
 
-## What's New in v1.2.0 — The Dart Edition
+## v1.2.0 — The Dart Edition
 
 Adds `detect_dart_project()`: content-aware Dart/Flutter detection from a `pubspec.yaml` (Flutter app vs package · Dart MCP / backend / CLI / library), reproducing faf-cli's engine byte-for-byte — 20 shared fixtures, parity-tested.
 
@@ -54,7 +54,7 @@ d = detect_dart_project(".")
 print(d.app_type, d.framework)   # e.g. "mobile" "Flutter"
 ```
 
-## What's New in v1.1.0
+## v1.1.0
 
 **Mk4 Championship Scoring Engine** — the same 33-slot scoring algorithm used by the Rust compiler and TypeScript CLI, now in Python. Same slots, same formula, same scores. Every FAF tool in every language now agrees on what 100% means.
 
