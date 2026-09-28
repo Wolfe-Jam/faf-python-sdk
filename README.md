@@ -9,7 +9,7 @@ The foundation other Python FAF tools build on. If you're building MCP servers, 
 [![FAF](https://mcpaas.live/badge/Wolfe-Jam/faf-python-sdk.svg)](https://builder.faf.one)
 [![PyPI](https://img.shields.io/pypi/v/faf-python-sdk?style=for-the-badge&logo=pypi&logoColor=white)](https://pypi.org/project/faf-python-sdk/)
 [![Downloads](https://img.shields.io/pypi/dm/faf-python-sdk?style=for-the-badge&color=blue)](https://pypi.org/project/faf-python-sdk/)
-[![Tests](https://img.shields.io/badge/tests-1037%20passing-brightgreen?style=for-the-badge)](https://github.com/Wolfe-Jam/faf-python-sdk)
+[![Tests](https://img.shields.io/badge/tests-1053%20passing-brightgreen?style=for-the-badge)](https://github.com/Wolfe-Jam/faf-python-sdk)
 [![IANA](https://img.shields.io/badge/IANA-registered-informational?style=for-the-badge)](https://www.iana.org/assignments/media-types/application/vnd.faf+yaml)
 
 **Media Type:** `application/vnd.faf+yaml` (IANA registered)
@@ -23,7 +23,7 @@ One engine, one number: faf-python-sdk scores all 33 slots exactly like faf-kern
 - YAML is read the way the kernel reads it; unreadable YAML scores 0 without raising.
 - `score_faf(yaml, tier=...)` still accepts `tier`; it no longer changes the slot count.
 - **Upgrading:** `result.slots` lists all 33 slots under the kernel's names (`stack.framework`, `css`, `state`, `api`, `db`, `pkg_manager`; were `frontend`, `css_framework`, `state_management`, `api_type`, `database`, `package_manager`). Code that reads slots by name needs the new names.
-- Parity harness: 815/815 fixtures match faf-kernel (`faf-scoring-kernel@3.0.0`), including the `project.faf` of 58 public repos.
+- Parity harness: 829/829 fixtures match faf-kernel (`faf-scoring-kernel@3.0.0`), including the `project.faf` of 58 public repos.
 
 See [CHANGELOG.md](CHANGELOG.md) for the full list of changes.
 

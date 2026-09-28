@@ -295,6 +295,11 @@ class LibyamlScanner:
     def _increase_flow_level(self) -> None:
         self.simple_keys.append(_SimpleKey(False, False, 0, 0, 0, 0))
         self.flow_level += 1
+        if self.flow_level > 128:
+            # More than 128 nested collections is unreadable to the kernel
+            # (serde_yaml_ng recursion limit), so stop here: the simple-key
+            # scan is O(flow depth) per token and would go quadratic.
+            raise self._error(None, "recursion limit exceeded")
 
     def _decrease_flow_level(self) -> None:
         if self.flow_level:

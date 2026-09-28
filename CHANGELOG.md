@@ -3,16 +3,16 @@
 All notable changes to faf-python-sdk are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
-## [2.0.0] — The Always33 Edition
+## [2.0.0] - 2026-09-28 — The Always33 Edition
 
 One engine, one number: faf-python-sdk scores all 33 slots exactly like faf-kernel — the same score faf-cli 8, claude-faf-mcp 7, faf-mcp 4 and grok-faf-mcp 2 give.
 
 `score_faf(yaml)` returns what faf-kernel (Wolfe-Jam/faf-rust `crates/faf-kernel`,
 npm `faf-scoring-kernel@3.0.0`) returns, on every file. A parity harness
 (`tests/test_always33_parity.py`) checks score, tier, populated, empty, ignored,
-active, total and every slot state against the kernel's recorded answers: 815/815
+active, total and every slot state against the kernel's recorded answers: 829/829
 fixtures (58 real `project.faf` files from public Wolfe-Jam repos, 55 rule
-fixtures, 242 YAML-layer cases, 460 seeded fuzz documents).
+fixtures, 256 YAML-layer cases, 460 seeded fuzz documents).
 
 ### Changed (breaking — scores move)
 - **Always 33 slots.** The 12 enterprise slots count unless the file marks them
@@ -35,10 +35,13 @@ fixtures, 242 YAML-layer cases, 460 seeded fuzz documents).
   Python's `round()` gave 12).
 - YAML is read the way the kernel reads it (serde_yaml_ng on libyaml), not with
   `yaml.safe_load`: flow-style YAML, a leading BOM and tabs inside values parse
-  as they do in the kernel; `<<` is an ordinary key (no YAML 1.1 merge);
-  duplicate keys, a second document, alias expansion past the kernel's
-  repetition limit and nesting deeper than 128 are unreadable; a local tag
-  (`!x value`) scores the slot empty.
+  as they do in the kernel; `<<` is an ordinary key (no YAML 1.1 merge); a
+  redefined anchor name resolves the way the kernel resolves it (an alias
+  follows the kernel's anchor ids, so it can land on a later anchor); duplicate
+  keys, a second document, an empty `?` key inside `[...]` (`[?, a]`, `[?]`),
+  alias expansion past the kernel's repetition limit and nesting deeper than
+  128 are unreadable, and `[`/`{` nesting past that limit is rejected in linear
+  time; a local tag (`!x value`) scores the slot empty.
 - Unreadable YAML scores 0 with every slot empty. `score_faf` does not raise.
 
 ### Added
