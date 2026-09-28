@@ -10,5 +10,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+      # Gate: the full suite, with the live faf-kernel oracle required, passes
+      # before anything is built or published.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm install --prefix scripts
+      - run: pip install -e ".[dev]"
+      - run: FAF_REQUIRE_KERNEL=1 python -m pytest tests/ -q
       - run: pip install build && python -m build
       - uses: pypa/gh-action-pypi-publish@release/v1

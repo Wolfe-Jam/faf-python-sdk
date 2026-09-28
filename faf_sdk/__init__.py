@@ -30,8 +30,8 @@ from .interop import (
     author_gemini_md,
     render_agents_md,
     render_gemini_md,
-    generate_agents_md,  # deprecated alias — removed in 2.0
-    generate_gemini_md,  # deprecated alias — removed in 2.0
+    generate_agents_md,  # deprecated alias — kept in 2.0, removal planned
+    generate_gemini_md,  # deprecated alias — kept in 2.0, removal planned
     faf_meta_tag,
 )
 from .types import (

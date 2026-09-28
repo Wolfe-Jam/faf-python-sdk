@@ -152,7 +152,8 @@ def score_faf(
     ``LicenseTier.ENTERPRISE`` give the same result.
 
     YAML the kernel cannot read (syntax errors, duplicate keys, more than one
-    document, ...) scores 0 with every slot empty. It does not raise.
+    document, ...) scores 0 with every slot empty; it does not raise for any
+    ``str`` or ``bytes`` input. Any other type raises ``TypeError``.
     """
     del tier  # accepted for compatibility; always-33 ignores it
     try:

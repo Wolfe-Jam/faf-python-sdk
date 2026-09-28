@@ -15,7 +15,8 @@ reader does not strip a BOM; the scanner skips one at column 0 of a line).
 """
 
 import re
-from typing import Any, List, Optional, Tuple
+from collections import deque
+from typing import Any, Deque, List, Optional, Tuple
 
 from yaml import tokens as tk
 from yaml.error import Mark
@@ -70,7 +71,7 @@ class LibyamlScanner:
         self.index = 0  # byte offset (libyaml mark.index)
         self.line = 0
         self.column = 0
-        self.tokens: List[Any] = []
+        self.tokens: Deque[Any] = deque()
         self.tokens_parsed = 0
         self.token_available = False
         self.stream_start_produced = False
@@ -94,7 +95,7 @@ class LibyamlScanner:
         token = self.peek_token()
         if token is None:
             return None
-        self.tokens.pop(0)
+        self.tokens.popleft()
         self.token_available = False
         self.tokens_parsed += 1
         if isinstance(token, tk.StreamEndToken):
@@ -311,6 +312,11 @@ class LibyamlScanner:
             return
         if self.indent < column:
             self.indents.append(self.indent)
+            if len(self.indents) > 128:
+                # More than 128 nested block collections is unreadable to the
+                # kernel (serde_yaml_ng recursion limit). Stop here, as for flow
+                # nesting: reading on queues one BlockEnd per open level.
+                raise self._error(None, "recursion limit exceeded")
             self.indent = column
             token = token_cls(mark, mark)
             if number == -1:

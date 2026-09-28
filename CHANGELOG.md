@@ -10,9 +10,9 @@ One engine, one number: faf-python-sdk scores all 33 slots exactly like faf-kern
 `score_faf(yaml)` returns what faf-kernel (Wolfe-Jam/faf-rust `crates/faf-kernel`,
 npm `faf-scoring-kernel@3.0.0`) returns, on every file. A parity harness
 (`tests/test_always33_parity.py`) checks score, tier, populated, empty, ignored,
-active, total and every slot state against the kernel's recorded answers: 829/829
+active, total and every slot state against the kernel's recorded answers: 845/845
 fixtures (58 real `project.faf` files from public Wolfe-Jam repos, 55 rule
-fixtures, 256 YAML-layer cases, 460 seeded fuzz documents).
+fixtures, 272 YAML-layer cases, 460 seeded fuzz documents).
 
 ### Changed (breaking — scores move)
 - **Always 33 slots.** The 12 enterprise slots count unless the file marks them
@@ -40,9 +40,10 @@ fixtures, 256 YAML-layer cases, 460 seeded fuzz documents).
   follows the kernel's anchor ids, so it can land on a later anchor); duplicate
   keys, a second document, an empty `?` key inside `[...]` (`[?, a]`, `[?]`),
   alias expansion past the kernel's repetition limit and nesting deeper than
-  128 are unreadable, and `[`/`{` nesting past that limit is rejected in linear
-  time; a local tag (`!x value`) scores the slot empty.
-- Unreadable YAML scores 0 with every slot empty. `score_faf` does not raise.
+  128 are unreadable, and nesting past that limit (`[`/`{` or block) is rejected
+  in linear time; a local tag (`!x value`) scores the slot empty.
+- Unreadable YAML scores 0 with every slot empty. `score_faf` does not raise for
+  any `str` or `bytes` input.
 
 ### Added
 - `faf_sdk.mk4.SLOTS` (the 33 slot paths, kernel order), `TOTAL_SLOTS`,
@@ -55,6 +56,10 @@ fixtures, 256 YAML-layer cases, 460 seeded fuzz documents).
 - Files without the 12 enterprise markers score lower. `faf auto` (faf-cli)
   writes the 12 markers; with them, a complete 21-slot file scores 100%.
 - Code that reads `result.slots` by name: use the canonical short names above.
+- YAML the kernel can't read now scores 0: a duplicate key (1.4.0 kept the last
+  value), a second document (`---`), an empty `?` key inside `[...]`, nesting
+  deeper than 128. `tbd` and `todo` now count as empty.
+- Rounding is half away from zero (12.5% → 13), as the kernel rounds.
 
 ### Notes
 - `generate_agents_md` / `generate_gemini_md` remain deprecated aliases in 2.0.0.

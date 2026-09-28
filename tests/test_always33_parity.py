@@ -94,6 +94,22 @@ def test_deep_flow_stops_at_kernel_depth_limit(unit):
     assert scanner.pos <= 129 * len(unit)
 
 
+def test_deep_block_stops_at_kernel_depth_limit():
+    """Block nesting past 128 is unreadable to the kernel; the scanner stops at
+    the 129th open block level instead of reading on (reading on queues one
+    BlockEnd per open level, which went quadratic). Checked by position, not time."""
+    from yaml.scanner import ScannerError
+
+    from faf_sdk._libyaml_scanner import LibyamlScanner
+
+    scanner = LibyamlScanner("- " * 20000 + "x")
+    with pytest.raises(ScannerError):
+        while scanner.get_token() is not None:
+            pass
+    assert len(scanner.indents) == 129
+    assert scanner.pos <= 129 * 2 + 2
+
+
 def test_recording_matches_live_kernel():
     if not ps.oracle_available():
         if os.environ.get("FAF_REQUIRE_KERNEL") == "1":
