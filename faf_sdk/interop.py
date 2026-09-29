@@ -15,7 +15,8 @@ Naming: the impl functions are ``render_agents_md`` / ``render_gemini_md``
 (pure ``dict -> str`` projection, pairs with the writers). The public API
 name is ``author_agents_md`` / ``author_gemini_md`` — the surface consumers
 import, in the "faf authors" voice used on every documented surface.
-``generate_*`` is a deprecated alias, removed in 2.0.
+``generate_*`` is a deprecated alias, kept in 2.0; removal is planned for a
+later major version.
 """
 
 from __future__ import annotations

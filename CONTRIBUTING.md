@@ -26,7 +26,8 @@ That's it. You're ready to run tests and ship a fix.
 Run the full check pass:
 
 ```bash
-pytest tests/ -v          # all tests must pass
+npm install --prefix scripts                   # the faf-kernel oracle (once)
+FAF_REQUIRE_KERNEL=1 pytest tests/ -v          # all tests must pass, incl. the live-kernel check
 mypy faf_sdk/             # strict typing — no untyped defs
 ```
 
