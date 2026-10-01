@@ -16,7 +16,7 @@ The foundation other Python FAF tools build on. If you're building MCP servers, 
 
 ## What's New in v2.0.0 — The Always33 Edition
 
-One engine, one number: faf-python-sdk scores all 33 slots exactly like faf-kernel — the same score faf-cli 8, claude-faf-mcp 7, faf-mcp 4 and grok-faf-mcp 2 give.
+One engine, one number: faf-python-sdk scores with the always-33 engine, exactly like faf-kernel — the same score faf-cli 8, claude-faf-mcp 7, faf-mcp 4 and grok-faf-mcp 2 give.
 
 - **Always 33 slots.** The 12 enterprise slots count unless marked `slotignored`. 21 base slots filled with no markers: 64% (21/33). The same file plus the 12 markers: 100% (21/21). `faf auto` (faf-cli) writes the markers.
 - `tbd` / `todo` are placeholders; short keys (`framework`, `css`, `state`, `api`, `db`, `pkg_manager`) are read.
