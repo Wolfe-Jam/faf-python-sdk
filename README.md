@@ -2,7 +2,7 @@
 
 **Persistent Project Context for Python. Parse, validate, score.**
 
-**FAF defines. MD instructs. AI codes.**
+**FAF defines. AGENTS.md instructs. AI codes.**
 
 The foundation other Python FAF tools build on. If you're building MCP servers, CI validators, or any Python tool that needs to understand project context, start here.
 
@@ -91,7 +91,7 @@ print(f"Score: {result.score}% {result.tier}")
 print(f"Slots: {result.populated}/{result.total} populated")
 ```
 
-> **FAF defines. MD instructs. AI codes.**
+> **FAF defines. AGENTS.md instructs. AI codes.**
 
 ## Mk4 Scoring
 
