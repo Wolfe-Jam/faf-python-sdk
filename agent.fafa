@@ -1,0 +1,62 @@
+version: "1.0"
+agent:
+  name: faf-python-sdk
+  displayName: faf-python-sdk
+  id: urn:air:faf.one:agent:faf-python-sdk
+  version: 2.0.0
+  description: "A Python SDK for the .faf format: parse, validate and score project.faf files, and author AGENTS.md and GEMINI.md from them."
+  homepage: https://faf.one
+capabilities:
+  - name: parse
+    type: tool
+    description: Parse .faf YAML from a string into a FafFile
+    tags:
+      - parse
+  - name: parse_file
+    type: tool
+    description: Parse a .faf file from a path
+    tags:
+      - parse_file
+  - name: validate
+    type: tool
+    description: Check a .faf file's structure and completeness
+    tags:
+      - validate
+  - name: score_faf
+    type: tool
+    description: Score a .faf with the always-33 engine, the same score as faf-kernel
+    tags:
+      - score_faf
+  - name: find_faf_file
+    type: tool
+    description: Find project.faf by walking up the directory tree
+    tags:
+      - find_faf_file
+  - name: author_agents_md
+    type: tool
+    description: Write AGENTS.md from parsed .faf data
+    tags:
+      - author_agents_md
+  - name: author_gemini_md
+    type: tool
+    description: Write GEMINI.md from parsed .faf data
+    tags:
+      - author_gemini_md
+  - name: stringify
+    type: tool
+    description: Turn .faf data back into a YAML string
+    tags:
+      - stringify
+endpoints:
+  - protocol: library
+    transport: stdio
+    location: faf-python-sdk
+metadata:
+  cards:
+    domain: faf.one
+    examples:
+      - How do I parse a project.faf in Python?
+      - How do I score a .faf file from Python?
+      - How do I validate a .faf file in CI?
+      - Can I generate AGENTS.md from project.faf in Python?
+    accent: "#387EB8"
