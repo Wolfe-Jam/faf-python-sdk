@@ -2,6 +2,8 @@
 
 **Persistent Project Context for Python. Parse, validate, score.**
 
+⭐ [Star it on GitHub](https://github.com/Wolfe-Jam/faf-python-sdk): bookmarks it for you, helps other devs find it too.
+
 **FAF defines. AGENTS.md instructs. AI codes.**
 
 The foundation other Python FAF tools build on. If you're building MCP servers, CI validators, or any Python tool that needs to understand project context, start here.
